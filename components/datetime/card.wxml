@@ -1,0 +1,5 @@
+<view class="datecard">
+  <h6 class="month">{{month}}月</h6>
+  <view></view>
+  <h6 class="date"><b class="h5">{{date}}</b>日</h6>
+</view>

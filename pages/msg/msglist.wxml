@@ -1,0 +1,91 @@
+<!-- 消息列表 -->
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <view class='list' wx:for="{{dataList}}" wx:key="index" style="background:{{item.is_read==0?'rgba(233,233,233,0.20);':''}}">
+        <!-- 点赞消息 -->
+        <view bindtap="skip" data-item="{{item}}" data-index="{{index}}" class="user_card" wx:if="{{type == 1}}">
+            <image src="{{item.head_url}}" />
+            <view class="border-04">
+                <h3 class="bold">
+                    {{item.nick_name}}
+                    <image src="../../img/32x32/male.png" wx:if="{{item.gender==1}}" />
+                    <image src="../../img/32x32/female.png" wx:if="{{item.gender==2}}" />
+                    <image src="../../img/32x32/vip-fill.png" wx:if="{{item.is_verified>0}}" />
+                </h3>
+                <view>
+                    <block>
+                        <datetime value="{{item.add_time}}" friendly />
+                    </block>
+                    点赞了你的
+                    <block wx:if="{{item.data_type==1}}">经验</block>
+                    <block wx:elif="{{item.data_type==2}}">经验评论</block>
+                    <block wx:elif="{{item.data_type==3}}">大学资讯</block>
+                    <block wx:else>大学基本信息</block>
+                    <b>
+                        <block>{{item.data_type==1?'《':'“'}}</block>
+                        {{item.data_type==1?item.data_info.title:item.data_info.content}}
+                        <block>{{item.data_type==1?'》':'”'}}</block>
+                    </b>
+                </view>
+            </view>
+            <view class="red-hot" wx:if="{{item.is_read==0}}" />
+        </view>
+        <!-- 粉丝通知 -->
+        <navigator url="/pages/user/author?userId={{item.id}}" class="user_card" wx:if="{{type == 0}}">
+            <image src="{{item.head_url}}" />
+            <view class="border-04">
+                <h3 class="bold" style="width:420rpx">
+                    {{item.nick_name}}
+                    <image src="../../img/32x32/male.png" wx:if="{{item.gender==1}}" />
+                    <image src="../../img/32x32/female.png" wx:if="{{item.gender==2}}" />
+                    <image src="../../img/32x32/vip-fill.png" wx:if="{{item.is_verified>0}}" />
+                </h3>
+                <view>
+                    <block>
+                        <datetime value="{{item.add_time}}" friendly />
+                    </block>
+                    关注了你
+                </view>
+            </view>
+            <btn-top class="{{item.is_fanning!=0&&'btn-top_active'}}" catchtap="attention" data-idx="{{index}}" data-id="{{item.id}}">
+                {{item.is_fanning!=0?'已关注':'关注'}}
+            </btn-top>
+        </navigator>
+        <!-- 评论消息 -->
+        <view bindtap="skip" data-item="{{item}}" data-index="{{index}}" class="user_card comment" wx:if="{{type == 2}}">
+            <image src="{{item.head_url}}" />
+            <view>
+                <h3 class="bold">
+                    {{item.nick_name}}
+                    <image src="../../img/32x32/male.png" wx:if="{{item.gender==1}}" />
+                    <image src="../../img/32x32/female.png" wx:if="{{item.gender==2}}" />
+                    <image src="../../img/32x32/vip-fill.png" wx:if="{{item.is_verified>0}}" />
+                </h3>
+                <view>
+                    <block>
+                        <datetime value="{{item.add_time}}" friendly />
+                    </block>
+                    回复你的
+                    <block wx:if="{{item.data_info.parent_id==0}}">经验</block>
+                    <block wx:else>评论</block>
+                    <b>
+                        <block>{{item.data_info.parent_id==0?'《':'“'}}</block>
+                        {{item.data_info.parent_id==0?item.data_info.title:item.data_info.parent_content}}
+                        <block>{{item.data_info.parent_id==0?'》':'”'}}</block>
+                    </b>
+                </view>
+                <p4>
+                    <view style="max-height:{{item.reversal?'100%':'100rpx'}}">
+                        {{item.data_info.content}}
+                        <view wx:if="{{item.data_info.content.length>41}}">
+                            <block wx:if="{{!item.reversal}}">...</block>
+                            <image src="{{!item.reversal?'/img/32x32/down.png':'/img/32x32/up.png'}}" catchtap="reversal" data-idx="{{index}}" />
+                        </view>
+                    </view>
+                </p4>
+            </view>
+            <view class="red-hot" wx:if="{{item.is_read==0}}" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>

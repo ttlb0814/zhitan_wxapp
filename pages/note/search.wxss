@@ -1,0 +1,51 @@
+@import '../../utils/newdatalist.wxss';
+@import '/utils/circle-card.wxss';
+.user_list>btn-reg{	position: absolute;top: 0rpx; left: 0; right: 0; bottom: 0;}
+.user_list>btn-reg button.btn-reg-button-cls{display:block;opacity: 0; width: 700rpx;height: 150rpx;}
+.circle-list{padding-left: 0;}
+
+.search-inactive {
+	background: var(--white);
+	padding: 8rpx 40rpx 0rpx 35rpx;
+	display: flex;
+	align-items: center;
+}
+.search-inactive input {
+	padding: 16rpx 98rpx;
+	flex: 1;
+}
+.search-inactive image {
+	width: 32rpx;
+	height: 32rpx;
+	position: absolute;
+}
+.search-inactive image:first-child {
+	left: 75rpx;
+}
+.search-inactive image:last-child {
+	right: 75rpx;
+}
+
+.note_list {
+	padding-left: 32rpx;
+	background: #f8f8f8;
+	padding-bottom: 24rpx;
+	position: relative;
+}
+
+.label-main {
+	position: absolute;
+	top: 24rpx;
+	left: 24rpx;
+}
+.user_card > view > h3 {
+	width: 515rpx;
+}
+.user_list {
+	position: relative;
+	padding: 24rpx 32rpx 0 24rpx;
+}
+page > scroll-view {
+	padding-top: 24rpx;
+}
+

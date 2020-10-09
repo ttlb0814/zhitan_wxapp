@@ -1,0 +1,44 @@
+<view class="bg{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}bg.png)">
+  <image class='top' src="{{imgDir}}bg-top.png" mode="widthFix" bindload="onImgLoaded" />
+  <image class='bot' src="{{imgDir}}bg-bot.png" mode="widthFix" bindload="onImgLoaded" />
+</view>
+<view class="logo{{loadFinish?' show':''}}">
+  <image src="{{imgDir}}logo.png" mode="widthFix" bindload="onImgLoaded" />
+</view>
+<view class="box{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}box.png)">
+  <view class="list">
+    <view wx:for="{{arrGift}}" data-val="{{item}}" class="{{item?'':'empty'}} {{index==idxGift?'sel':''}}" 
+      style="background-image: url({{imgDir}}item{{index==idxGift?'-sel':''}}.png)">
+      <block wx:if="{{item==1}}">
+        <image src="{{imgDir}}prize.png" mode="widthFix" />5张啤酒券
+      </block>
+    </view>
+  </view>
+  <view bindtap="onRunTap" class="button" hover-class="hover" style="background-image: url({{imgDir}}btn-run.png)"></view>
+</view>
+
+<view class="remark{{loadFinish?' show':''}}">
+  <p class='title'>活动须知</p>
+  <p>1. 每人只有一次抽奖机会，奖品即开即中</p>
+  <p>2. 中奖用户每人可获得5张酒券,不可兑换现金</p>
+  <p>3. 请正确填写地址和联系方式以便邮寄</p>
+  <p>4. 本活动最终解释权归【之谈】所有</p>
+</view>
+
+<view wx:if="{{popupShow}}" class="popup-bg" bindtap="onHidePopup" />
+<view class="popup{{popupShow?' show':''}}">
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isQQ}}">绑定手机号</button>
+  <view wx:else class="form_bind">
+    <h2 style="color: var(--color-general); margin-bottom: 10vw;">绑定手机号</h2>
+    <view class='fld tel_num'>
+      <input type="number" placeholder="手机号" maxlength="11" data-fld="telNum" bindinput="onRegInput" />
+    </view>
+    <view class='fld code'>
+      <input type="number" placeholder="短信验证码" maxlength="6" data-fld="code" bindinput="onRegInput" />
+      <view hover-class="hover" class="{{formReg.telNum.length==11?'':'disable'}}" bindtap="onCodeTap">获取</view>
+    </view>
+    <view>
+      <view class="bind-btn{{formReg.telNum.length==11&&formReg.code?'':' disable'}}" hover-class="hover" bindtap="onRegTap">绑  定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,23 @@
+<!--pages/lottery/info.wxml-->
+<view class="bg{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}bg.png)">
+  <image class='top' src="{{imgDir}}bg-top.png" mode="widthFix" />
+  <image class='bot' src="{{imgDir}}bg-bot.png" mode="widthFix" />
+</view>
+
+<view class="img">
+  <image src="{{imgDir}}prize.png" mode="widthFix"/>
+  <view>{{prize}}</view>
+</view>
+
+<view class="h3">请填写您的收件信息，以便奖品邮寄发放</view>
+<view class="form{{info.send_status>0?' read':''}}">
+<picker range="{{arrCity}}" range-key="region_name" bindchange="onCityChg">
+  <view class="{{idxCity<0?'empty':''}}" style="background-image: url({{imgDir}}icon-city.png)">{{idxCity<0?"请选择城市":arrCity[idxCity].region_name}}</view>
+</picker>
+<input type="text" placeholder="收件地址" style="background-image: url({{imgDir}}icon-addr.png)" maxlength="255" data-fld="address" bindinput="onFldChange" value="{{info.address}}" />
+<input type="text" placeholder="收件人姓名" style="background-image: url({{imgDir}}icon-user.png)" maxlength="10" data-fld="real_name" bindinput="onFldChange" value="{{info.real_name}}" />
+<input type="number" placeholder="联系电话" style="background-image: url({{imgDir}}icon-phone.png)" maxlength="11" data-fld="tel_num" bindinput="onFldChange" value="{{info.tel_num}}" />
+<view class="btn" hover-class="hover" bindtap="onFormSubmit" wx:if="{{info.send_status==0}}">提交信息</view>
+<view class='h3' wx:else>奖品已按该收件信息寄出</view>
+</view>
+

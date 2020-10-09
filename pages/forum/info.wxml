@@ -1,0 +1,117 @@
+<!-- pages/forum/info.wxml -->
+<navigation-forum author="{{author}}" postId="{{info.forum_post.id}}" isReg="{{isReg}}" infoId="{{info.forum_post.tid}}" postType="{{info.thr_type}}"  loginTime="{{pageLoginTime}}" />
+<!-- <navigation wx:else author="{{author}}" isReg="{{isReg}}" /> -->
+<view class="vessel {{userId == author.user_id}} {{userId}} {{info.user_id}}">
+    <image class="quotation" src="/img/30x24/quotation.svg"></image>
+    <p2 class="title bold">{{info.title}}</p2>
+    <view class="author-info">
+        <lable-school wx:if="{{info.unis_name}}" class="label-school" bindtap="toUniversity" data-id="{{info.uni_id}}">
+            <h5>{{info.unis_name}}</h5>
+        </lable-school>
+        <h4 class="creator_time">
+            <datetime value="{{info.add_time}}" format="yyyy-MM-dd" />
+        </h4>
+    </view>
+    <!-- 正文内容 -->
+    <view class="rich-text-box">
+        <rich-text nodes="{{info.forum_post.content}}" />
+    </view>
+    <h5 class="tags bold">
+        <navigator url="./tag-list?title={{'#'+tag.tag_name+'#'}}&&tag_id={{tag.tag_id}}" hover-class="none" wx:for="{{info.tags}}" wx:for-item="tag" wx:key="index" class="tag">
+            #{{tag.tag_name}}#
+        </navigator>
+    </h5>
+    <view class="copyright">
+        <h3>
+            <image src="../../img/40x40/wechat.png" />
+            {{isQQ?'分享':'发送好友'}}
+            <view wx:if="{{!isQQ}}">
+                <image src="../../img/40x40/save-pic.png" />
+                <!-- 生成图片 -->
+                <btn-reg text="生成图片" bindmytap="createPoster" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+            </view>
+            <button plain="true" data-name="shareBtn" open-type="share" style="right:{{!isQQ?'200rpx':'0'}}">
+                转发
+            </button>
+        </h3>
+    </view>
+</view>
+<view id="comment-title">
+    <view wx:if="{{countAll > 0}}" class="foreword {{info.thr_type == 2 && 'pd-bottom16'}}">
+        <h4>{{info.thr_type == 1 ? '回答' : '评论' }} ({{countAll}})</h4>
+        <view class="sort" bindtap="cutSortType" data-val="{{sort_type==0?1:0}}">
+            <image src="{{sort_type==0?'/img/32x32/hot1.svg':'/img/32x32/time.png'}}" />
+            <h4>{{sort_type==0?'按热度排序':'按时间排序'}}</h4>
+        </view>
+    </view>
+</view>
+<!-- 交流帖 -->
+<view class="comment-list" wx:if="{{info.thr_type == 2}}">
+    <view class='list' wx:for="{{dataList}}" wx:key="index">
+        <view class="each">
+            <forum-comment id="forum-comment" postType="{{info.thr_type}}" item="{{item}}" userId="{{info.user_id}}" infoId="{{infoId}}" idx="{{index}}" isReg="{{isReg}}" bind:parentReceive="parentCallBack" loginTime="{{pageLoginTime}}" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">已经到底了哦</view>
+</view>
+<view class="datalist" wx:if="{{info.thr_type == 1}}">
+    <!-- 问答帖 -->
+    <view class="comment" wx:for="{{dataList}}" wx:key="index" bindtap="answerInfo" data-postid="{{item.id}}">
+        <view class="answerer-info">
+            <image class="answerer-img" src="{{ item.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.head_url}}"></image>
+            <h4 class="answerer-name bold">{{item.nick_name == '' ? '匿名用户' : item.nick_name }}</h4>
+            <image wx:if="{{ item.is_anonymous == 0 && item.is_verified == 1 }}" class="approve" src="/img/32x32/vip-fill.png"></image>
+        </view>
+        <view class="answer-content">
+            <p4>{{item.word}}</p4>
+        </view>
+        <view class="interact">
+            <view class="answer-about">
+                <h4>
+                    <datetime value="{{item.add_time}}" friendly />
+                </h4>
+                <view class="dot"></view>
+                <h4>{{item.count_approve}}人赞过</h4>
+                <view class="dot"></view>
+                <h4>{{item.count_reply}}人评论</h4>
+            </view>
+            <!-- <image class="liked" catchtap="approve" data-type="{{item.approve_sta}}" data-tid="{{item.tid}}" data-postid="{{item.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }}"></image> -->
+            <btn-reg class="liked" bindmytap="approve" data-type="{{item.approve_sta}}" data-tid="{{item.tid}}" data-postid="{{item.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }}" loginTime="{{pageLoginTime}}" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">已经到底了哦</view>
+</view>
+<!-- 输入框 -->
+<view class="com_frame" style="bottom:{{bottom}}px;{{bottom&&'border-top:1rpx solid var(--sec-03);'}};{{bottom&&'padding:24rpx 130rpx 24rpx 24rpx'}}">
+    <input wx:if="{{info.thr_type == 1}}" disabled="{{true}}" bindtap="toEditAnswer" class="comment_box" value="我也要回答" style="color:var(--sec-02)"></input>
+    <textarea wx:else fixed="true" class="comment_box" name="content" placeholder="留下你的评论" focus="{{focus}}" value="{{content}}" maxlength='480' adjust-position="{{false}}" bindfocus="foucus" style="max-height:{{!bottom?'80rpx':'160rpx'}};{{bottom&&'margin:0'}};" show-confirm-bar="{{false}}" bindblur="blur" disable-default-padding bindinput="watchIpt"></textarea>
+    <!-- <h3 class="bold" wx:if="{{bottom}}" bindtap="formSubmit">发送</h3> -->
+    <btn-reg text="发送" class="send" wx:if="{{bottom}}" bindmytap="formSubmit" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+    <view wx:if="{{!bottom}}" bindtap="readComment">
+        <image src="../../img/48x48/comment-comment.png" data-val="{{true}}" class="skip" />
+        <h5 class="bold" style="color:var(--sec-03)">
+            {{info.count_reply == null ? '0': info.count_reply}}
+        </h5>
+    </view>
+    <view wx:if="{{!bottom}}">
+        <btn-reg src="/img/48x48/comment-heart-active.png" wx:if="{{info.approve_sta == 1}}" bindmytap="approveCollect" data-type="approve" loginTime="{{pageLoginTime}}" />
+        <btn-reg src="/img/48x48/comment-heart.png" wx:else bindmytap="approveCollect" data-type="approve" loginTime="{{pageLoginTime}}" />
+        <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{info.approve_sta == 1}}" />
+        <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+        <h5 class="bold" style="color:var(--{{info.approve_sta ?'color-general':'sec-03'}})">
+            {{info.count_approve == null ? '0' : info.count_approve}}
+        </h5>
+    </view>
+</view>
+<filetool id="filetool" identity="{{false}}" />
+<wxs src="../../utils/filter.wxs" module="filters"></wxs>
+<!-- 海报 -->
+<cover-view class="poster" wx:if="{{poster}}" style="top:{{statusBarHeight+45}}px" bindtap="createPoster">
+    <cover-view style="position: relative;" catchtap="savePic" data-type="null">
+        <cover-image src="../../img/bg.jpg" class="bg" />
+        <cover-image src="{{shareimg}}" wx:if="{{shareimg}}" class="shareimg" />
+    </cover-view>
+    <cover-view catchtap="savePic" class="btn-md">保存图片</cover-view>
+</cover-view>

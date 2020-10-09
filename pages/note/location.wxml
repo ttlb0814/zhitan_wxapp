@@ -1,0 +1,3 @@
+<view wx:for="{{pois}}" wx:key="id" bindtap="Choose" data-item="{{item}}">
+{{item.title}}
+</view>

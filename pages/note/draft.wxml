@@ -1,0 +1,22 @@
+<!-- 草稿列表 -->
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh">
+    <view class="forum-list" wx:for="{{draftList}}" wx:key="index" >
+        <navigator url="../note/edit?idx={{index}}" hover-class="none">
+            <view>
+                <view class="title">
+                    <h3 class="bold">{{item.title}}</h3>
+                    <h6>
+                        <datetime value="{{item.add_time}}" friendly />
+                    </h6>
+                </view>
+                <view class="content">
+                    <h5>{{item.string}}</h5>
+                </view>
+            </view>
+        </navigator>
+    </view>
+
+    <p3 wx:if="{{!draftList.length}}">暂无草稿~</p3>
+</scroll-view>
+
+

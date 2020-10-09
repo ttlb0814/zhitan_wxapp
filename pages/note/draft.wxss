@@ -1,0 +1,4 @@
+scroll-view{height: 100vh;}
+
+
+p3{color: var(--sec-03);text-align: center;padding-top: 200rpx;}

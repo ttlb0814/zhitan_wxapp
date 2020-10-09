@@ -1,0 +1,56 @@
+<!-- 个人资料页面 -->
+<view class="personal">
+    <view class="head_url border-04">
+        <h3 class="bold">头像</h3>
+        <image src="{{userInfo.head_url}}" mode="aspecFill" bindtap="changeAvatar" />
+    </view>
+    <view class="nick_name border-04">
+        <h3 class="bold">昵称</h3>
+        <input type="text" value="{{userInfo.nick_name}}" bindblur="changeName" data-val="nick_name" style="flex:1" maxlength="9" />
+    </view>
+    <view class="gender border-04">
+        <h3 class="bold">性别</h3>
+        <view>
+            <view class="radio {{userInfo.gender==1&&'male'}}" bindtap="selGender" data-val="1">
+                <image src="/img/24x24/{{userInfo.gender==1?'male-white':'male'}}.png" />
+                <h5>男</h5>
+            </view>
+            <view class="radio {{userInfo.gender==2&&'female'}}" bindtap="selGender" data-val="2">
+                <image src="/img/24x24/{{userInfo.gender==2?'female-white':'female'}}.png" />
+                <h5>女</h5>
+            </view>
+        </view>
+    </view>
+    <view class="nick_name border-04">
+        <h3 class="bold">生日</h3>
+        <view class="section">
+            <picker mode="date" value="{{userInfo.birthday}}" bindchange="bindDateChange">
+                <view class="picker">
+                    <p3 class="please-choose" wx:if="{{!userInfo.birthday}}">请选择</p3>
+                    <p3 wx:else>{{userInfo.birthday}}</p3>
+                    <image src="/img/32x32/down.png" />
+                </view>
+            </picker>
+        </view>
+    </view>
+    <view class="nick_name border-04">
+        <h3 class="bold">常住地</h3>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="selRegion" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+            <view class="picker region">
+                <p3 wx:if="{{city_id!=0}}" style="max-width:500rpx">
+                    {{multiArray[0][multiIndex[0]].name}}
+                    {{multiArray[1][multiIndex[1]].name}}
+                </p3>
+                <p3 class="please-choose" wx:else>请选择</p3>
+                <image src="/img/32x32/down.png" />
+            </view>
+        </picker>
+    </view>
+    <view class="self-introduction">
+        <h3 class="bold">个人介绍</h3>
+        <textarea class="p3" placeholder="请输入个人介绍" bindblur="changeName" data-val="signature" value="{{userInfo.signature}}" maxlength="30" />
+    </view>
+</view>
+<view class="save">
+    <btn-lg bindtap="save">保存</btn-lg>
+</view>

@@ -1,0 +1,5 @@
+cover-view.file-tool-dlg-bg{position: fixed; z-index: 999;background:#000; opacity: 0.5; top: 0; left: 0; bottom: 0; right: 0; }
+cover-view.file-tool-dlg{position: fixed; z-index: 1000; left: 10vw; right:10vw; background: #fff; top: 25vh; bottom:25vh; display:flex; flex-direction: column; align-items: center; justify-content: space-around; padding: 60rpx 0; border-radius: 16rpx;}
+cover-view.file-tool-dlg .title{font-weight:bold; font-size:(--h1-font-size);}
+cover-view.file-tool-dlg .help{color: var(--primary-02); font-size: (--h3-font-size);}
+cover-view.file-tool-dlg .url{color: var(--gray-02)}

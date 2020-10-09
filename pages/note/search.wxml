@@ -1,0 +1,201 @@
+<!-- 搜索引擎 -->
+<view class="search-inactive">
+  <image src="../../img/32x32/search.png" />
+  <input class="search_box" placeholder="搜索你想看的内容" value="{{kw}}" confirm-type="search" maxlength="20" bindconfirm="getSearch" bindinput='watchInput' />
+  <image src="../../img/32x32/close.png" bindtap='clearkw' wx:if="{{kw}}" />
+</view>
+<tab tab="{{tab}}" tabIdx="{{tabIdx}}" margin='112' bind:parentReceive="parentTab" />
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+  <!-- 经验列表 -->
+  <view class="note_list" wx:if="{{tabIdx==1}}" wx:for="{{dataList}}" wx:key="index">
+    <navigator url="./info?id={{item.data_id}}" hover-class="none" wx:if="{{item.data_type == 1}}">
+      <view class="label-main">
+        <view>
+          <view class="equal_top" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+          <view class="equal_down" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+        </view>
+        <h5 style="color:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})">
+          {{item.subject_name}}
+        </h5>
+      </view>
+      <view class="article-card shadow-01">
+        <view class="title" style="min-height:{{item.imgs[0]&&'144rpx'}}">
+          <view>
+            <p3 class="bold">{{item.title}}</p3>
+            <view>
+              <h4 class="bold">{{item.is_anonymous==1?'匿名用户':item.user_name}}</h4>
+              <h4>
+                {{item.read_sec>60?(filters.minute(item.read_sec)+'分钟'):'1分钟'}}阅读
+                <datetime value="{{item.add_time}}" friendly />
+              </h4>
+            </view>
+          </view>
+          <image mode="aspectFill" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" catchtap='previewImage' data-src="{{item.imgs[0]}}" data-item="{{item.imgs}}" />
+        </view>
+        <view class="label">
+          <view wx:if="{{item.is_anonymous!=1}}">
+            <label-school class="h5" wx:if="{{item.uni_name}}">{{item.uni_name}}</label-school>
+          </view>
+          <view>
+            <h5 wx:if="{{item.gk_year>0&&item.is_anonymous!=1}}">{{item.gk_year}}艺考</h5>
+            <h5 wx:if="{{item.gk_prov_name&&item.is_anonymous!=1}}">{{item.gk_prov_name}}考生</h5>
+            <h5 style="color:var(--sec-02)" wx:if="{{item.is_anonymous==1}}">用户选择隐藏个人信息</h5>
+          </view>
+        </view>
+        <view class="base">
+          <h4>{{item.count_view}}人读过</h4>
+          <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" data-val="0" catchtap="approve" data-idx="{{index}}" />
+          <image src="../../img/48x48/comment-heart.png" wx:else data-val="1" catchtap="approve" data-idx="{{index}}" /> -->
+          <!-- <btn-reg src="/img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="0" data-idx="{{index}}" />
+          <btn-reg src="/img/48x48/comment-heart.png" wx:else bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="1" data-idx="{{index}}" /> -->
+        </view>
+      </view>
+    </navigator>
+    <!-- 主贴 -->
+    <navigator url="/pages/forum/info?id={{item.data_id}}" hover-class="none" class="circle-list shadow-01" wx:if="{{item.data_type == 5}}">
+      <view class="post-module-question" bindtap="postInfo" data-id="{{item.id}}" data-type="{{item.data_type}}">
+        <image class="quotation" src="/img/30x24/quotation.svg" alt="" />
+        <view class="post-out">
+          <view class="q_or_a">
+            <p3 id="title_{{item.id}}" class="{{item.answer_content ? 'title': 'title-noanswer'}} bold">
+              {{item.title}}
+            </p3>
+            <p4 class="answer" wx:if="{{item.answer_content }}">
+              <p4 style="-webkit-line-clamp: {{item.contentShowNum}};">{{item.answer_content}}</p4>
+              <image class="answerer" src="{{item.answer_head_url}}"></image>
+              <image class="triangle" src="/img/16x16/triangle.svg"></image>
+            </p4>
+          </view>
+          <!-- 作者信息 -->
+          <view class="author-info">
+            <image class="author-headerImg" src="{{item.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.head_url}}"></image>
+            <h4 class="bold author-name">{{item.is_anonymous == 1 ? '匿名用户' : item.nick_name}}</h4>
+            <h4 class="add-time">
+              <datetime value="{{item.add_time}}" friendly />
+            </h4>
+          </view>
+          <!-- 帖子标签相关（学校，话题） -->
+          <view class="post-about">
+            <view class="post-tags">
+              <!-- <label-01 class="post-type h5">好问题</label-01> -->
+              <label-school wx:if="{{item.unis_name}}" class="label-school h5">
+                {{item.unis_name}}
+              </label-school>
+              <h5 class="post-tag bold">
+                <h5 wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index" class="tag">
+                  #{{tag.tag_name}}#
+                </h5>
+              </h5>
+            </view>
+          </view>
+        </view>
+        <view class="post-footer">
+          <h4 wx:if="{{item.count_reply > 0}}" class="anawers">{{item.count_reply}}个回答</h4>
+          <h4 wx:else class="anawers">还没有人回答过哦</h4>
+          <!-- <image class="like" catchtap="circleApprove" data-type="{{item.approve_sta}}" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} "></image> -->
+          <!-- <btn-reg class="like"  data-type="{{item.approve_sta}}" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} "
+        bindmytap="circleApprove" loginTime="{{pageLoginTime}}"  /> -->
+        </view>
+      </view>
+    </navigator>
+    <!-- 回答贴 -->
+    <navigator url="/pages/forum/answer-info?post_id={{item.post_id}}&&id={{item.tid}}" hover-class="none" class="circle-list shadow-01" wx:if="{{ item.data_type==6}}">
+      <view class="post-module-question" bindtap="postInfo" data-id="{{item.id}}" data-type="{{item.data_type}}">
+        <image class="quotation" src="/img/30x24/quotation.svg" alt="" />
+        <view class="post-out">
+          <view class="q_or_a">
+            <p3 id="title_{{item.id}}" class="{{item.answer_content ? 'title': 'title-noanswer'}} bold">
+              {{item.title}}
+            </p3>
+            <p4 class="answer" wx:if="{{item.summary }}">
+              <p4 style="-webkit-line-clamp: {{item.contentShowNum}};">{{item.summary}}</p4>
+              <image class="answerer" src="{{item.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.head_url}}" />
+              <image class="triangle" src="/img/16x16/triangle.svg" />
+            </p4>
+          </view>
+          <!-- 作者信息 -->
+          <view class="author-info">
+            <image class="author-headerImg" src="{{item.thread_is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.thread_head_url}}"></image>
+            <h4 class="bold author-name">
+              {{item.thread_is_anonymous == 1 ? '匿名用户' : item.thread_nick_name}}
+            </h4>
+            <h4 class="add-time">
+              <datetime value="{{item.add_time}}" friendly />
+            </h4>
+          </view>
+          <!-- 帖子标签相关（学校，话题） -->
+          <view class="post-about">
+            <view class="post-tags">
+              <!-- <label-01 class="post-type h5">好问题</label-01> -->
+              <label-school wx:if="{{item.unis_name}}" class="label-school h5">
+                {{item.unis_name}}
+              </label-school>
+              <h5 class="post-tag bold">
+                <h5 wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index" class="tag">
+                  #{{tag.tag_name}}#
+                </h5>
+              </h5>
+            </view>
+          </view>
+        </view>
+        <view class="post-footer">
+          <h4 wx:if="{{item.count_reply > 0}}" class="anawers">{{item.count_reply}}个回答</h4>
+          <h4 wx:else class="anawers">还没有人回答过哦</h4>
+          <!-- <image class="like" catchtap="circleApprove" data-type="{{item.approve_sta}}" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} "></image> -->
+          <!-- <btn-reg class="like"  data-type="{{item.approve_sta}}" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} "
+        bindmytap="circleApprove" loginTime="{{pageLoginTime}}"  /> -->
+        </view>
+      </view>
+      <!-- 结束 -->
+    </navigator>
+  </view>
+  <!-- 用户列表 -->
+  <view class="user_list" wx:if="{{tabIdx==0}}" wx:for="{{dataList}}" wx:key="index">
+    <view class="user_card shadow-01">
+      <image src="{{item.head_url}}" />
+      <view>
+        <h3 class="bold">
+          {{item.nick_name}}
+          <image src="../../img/32x32/male.png" wx:if="{{item.gender==1}}" />
+          <image src="../../img/32x32/female.png" wx:if="{{item.gender==2}}" />
+          <image src="../../img/32x32/vip-fill.png" wx:if="{{item.is_verified>0}}" />
+        </h3>
+        <view style="width:539rpx">
+          <text>关注 {{item.count_fanning}}</text>
+          <text>粉丝 {{item.count_fans}}</text>
+          <text wx:if="{{item.uni_name}}">{{item.uni_name}}</text>
+        </view>
+      </view>
+    </view>
+    <btn-reg loginTime="{{pageLoginTime}}" bindmytap="goHomepage" requireTelnum="{{true}}" data-id="{{item.id}}" />
+  </view>
+  <!-- 学校列表 -->
+  <navigator class='sch_card shadow-01' wx:for="{{dataList}}" wx:key="index" url="/pages/university/info?id={{item.id}}" hover-class="none" wx:if="{{tabIdx==2}}">
+    <image src="{{item.logoUrl}}" />
+    <view class="item">
+      <view class="uni_name">
+        <p3 class="bold">
+          {{item.uni_name}}
+          <h5 style="font-weight: normal;">
+            <view />
+            {{item.prov_name}}
+          </h5>
+        </p3>
+      </view>
+      <view class="label">
+        <btn-xs wx:if="{{item.dual_class>0}}">
+          <h5>双一流</h5>
+        </btn-xs>
+        <btn-xs wx:if="{{item.is_985>0}}">
+          <h5>985</h5>
+        </btn-xs>
+        <btn-xs wx:if="{{item.is_211>0}}">
+          <h5>211</h5>
+        </btn-xs>
+      </view>
+    </view>
+  </navigator>
+  <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+  <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>
+<wxs src="../../utils/filter.wxs" module="filters"></wxs>

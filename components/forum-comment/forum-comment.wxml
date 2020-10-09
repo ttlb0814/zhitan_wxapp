@@ -1,0 +1,98 @@
+<view class="comment" wx:if="{{item.is_del == 0}}">
+    <!-- <navigator url="{{!isReg?'/pages/user/reg':'/pages/user/author?userId='+item.user_id}}" hover-class="none">
+        <image src="{{item.head_url}}" />
+    </navigator> -->
+    <btn-reg class="head" src="{{item.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.user_id}}" />
+    <view wx:if="{{postType == 2}}">
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{item.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.is_verified==1}}" />
+                <label-author class="author" wx:if="{{item.is_thread_role}}">
+                    <h6>楼主</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">{{item.word}}</p4>
+        </view>
+        <view class="fun_button">
+            <h4 style="color:var(--sec-02)">
+                <datetime value="{{item.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view wx:if="{{ myselfId && (myselfId == answererId || myselfId == item.user_id)}}" catchtap="delete" data-id="{{item.id}}">
+                <image src="../../img/48x48/trash-bin.png" />
+            </view>
+            <view catchtap="commont" data-id="{{item.id}}">
+                <image src="../../img/48x48/comment-comment.png" />
+            </view>
+            <view>
+                <btn-reg class="approve" src="/img/48x48/comment-heart-active.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:if="{{item.approve_sta==1}}" data-id="{{item.id}}" />
+                <btn-reg class="approve" src="/img/48x48/comment-heart.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:else data-id="{{item.id}}" />
+                <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.approve_sta == 1 }}" />
+                <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{postType == 1}}">
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{item.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.is_verified==1}}" />
+                <label-author class="{{item.is_thread_role ? 'author' : 'answerer'}} {{userId}} {{authorId}}" wx:if="{{item.is_thread_role || item.is_answer_role}}">
+                    <h6>{{ item.is_thread_role ? '题主' : '答主' }}</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">{{item.word}}</p4>
+        </view>
+        <view class="fun_button">
+            <h4 style="color:var(--sec-02)">
+                <datetime value="{{item.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view wx:if="{{ myselfId && (myselfId == item.user_id)}}" catchtap="delete" data-id="{{item.id}}">
+                <image src="../../img/48x48/trash-bin.png" />
+            </view>
+            <view catchtap="commont" data-id="{{item.id}}">
+                <image src="../../img/48x48/comment-comment.png" />
+            </view>
+            <view>
+                <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.approve_sta == 1 }}" />
+                <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+                <btn-reg class="approve" src="/img/48x48/comment-heart-active.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:if="{{item.approve_sta==1}}" data-id="{{item.id}}" />
+                <btn-reg class="approve" src="/img/48x48/comment-heart.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:else data-id="{{item.id}}" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 二级评论 -->
+<view class="secondLevel" wx:if="{{item.is_del == 0}}">
+    <view wx:if="{{item.last_reply}}">
+        <!-- <image src="{{item.last_reply.head_url}}" bindtap="goHomepage" data-id="{{item.last_reply.user_id}}" /> -->
+        <btn-reg src="{{item.last_reply.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.last_reply.user_id}}" />
+        <navigator url="../../pages/forum/discussInfo?postid={{item.id}}&&id={{infoId}}&&userId={{userId}}&&authorId=={{authorId}}" hover-class="none">
+            <view class="user">
+                <h4 class="bold">{{item.last_reply.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.last_reply.is_verified==1}}" />
+                <label-author class="{{item.last_reply.is_thread_role == 1 ? 'author' : 'answerer'}} {{userId}} {{authorId}} {{item.last_reply.user_id}}" wx:if="{{ (postType == 2 && item.last_reply.is_thread_role ) || (postType == 1 && ( ( item.last_reply.is_answer_role && (userId == item.last_reply.user_id) ) || item.last_reply.is_thread_role ) )}}">
+                    <h6 wx:if="{{postType == 1}}">
+                        {{item.last_reply.is_thread_role ? '题主' : '答主' }}
+                    </h6>
+                    <h6 wx:if="{{postType == 2}}">楼主</h6>
+                </label-author>
+            </view>
+            <p4>
+                <block wx:if="{{item.last_reply.atUser}}">
+                    回复
+                    <text class="bold">@{{item.last_reply.atUser.nick_name}}</text>
+                    :
+                </block>
+                {{item.last_reply.content}}
+            </p4>
+            <h4 style="color:var(--sec-02);height:55rpx">
+                <datetime value="{{item.last_reply.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+        </navigator>
+    </view>
+    <navigator wx:if="{{item.count_reply>1}}" url="../../pages/forum/discussInfo?postid={{item.id}}&&id={{infoId}}&&userId={{userId}}&&authorId=={{authorId}}" hover-class="none">
+        <h4 class="bold" style="color:var(--sec-02)">更多回复（{{item.count_reply}}）</h4>
+    </navigator>
+</view>
+<wxs src="../../utils/filter.wxs" module="filters" />

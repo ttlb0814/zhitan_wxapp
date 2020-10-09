@@ -1,0 +1,179 @@
+/* pages/forum/answer-edit.wxss */
+@import '../../utils/iconfont.wxss';
+
+page {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	padding: 0 40rpx 20rpx 40rpx;
+	box-sizing: border-box;
+	border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.edit-container {
+	padding-top: 24rpx;
+	padding-right: 30rpx;
+	padding-left: 40rpx;
+	border-top: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+/* .title {
+    color: var(--sec-01);
+    padding-bottom: 24rpx;
+    border-bottom: 1rpx solid #E5E5EA;
+} */
+
+.title {
+	padding: 24rpx 0;
+	font-size: var(--p2-font-size);
+	line-height: var(--p2-line-height);
+	border-bottom: 1rpx solid var(--sec-04);
+}
+
+.title text {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+}
+
+/* 富文本编辑器 */
+
+.ql-container {
+	margin-top: 24rpx;
+	box-sizing: border-box;
+	width: 100%;
+	flex: 1;
+	font-size: var(--p3-font-size);
+	line-height: var(--p3--line-height);
+	overflow: auto;
+}
+.ql-editor.ql-blank:before {font-style: normal;color:var(--sec-02);}
+.ql-active {
+	color: #22c704;
+}
+
+.iconfont {
+	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 16rpx;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.toolbar {
+	background: white;
+	z-index: 1;
+	box-sizing: border-box;
+	padding: 0 16px;
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	right: 100%;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	border: 1px solid #ececec;
+	border-left: none;
+	border-right: none;
+}
+
+.tally {
+	padding: 40rpx 0;
+	display: flex;
+	justify-content: space-between;
+	border-top: 1rpx solid var(--sec-04);
+}
+
+.tally>h3 {
+	color: var(--sec-02);
+}
+
+.tally image {
+	width: 32rpx;
+	height: 32rpx;
+}
+
+
+.uni-list,
+.tag-list {
+	display: flex;
+	align-items: center;
+	color: var(--sec-01) !important;
+}
+
+.uni-list text,
+.tag-list text {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200rpx;
+	text-align: right;
+}
+
+
+.edit {
+	display: flex;
+	padding: 32rpx 0 40rpx 0;
+	justify-content: space-between;
+	border-top: 1rpx solid var(--sec-04);
+}
+
+.edit>view {
+	display: flex;
+	align-items: center;
+}
+
+.edit>view>view {
+	width: 80rpx;
+	height: 80rpx;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.edit>view>view:nth-child(2) {
+	margin: 0 32rpx;
+}
+
+.edit image {
+	width: 48rpx;
+	height: 48rpx;
+	margin-bottom: 8rpx;
+}
+
+.edit h6 {
+	color: var(--sec-02);
+}
+
+.edit .general {
+	color: var(--color-general);
+}
+.edit .sec-02 {
+	color: var(--sec-02);
+}
+
+.edit>btn-md,
+.edit>btn-lg {
+	background: var(--color-general);
+	color: var(--white);
+}
+
+.issue_btn btn-reg button.btn-reg-button-cls {
+	height: 80rpx;
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+	border-radius: 40rpx;
+	justify-content: center;
+	align-items: center;
+	background: var(--color-general);
+	color: var(--white);
+}
+.issue_btn btn-reg button.btn-reg-button-cls text {
+	width: 552rpx;
+}

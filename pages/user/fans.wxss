@@ -1,0 +1,19 @@
+@import '../../utils/newdatalist.wxss';
+
+page > scroll-view {
+	box-shadow: none;
+}
+page {
+	background: none;
+}
+
+
+.user_card{
+	padding: 0;
+	margin: 0 32rpx;
+}
+
+.user_card>view {
+	margin: 32rpx 0;
+	margin-right: 24rpx;
+}

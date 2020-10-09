@@ -1,0 +1,11 @@
+<view class="bg{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}bg.png)">
+  <image class='top' src="{{imgDir}}bg-top.png" mode="widthFix" bindload="onImgLoaded" />
+  <image class='bot' src="{{imgDir}}bg-bot.png" mode="widthFix" bindload="onImgLoaded" />
+</view>
+
+<image mode="widthFix" src="{{imgDir}}ad-1.png" bindload="onImgLoaded" class="logo{{loadFinish?' show':''}}" />
+<image mode="widthFix" src="{{imgDir}}ad-2.png" bindload="onImgLoaded" class="button{{loadFinish?' show':''}}" />
+<image mode="widthFix" src="{{imgDir}}ad-3.png" bindload="onImgLoaded" class="remark{{loadFinish?' show':''}}" />
+
+<button wx:if="{{requireType=='reg'}}" class='cover' open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="onGetUserTap"></button>
+<navigator wx:else class="cover" url="index" open-type="redirect"></navigator>

@@ -1,0 +1,11 @@
+<view class="bg{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}bg.png)">
+  <image class='top' src="{{imgDir}}bg-top.png" mode="widthFix" />
+  <image class='bot' src="{{imgDir}}bg-bot.png" mode="widthFix" />
+</view>
+
+<view class="sub-title">您的好友<b>{{info.nick_name}}</b>邀请你免费领取青岛啤酒节酒券</view>
+<view class="img">
+  <image src="{{imgDir}}prize.png" mode="widthFix"/>
+  <view>{{prize}}</view>
+</view>
+<navigator class='btn' url="ad" open-type="redirect">前往领取</navigator>

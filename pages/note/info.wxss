@@ -1,0 +1,311 @@
+.copyright btn-reg text {
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+	color: var(--function);
+}
+
+page {
+	padding-bottom: 170rpx;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.vessel {
+	position: relative;
+	padding: 0 48rpx 40rpx 40rpx;
+}
+
+.vessel .label-main {
+	position: absolute;
+	left: 16rpx;
+	top: 24rpx;
+}
+
+.vessel .title {
+	color: var(--sec-01);
+	padding: 65rpx 0 16rpx 0;
+}
+
+.creator_time {
+	color: var(--sec-02);
+}
+
+.ql-container {
+	color: var(--sec-01);
+	font-size: var(--p3-56-font-size);
+	line-height: var(--p3-56-line-height);
+	height: auto;
+	min-height: 300rpx;
+	margin-bottom: 30rpx;
+}
+
+/* 
+.topic {
+	margin: 80rpx 0 64rpx 0;
+} */
+
+.topic h5 {
+	display: inline-block;
+}
+
+.file > p3 {
+	margin: 0 40rpx;
+	white-space: nowrap;
+	border-bottom: 1rpx solid var(--sec-03);
+	padding: 40rpx 0 31rpx 0;
+	display: flex;
+	color: var(--sec-01);
+	align-items: center;
+	overflow: hidden;
+}
+
+.file > p3 > image {
+	width: 48rpx;
+	height: 48rpx;
+	margin-right: 25rpx;
+	flex-shrink: 0;
+}
+
+.file:last-child > p3 {
+	border-bottom: none;
+}
+
+.comment {
+	flex-shrink: 0;
+	padding: 64rpx 0 16rpx 40rpx;
+	color: var(--sec-02);
+	background: #f9f9f9;
+}
+
+.comment image {
+	vertical-align: middle;
+	width: 30rpx;
+	height: 30rpx;
+}
+
+/* 评论框 */
+.com_frame {
+	box-sizing: border-box;
+	width: 100%;
+	border: 1rpx solid var(--sec-03);
+	background: var(--white);
+	padding: 31rpx 48rpx 59rpx 24rpx;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	left: 0;
+	bottom: 0;
+}
+
+.com_frame textarea {
+	width: 100%;
+	padding: 20rpx 32rpx;
+	box-sizing: border-box;
+}
+
+.com_frame > h3,
+.com_frame .send {
+	color: var(--function);
+	position: absolute;
+	right: 32rpx;
+	bottom: 40rpx;
+	padding-top: 50rpx;
+}
+
+.com_frame .send text {
+	font-weight: bold;
+	color: var(--function);
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+}
+
+.com_frame > view {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.com_frame .skip {
+	margin: 0 48rpx 4rpx 48rpx;
+}
+
+.com_frame > view image {
+	width: 48rpx;
+	height: 48rpx;
+	margin-bottom: 4rpx;
+}
+
+page > .comment-list {
+	flex: 1;
+	box-shadow: 0 0 0 200vh #f9f9f9 inset;
+	height: 100%;
+}
+
+page > .comment-list .list {
+	margin-bottom: 20rpx;
+}
+
+page > .comment-list .loading {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: gray;
+}
+
+page > .comment-list .end {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: lightgray;
+}
+
+rich-text {
+	font-size: var(--p3-56-font-size);
+	line-height: var(--p3-56-line-height);
+}
+
+.unisList {
+	margin-bottom: 24rpx;
+}
+
+.unisList .label-school {
+	margin-top: 16rpx;
+}
+
+.artsExam > p3 {
+	color: var(--color-general);
+	padding: 16rpx 24rpx;
+	background: rgba(232, 217, 255, 0.5);
+	border-radius: 8rpx 8rpx 0rpx 0rpx;
+}
+
+.artsExam > .info {
+	background: var(--sec-05);
+	padding: 16rpx 24rpx;
+	margin-bottom: 64rpx;
+	border-radius: 0rpx 0rpx 8rpx 8rpx;
+}
+
+.artsExam > .info > p4 {
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 8rpx;
+}
+
+.artsExam > .info > p4 b {
+	flex-shrink: 0;
+	margin-right: 8rpx;
+}
+
+.artsExam > .info > p4 .year {
+	margin-right: 182rpx;
+}
+
+.artsExam btn-xs {
+	color: var(--color-general);
+	background: var(--tint-general);
+	margin-right: 16rpx;
+	flex-shrink: 0;
+}
+
+.copyright {
+	width: 100%;
+	margin-top: 48rpx;
+}
+
+.copyright > p4 {
+	color: var(--sec-03);
+	text-align: center;
+}
+
+.copyright > view {
+	margin: 0 auto;
+	width: 88rpx;
+	height: 1rpx;
+	background: var(--sec-04);
+	margin-bottom: 39rpx;
+}
+
+.copyright image {
+	width: 40rpx;
+	height: 40rpx;
+	vertical-align: middle;
+	margin: 0 8rpx 0 40rpx;
+}
+
+.copyright > h3 {
+	color: var(--function);
+	margin-top: 44rpx;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+
+.copyright > h3 > button {
+	width: 180rpx;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	opacity: 0;
+}
+
+.copyright > h3 > view {
+	display: flex;
+	align-items: center;
+}
+
+.poster {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999999999999;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.bg {
+	width: 622rpx;
+	height: 912rpx;
+}
+
+.shareimg {
+	position: absolute;
+	top: 96rpx;
+	left: 40rpx;
+	width: 543rpx;
+	height: 776rpx;
+	border-radius: 16rpx;
+}
+
+.btn-md {
+	z-index: 9999;
+	margin-top: 56rpx;
+	background: var(--color-general);
+	color: var(--white);
+}
+
+.article-list {
+	padding: 32rpx 40rpx 0 56rpx;
+}
+
+.exchange {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 24rpx 40rpx;
+	background: rgba(123, 143, 255, 0.1);
+	color: var(--function);
+}
+.exchange >btn-sm{
+color: var(--white);
+background: var(--gradient-play);
+}

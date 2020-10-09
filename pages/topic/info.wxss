@@ -1,0 +1,18 @@
+@import '../../utils/newdatalist.wxss';
+
+.title {
+	padding: 50rpx;
+}
+.each {
+	padding: 100rpx 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border-bottom: 2rpx solid #cccccc;
+}
+
+.each image {
+	width: 70rpx;
+	height: 70rpx;
+	border-radius: 50%;
+}

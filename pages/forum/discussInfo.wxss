@@ -1,0 +1,197 @@
+@import '/utils/newdatalist.wxss';
+
+.mask>btn-reg{	position: absolute;top: 0rpx; left: 140rpx; right: 100rpx; bottom: 0;}
+.mask>btn-reg button.btn-reg-button-cls{position: absolute;top: 0rpx; left: 0; right: 0; bottom: 0;opacity: 0;}
+page {
+	box-sizing: border-box;
+	background: var(--white);
+}
+
+.second_level .col {
+	display: flex;
+	flex-direction: column;
+	padding-right: 40rpx;
+	margin-top: 32rpx;
+	width: 100%;
+	border-bottom: 1rpx solid var(--sec-04);
+}
+.second_level .col p4 {
+	margin-top: 16rpx;
+	color: var(--sec-01);
+}
+.second_level .col p4 text {
+	color: var(--color-general);
+}
+.second_level .head image{
+	flex-shrink: 0;
+	margin-top: 24rpx;
+	width: 48rpx;
+	height: 48rpx;
+	border-radius: 50%;
+	border: 1rpx solid var(--sec-03);
+	margin-right: 32rpx;
+}
+
+.second_level {
+	padding-left: 80rpx;
+	display: flex;
+	position: relative;
+}
+
+.second_level .assist {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 30rpx;
+}
+
+.second_level .assist image {
+	margin-left: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
+}
+
+page > scroll-view {
+	box-shadow: none;
+}
+
+.comment {
+	padding-left: 40rpx;
+	display: flex;
+	background: var(--white);
+}
+
+.comment > navigator > image ,.head_top image{
+	border: 1rpx solid var(--sec-03);
+	flex-shrink: 0;
+	width: 64rpx;
+	height: 64rpx;
+	border-radius: 50%;
+	margin: 40rpx 32rpx 0 0;
+}
+
+.comment > view {
+	padding: 40rpx 40rpx 0 0;
+	width: 100%;
+	border-bottom: 1rpx solid var(--sec-04);
+}
+
+.comment .user,
+.second_level .user {
+	display: flex;
+	align-items: center;
+}
+
+.comment .user .author,
+.second_level .user .author {
+	margin-left: 16rpx;
+	flex-shrink: 0;
+}
+.comment .user image,
+.second_level .user image {
+	width: 32rpx;
+	height: 32rpx;
+	margin:0  0 0 16rpx;
+	flex-shrink: 0;
+	border: none;
+}
+
+.author {
+	color: #7b8fff;
+	border: 1rpx solid #7b8fff;
+	margin-left: 16rpx;
+}
+
+.answerer {
+	color: var(--approve);
+	border: 1rpx solid var(--approve);
+	margin-left: 16rpx;
+}
+
+.comment .content {
+	margin-top: 16rpx;
+}
+
+.comment .fun_button,
+.col .fun_button {
+	margin-top: 16rpx;
+	padding-bottom: 16rpx;
+	position: relative;
+	display: flex;
+	justify-content: flex-end !important;
+	align-items: center;
+}
+
+.comment .fun_button > h4,
+.col .fun_button > h4 {
+	position: absolute;
+	left: 0;
+}
+
+.comment .fun_button image,
+.col .fun_button image {
+	width: 48rpx;
+	height: 48rpx;
+}
+
+.comment .fun_button > view:nth-child(3) {
+	margin: 0 56rpx;
+}
+
+.comment .fun_button > view:last-child {
+	margin-right: 0;
+}
+
+.comment .fun_button > view {
+	display: flex;
+	align-items: center;
+}
+
+.ipt {
+	width: 100%;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	padding: 24rpx 48rpx 65rpx 40rpx;
+	border: 1rpx solid var(--sec-03);
+	position: relative;
+}
+
+.ipt textarea {
+	width: 100%;
+	box-sizing: border-box;
+	max-height: 80rpx;
+	padding: 23rpx 40rpx;
+}
+
+.ipt-focus {
+	border-top: 1rpx solid var(--sec-03);
+	padding: 24rpx 130rpx 24rpx 24rpx;
+}
+
+.ipt .text-focus {
+	max-height: 160rpx;
+	margin: 0;
+	padding: 16rpx 32rpx;
+}
+
+.ipt > h3,
+.ipt .send {
+	color: var(--function);
+	position: absolute;
+	right: 32rpx;
+	bottom: 40rpx;
+	padding-top: 50rpx;
+}
+
+.ipt .send text {
+	font-weight: bold;
+	color: var(--function);
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+}
+
+.private-letter {
+	flex: 1;
+	height: 1vh;
+	padding-bottom: 36rpx;
+}

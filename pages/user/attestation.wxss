@@ -1,0 +1,51 @@
+page {
+	width: 100%;
+	padding: 0 40rpx;
+	box-sizing: border-box;
+	background: var(--gradient-general-vertical);
+}
+
+.hint {
+	color: var(--white);
+	text-align: center;
+	margin: 184rpx 0 48rpx 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	padding: 88rpx 0;
+	box-sizing: border-box;
+	width: 100%;
+	background: var(--white);
+	border-radius: 16rpx;
+}
+
+.content .item {
+	display: flex;
+	align-items: center;
+}
+.content .item .h4 {
+    color: var(--sec-01);
+	background: var(--sec-05);
+    padding: 8rpx 0;
+    width: 256rpx;
+    text-align: center;
+	border-radius: 32rpx;
+}
+.content .item btn-sm {
+	background: var(--color-general);
+	color: var(--white);
+	margin-left: 72rpx;
+}
+
+.content image {
+	width: 56rpx;
+	height: 56rpx;
+	margin-right: 16rpx;
+}
+
+.qq{
+    margin-top: 80rpx;
+}

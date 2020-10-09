@@ -1,0 +1,68 @@
+view.sel-list {
+	flex: 1;
+	padding:0 40rpx;
+}
+view.sel-list view {
+	padding: 24rpx 0;
+	display: flex;
+	align-items: center;
+}
+view.sel-list .sch-logo,
+view.sel-list .selected {
+	width: 48rpx;
+	height: 48rpx;
+	flex-shrink: 0;
+}
+
+view.sel-list .sch-logo{
+	margin: 0 19rpx 0 72rpx;
+}
+view.sel-list view.hover {
+	background: #fafafa;
+}
+
+page {
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+}
+
+.input-area {
+	padding: 8rpx 35rpx 20rpx 35rpx;
+	background: var(--white);
+	display: flex;
+	align-items: center;
+	position: relative;
+	box-shadow: 0 2rpx 4rpx 0 rgba(0, 0, 0, 0.04);
+}
+
+.input-area h4 {
+	color: #77869e;
+	padding: 0 40rpx 0 24rpx;
+}
+
+.input-area image {
+	width: 32rpx;
+	height: 32rpx;
+	position: absolute;
+	left: 75rpx;
+}
+
+.input-area input {
+	padding: 16rpx 40rpx 16rpx 107rpx;
+	flex: 1;
+}
+
+.edit {
+	display: flex;
+	justify-content: flex-end;
+	padding: 32rpx 45rpx 60rpx 0;
+	border-top: 1rpx solid var(--sec-04);
+}
+.edit > btn-md {
+	background-color: var(--color-general);
+	color: var(--white);
+}
+.edit .sel {
+	background: var(--warning);
+}

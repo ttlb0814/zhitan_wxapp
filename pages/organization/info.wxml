@@ -1,0 +1,91 @@
+<!-- 机构详情 -->
+<view class="uni_name">
+    <image src="{{instInfo.logo_url}}" />
+    <view class="block">
+        <h2 class="bold">{{instInfo.inst_name}}</h2>
+        <view class="basic_info">
+            <p4>
+                <image src="../../img/32x32/location.png" />
+                {{instInfo.inst_addr||'暂无'}}
+            </p4>
+            <p4>
+                <image src="../../img/32x32/phone.png" />
+                {{instInfo.tel_num||'暂无'}}
+            </p4>
+            <p4>
+                <image src="../../img/32x32/web.png" />
+                {{instInfo.site_url||'暂无'}}
+            </p4>
+        </view>
+    </view>
+</view>
+<tab class="tab" tab="{{tab}}" tabIdx="{{tabIdx}}" margin="112" bind:parentReceive="parentTab" />
+<!-- 简介 -->
+<view class="synopsis" wx:if="{{tabIdx==1}}">
+    <view class="abstract" style="max-height:{{!articleHeight?'725rpx':'100%'}}">
+        <block wx:for="{{instInfo.remark}}" wx:key="index">
+            <p wx:if="{{!instInfo.remark[0]}}">暂无</p>
+            <p3-56>{{item}}</p3-56>
+        </block>
+    </view>
+    <view class="img" wx:if="{{instInfo.remark[0]}}">
+        <image src="../../img/32x32/dropdown.png" bindtap="unfold" wx:if="{{!articleHeight}}" data-val="false" />
+        <image src="../../img/32x32/dropdown-up.png" bindtap="unfold" wx:else data-val="true" />
+    </view>
+    <btn-lg bindtap="copyText" data-text="{{instInfo.site_url}}" wx:if="{{instInfo.site_url}}">
+        复制官网地址
+    </btn-lg>
+</view>
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore" wx:if="{{tabIdx==0}}">
+    <!-- 经验 -->
+    <block wx:for="{{dataList}}" wx:key="index">
+        <navigator class="article-list" url="../note/info?id={{item.id}}" hover-class="none">
+            <view class="label-main">
+                <view>
+                    <view class="equal_top" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+                    <view class="equal_down" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+                </view>
+                <h5 style="color:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})">
+                    {{item.subject_name}}
+                </h5>
+            </view>
+            <view class="title" style="min-height:{{item.imgs[0]&&'144rpx'}}">
+                <view>
+                    <p3 class="bold">{{item.title}}</p3>
+                    <view>
+                        <h4 class="bold">{{item.is_anonymous==1?'匿名用户':item.nick_name}}</h4>
+                        <h4>
+                            {{item.read_sec>60?(filters.minute(item.read_sec)+'分钟'):'1分钟'}}阅读
+                            <datetime value="{{item.add_time}}" friendly />
+                        </h4>
+                    </view>
+                </view>
+                <image mode="aspectFill" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" catchtap='previewImage' data-src="{{item.imgs[0]}}" data-item="{{item.imgs}}" />
+            </view>
+            <view class="label">
+              <view wx:if="{{item.is_anonymous!=1}}">
+                <label-school class="h5" wx:if="{{item.uni_name}}">{{item.uni_name}}</label-school>
+              </view>
+              <view>
+                <h5 wx:if="{{item.gk_year>0&&item.is_anonymous!=1}}">{{item.gk_year}}艺考</h5>
+                <h5 wx:if="{{item.gk_prov_name&&item.is_anonymous!=1}}">{{item.gk_prov_name}}考生</h5>
+                <h5 style="color:var(--sec-02)" wx:if="{{item.is_anonymous==1}}">用户选择隐藏个人信息</h5>
+              </view>
+            </view>
+            <view class="base">
+                <h4>{{item.count_view}}人读过</h4>
+                <!-- <image src="/img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" data-val="0" catchtap="approve" data-idx="{{index}}" />
+                <image src="/img/48x48/comment-heart.png" wx:else data-val="1" catchtap="approve" data-idx="{{index}}" /> -->
+
+
+                <btn-reg class="approve" src="/img/48x48/comment-heart-active.png" bindmytap="approve" loginTime="{{pageLoginTime}}" wx:if="{{item.myApprove==1}}" data-idx="{{index}}"  data-val="0"/>
+                <btn-reg class="approve" src="/img/48x48/comment-heart.png" bindmytap="approve" loginTime="{{pageLoginTime}}" wx:else data-idx="{{index}}" data-val="1"/>
+
+
+            </view>
+        </navigator>
+    </block>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>
+<wxs src="../../utils/filter.wxs" module="filters" />

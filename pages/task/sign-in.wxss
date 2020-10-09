@@ -1,0 +1,258 @@
+/* pages/sign-in/index.wxss */
+
+page {
+    box-sizing: border-box;
+    background: #13076B;
+    padding: 352rpx 64rpx 268rpx;
+}
+
+.sign-bg {
+    width: 100%;
+    height: 1188rpx;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.statistics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFDC14;
+    margin-bottom: 20rpx;
+}
+
+.sgin-in-days,
+.sgin-in-money {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sgin-in-days {
+    margin-right: 32rpx;
+}
+
+.sgin-in-days label,
+.sgin-in-money label {
+    padding: 8rpx 18rpx;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 24rpx;
+    border: 2rpx solid #FFDC14;
+}
+
+.sgin-in-days h4,
+.sgin-in-money h4 {
+    color: #FFDC14;
+}
+
+.days,
+.money {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.days h1,
+.money h1 {
+    font-size: 96rpx;
+    line-height: 96rpx;
+    font-weight: 600;
+    font-family: PingFangSC-Semibold, PingFang SC;
+}
+
+.days h3,
+.money h3 {
+    margin-bottom: 6rpx;
+}
+
+/* 红包列表 */
+
+.redpackets {
+    padding: 0 32rpx;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.redpacket-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16rpx;
+}
+
+.redpacket-box h4 {
+    margin-top: 8rpx;
+    color: #FFDC14;
+}
+
+.redpacket {
+    padding: 16rpx 0rpx;
+    width: 120rpx;
+    color: var(--sec-01);
+    border-radius: 24rpx;
+    background: rgba(255, 220, 20, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign-active {
+    background: #FFDC14;
+}
+
+.redpacket h3 {
+    margin-bottom: 16rpx;
+}
+
+.redpacket image {
+    width: 56rpx;
+    height: 64rpx;
+}
+
+.redpacket-box:nth-child(5) {
+    margin-left: 82rpx;
+}
+
+.redpacket-box:last-child {
+    margin-right: 70rpx;
+}
+
+
+
+.no_time_out btn-reg button, .sign-in btn-reg button, .adopt-redpacket btn-reg button {
+    margin: 16rpx 128rpx 0;
+    border-radius: 32rpx;
+    border: 6rpx solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18rpx 0;
+    text-align: center;
+}
+
+.no_time_out btn-reg button text, .sign-in btn-reg button text, .adopt-redpacket btn-reg button text{
+    font-weight: bold;
+    font-size: var(--h2-font-size);
+    line-height: var(--h2-line-height);
+    color: var(--sec-01);
+}
+
+
+.no_time_out btn-reg, .no_time_out btn-reg button {
+    background: #D1D1D6;
+    color: var(--sec-01);
+}
+
+.sign-in btn-reg, .sign-in btn-reg button{
+    background: #FFDC14;
+    color: var(--sec-01);
+}
+
+.adopt-redpacket btn-reg, .adopt-redpacket btn-reg button {
+    background: #52C41A;
+    color: var(--sec-01);
+}
+
+.attention {
+    margin-top: 168rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-bottom: 268rpx; */
+}
+
+.title {
+    border-radius: 24rpx;
+    border: 2rpx solid #FFDC14;
+    margin-top: 12rpx;
+    margin-bottom: 32rpx;
+    padding: 8rpx 18rpx;
+    color: #FFDC14;
+}
+
+.rules {
+    border-radius: 16rpx;
+    border: 2rpx solid #FFDC14;
+    padding: 32rpx 56rpx;
+    color: white;
+}
+
+.rule-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 48rpx;
+}
+
+.rule-title p3 {
+    margin-top: 4rpx;
+}
+
+.rule {
+    margin-top: 16rpx;
+}
+
+/* 弹窗 */
+
+
+.radpacket-modal {
+ width: 100%;   
+ height: 100vh;
+ position: fixed;
+ top: 0;
+ left: 0;
+ background: rgba(0, 0, 0, 0.5);
+ padding-left: 46rpx;
+padding-right: 34rpx;
+
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	padding: 56rpx 88rpx 88rpx;
+	box-sizing: border-box;
+	background: var(--white);
+    border-radius: 16rpx;
+    position: fixed;
+    top: 320rpx;
+
+}
+
+.content .hint {
+    margin-bottom: 88rpx;
+}
+
+.content .item {
+	display: flex;
+	align-items: center;
+}
+.content .item .h4 {
+    color: var(--sec-01);
+	background: var(--sec-05);
+    padding: 8rpx 0;
+    width: 256rpx;
+    text-align: center;
+	border-radius: 32rpx;
+}
+.content .item btn-sm {
+	background: var(--color-general);
+	color: var(--white);
+	margin-left: 72rpx;
+}
+
+.content image {
+	width: 56rpx;
+	height: 56rpx;
+	margin-right: 16rpx;
+}
+
+.qq{
+    margin-top: 80rpx;
+}

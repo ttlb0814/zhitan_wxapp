@@ -1,0 +1,9 @@
+@import "common.wxss";
+
+.title{font-size: 8.5vw; color:#ffe000; text-align: center; font-weight: bold; text-shadow: 0 0 5rpx #fff;}
+.sub-title{font-size: 5vw; color:#fff;margin-top: 2vw;letter-spacing: 0.08em; width: 86vw;}
+.sub-title b{font-size: 7vw; color:#ffe000; margin: 0 0.2em;}
+.img{background: #fff; width: 86vw; border-radius:4vw; margin-top: 4vw; margin-bottom: 8vw; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8vw 0;}
+.img image{width: 70vw;}
+
+navigator.btn{z-index: 1;}

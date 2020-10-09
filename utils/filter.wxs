@@ -1,0 +1,195 @@
+var filters = {
+	operationType: function(e) {
+		switch (e) {
+			case '1':
+				e = '@';
+				break;
+			case '2':
+				e = '评论';
+				break;
+			case '3':
+				e = '点赞';
+				break;
+			default:
+				break;
+		}
+		return e;
+	},
+
+	dataType: function(e) {
+		switch (e) {
+			case '1':
+				e = '经验';
+				break;
+			case '2':
+				e = '经验评论';
+				break;
+			case '3':
+				e = '大学资讯';
+				break;
+			case '4':
+				e = '大学基本信息';
+				break;
+			default:
+				break;
+		}
+		return e;
+	},
+
+	// 秒转分
+	minute: function(e) {
+		//计算分钟
+		//算法：将秒数除以60，然后下舍入，既得到分钟数
+		var h;
+		h = Math.floor(e / 60);
+		//计算秒
+		//算法：取得秒%60的余数，既得到秒数
+		e = e % 60;
+		//将变量转换为字符串
+		h += '';
+		e += '';
+		//如果只有一位数，前面增加一个0
+		h = h.length == 1 ? h : h;
+		e = e.length == 1 ? e : e;
+
+		if (e > 0) {
+			return Number(h) + 1;
+		}
+		return h;
+
+		// return h + ':' + e;
+	},
+
+	// tab渐变色
+	gradientRamp: function(e) {
+		switch (e) {
+			case '编导制作':
+				e = 'gradient-producer';
+				break;
+			case '戏剧':
+				e = 'gradient-play';
+				break;
+			case '艺术理论':
+				e = 'gradient-theory';
+				break;
+			case '音乐':
+				e = 'gradient-music';
+				break;
+			case '舞蹈':
+				e = 'gradient-dance';
+				break;
+			case '表演':
+				e = 'gradient-act';
+				break;
+			case '公共关系':
+				e = 'gradient-pr';
+				break;
+			case '美术':
+				e = 'gradient-art';
+				break;
+			case '综合':
+			case '热门院校':
+				e = 'gradient-general';
+				break;
+			case '播音主持':
+				e = 'gradient-mc';
+				break;
+			case '服装表演':
+				e = 'gradient-fashion';
+				break;
+			default:
+				e = 'gradient-general';
+				break;
+		}
+		return e;
+	},
+
+	// 标签渐变色
+	labelShade: function(e, type) {
+		if (type == 1) {
+			e = 'color-mc';
+			return e;
+		}
+		switch (e) {
+				case '编导制作':
+				e = 'color-producer';
+				break;
+			case '戏剧':
+				e = 'color-play';
+				break;
+			case '艺术理论':
+				e = 'color-theory';
+				break;
+			case '音乐':
+				e = 'color-music';
+				break;
+			case '舞蹈':
+				e = 'color-dance';
+				break;
+			case '表演':
+				e = 'color-act';
+				break;
+			case '公共关系':
+				e = 'color-pr';
+				break;
+			case '美术':
+				e = 'color-art';
+				break;
+			case '综合':
+			case '热门院校':
+				e = 'color-general';
+				break;
+			case '播音主持':
+				e = 'color-mc';
+				break;
+			case '服装表演':
+				e = 'color-fashion';
+				break;
+			default:
+				e = 'color-general';
+				break;
+		}
+		return e;
+	},
+	// 二级标签渐变色
+	labelShadeBi: function(e) {
+		switch (e) {
+			case '学习经验':
+			case '报考经验':
+			case '教育经验':
+				e = 'exp-deep';
+				break;
+			default:
+				e = 'theory-deep';
+				break;
+		}
+		return e;
+	},
+	// 截取文件后缀名
+	fileSuffix: function(params) {
+		return params.substring(params.lastIndexOf('.') + 1, params.length); //截
+	},
+	fileTitle: function(e) {
+		if (e == '') return;
+
+		var name = e.split('\\');
+		var pos = name[name.length - 1].lastIndexOf('.');
+		name = name[name.length - 1].substring(0, pos);
+		if (name == '') {
+			return e;
+		}
+		return name;
+	},
+
+};
+
+module.exports = {
+	operationType: filters.operationType,
+	dataType: filters.dataType,
+	gradientRamp: filters.gradientRamp,
+	labelShade: filters.labelShade,
+	labelShadeBi: filters.labelShadeBi,
+	minute: filters.minute,
+	fileSuffix: filters.fileSuffix,
+	fileTitle: filters.fileTitle,
+};

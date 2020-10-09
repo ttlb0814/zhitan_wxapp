@@ -1,0 +1,28 @@
+page {
+	box-sizing: border-box;
+	padding: 0 40rpx;
+	padding-bottom: 40rpx;
+}
+.title {
+	color: var(--sec-01);
+	padding: 65rpx 0 16rpx 0;
+}
+.label {
+	display: flex;
+	align-items: center;
+}
+.label > h4 {
+	margin-bottom: 48rpx;
+	color: var(--sec-02);
+}
+.ql-container {
+	height: 100%;
+	font-size: var(--p3-font-size);
+}
+rich-text {
+	font-size: var(--p3-56-font-size);
+	line-height: var(--p3-56-line-height);
+}
+.label-school{
+	margin-bottom: 48rpx;
+}

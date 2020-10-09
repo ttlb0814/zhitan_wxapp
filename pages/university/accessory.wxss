@@ -1,0 +1,78 @@
+page {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.operation {
+	padding: 16rpx 32rpx 24rpx 32rpx;
+	display: flex;
+	justify-content: space-between;
+}
+
+.operation btn-sm:first-child {
+	background: var(--tint-general);
+	color: var(--color-general);
+}
+
+.operation btn-sm:last-child {
+	background: var(--color-general);
+	color: var(--white);
+}
+
+.files_list {
+	flex: 1;
+}
+
+.files_list>.item {
+	display: flex;
+	align-items: center;
+}
+
+.files_list>.item>image {
+	width: 48rpx;
+	height: 48rpx;
+	margin: 0 32rpx;
+}
+
+.files_list>.item>p3 {
+	flex: 1;
+	display: flex;
+	white-space: nowrap;
+	align-items: center;
+	overflow: hidden;
+	padding: 40rpx 0;
+}
+
+.files_list>.item:last-child>p3 {
+	border-bottom: none;
+}
+
+.files_list>.item>p3>image {
+	flex-shrink: 0;
+	width: 48rpx;
+	height: 48rpx;
+	margin-right: 25rpx;
+}
+
+.files_list>.item>p3>input {
+	border: 1px solid var(--sec-04);
+	padding: 8rpx 16rpx;
+	height: 100%!important;
+}
+
+.edit {
+	display: flex;
+	justify-content: flex-end;
+	padding: 32rpx 45rpx 60rpx 0;
+	border-top: 1rpx solid var(--sec-04);
+}
+
+.edit>btn-md {
+	background-color: var(--color-general);
+	color: var(--white);
+}
+
+.edit .sel {
+	background: var(--warning);
+}

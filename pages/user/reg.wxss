@@ -1,0 +1,17 @@
+/* pages/user/reg.wxss */
+view.container{display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80vh;}
+view.container button{background: none; border: 2rpx solid var(--color-general); border-radius: 0.5em; color: var(--color-general); font-weight: normal; font-size: var(--h3-font-size);}
+
+.tips{margin-bottom: 10vw; width: 70vw; text-align: center; color: var(--sec-03);}
+
+/**qq小程序绑定手机号**/
+.form_bind{display: flex; flex-direction: column;}
+.form_bind>view.fld{display: flex; align-items:center; width: 70vw; margin-bottom: 5vw; border-radius: 2em; overflow: hidden;}
+.form_bind>view.fld input{background:#f6f6f6; padding: 0.5em 1.5em; font-size: var(--h2-font-size); border: none; flex-grow: 1;}
+.form_bind>view.code view{background: var(--color-general-light); color:#fff; padding: 0.55em 1.5em 0.55em 1em; font-size: var(--h2-font-size); flex-shrink: 0;}
+.form_bind>view.code view.hover{background: var(--color-general);}
+.form_bind>view.code view.disable{background:#ccc;}
+
+.form_bind .btn{text-align: center; font-size: var(--h2-font-size); color:#fff; background: var(--color-general-light); padding: 0.5em 0; border-radius: 2em;}
+.form_bind .btn.hover{background: var(--color-general);}
+.form_bind .btn.disable{background:#ccc;}

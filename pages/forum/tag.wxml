@@ -1,0 +1,19 @@
+<view class="hot-tags">
+    <h4 class="bold">热门标签</h4>
+    <view class="hot-tags-list">
+        <btn-sm class="{{item.is_sel && 'sel-tag' || 'no-sel-tag'}}" wx:for="{{hotTags}}" wx:key="index" bindtap="selTag" data-from="hotTag" data-id="{{item.id}}" data-idx="{{index}}">
+            <h5 class="sel no-sel">{{item.tag_name}}</h5>
+        </btn-sm>
+    </view>
+</view>
+<!-- 其他标签 -->
+<view class="tags-list">
+    <view>
+        <btn-sm class="tag {{item.is_sel&&'sel-tag'}}" wx:for="{{tagList}}" wx:key="index" bindtap="selTag" data-from="commonTag" data-id="{{item.id}}" data-idx="{{index}}">
+            <h5>{{item.tag_name}}</h5>
+        </btn-sm>
+    </view>
+</view>
+<view class="edit">
+    <btn-md bindtap="confirm">确定</btn-md>
+</view>

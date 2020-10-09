@@ -1,0 +1,3 @@
+view.-datetime-picker{display: flex;}
+view.-datetime-picker picker{margin-right: 20rpx;}
+view.-datetime-picker picker:nth-last-child(1){margin-right: 0;}

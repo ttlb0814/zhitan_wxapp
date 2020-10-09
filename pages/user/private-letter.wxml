@@ -1,0 +1,23 @@
+<!-- 私信 -->
+<navigation author="{{other}}" />
+<scroll-view  scroll-y="{{true}}" scroll-into-view="{{toLast}}" class="private-letter" id="private-letter" bindscrolltoupper="overMore">
+    <view wx:for="{{record}}" class="record" wx:key="id" id="item{{index+1}}" style="{{item.user_from ==myself.id&&'float:right;'}};">
+        <h5 class="bold" wx:if="{{record[index].is_now!=record[index-1].is_now}}">
+            <datetime value="{{item.add_time}}" format="yyyy-MM-dd" />
+        </h5>
+        <view style="{{item.user_from ==myself.id?'justify-content:flex-end;padding-left: 150rpx;':'padding-right: 150rpx'}}">
+            <image src="{{ other.head_url}}" wx:if="{{item.user_from !=myself.id}}" />
+            <h6 wx:if="{{item.user_from==myself.id}}">
+                <datetime value="{{item.add_time}}" format="HH:mm" />
+            </h6>
+            <p3 class="{{item.user_from==myself.id&&'other'}}">{{item.content}}</p3>
+            <h6 wx:if="{{item.user_from!=myself.id}}">
+                <datetime value="{{item.add_time}}" format="HH:mm" />
+            </h6>
+        </view>
+    </view>
+</scroll-view>
+<view class="ipt {{bottom?'ipt-focus':''}}" style="margin-bottom:{{bottom}}px;">
+    <textarea class="comment_box {{bottom?'text-focus':''}}" bindblur="blur" bindfocus="foucus" disable-default-padding bindinput="watchIpt" placeholder="请输入内容" value="{{comment}}" focus="{{focus}}" maxlength="255" adjust-position="{{false}}" show-confirm-bar="{{false}}" />
+    <h3 class="bold" wx:if="{{bottom}}" bindtap="sendNews">发送</h3>
+</view>

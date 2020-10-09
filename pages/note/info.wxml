@@ -1,0 +1,194 @@
+<!-- <text>查看单个经验详情（任何人发布的可见经验都用该页面展示）</text> -->
+<navigation author="{{author}}" infoId="{{infoId}}" loginTime="{{pageLoginTime}}" />
+<view class="vessel">
+  <view class="label-main">
+    <view>
+      <view class="equal_top" style="background:var(--{{filters.labelShade(info.subject_name,info.subject_type)}})" />
+      <view class="equal_down" style="background:var(--{{filters.labelShade(info.subject_name,info.subject_type)}})" />
+    </view>
+    <h5 style="color:var(--{{filters.labelShade(info.subject_name,info.subject_type)}})">
+      {{info.subject_name}}
+    </h5>
+  </view>
+  <p2 class="title bold">{{info.title}}</p2>
+  <h4 class="creator_time">
+    <datetime value="{{info.add_time}}" format="yyyy-MM-dd" friendly />
+  </h4>
+  <view class="unisList">
+    <view wx:for="{{unisList}}" wx:key="id" class="label-school">
+      <navigator url="../university/info?id={{item.id}}" hover-class="none">
+        <h5>{{item.uni_name}}</h5>
+      </navigator>
+    </view>
+  </view>
+  <!-- 作者艺考信息 -->
+  <view class="artsExam" wx:if="{{author.flag_gk!=0}}">
+    <p3 class="bold">作者艺考信息</p3>
+    <view class="info">
+      <p4 wx:if="{{author.uni_name}}">
+        <b>所在院校：</b>
+        <text class="p4">{{author.uni_name}}</text>
+      </p4>
+      <p4 wx:if="{{author.gk_year>0}}">
+        <b>高考年份：</b>
+        <text class="p4 year">{{author.gk_year}}</text>
+      </p4>
+      <p4 wx:if="{{author.gk_prov_name}}">
+        <b>地区：</b>
+        <text class="p4">{{author.gk_prov_name}}</text>
+      </p4>
+      <p4 wx:if="{{author.major_name}}">
+        <b>专业：</b>
+        <text class="p4">{{author.major_name}}</text>
+      </p4>
+      <p4 wx:if="{{author.insts.length>0}}">
+        <b>培训机构：</b>
+        <view>
+          <btn-xs wx:for="{{author.insts}}" wx:key="id">
+            <navigator url="../organization/info?id={{item.id}}" hover-class="none">
+              {{item.inst_name}}
+            </navigator>
+          </btn-xs>
+        </view>
+      </p4>
+    </view>
+  </view>
+  <rich-text nodes="{{info.content}}" />
+  <view class="copyright">
+    <view />
+    <p4>经验版权归创作者及平台所有</p4>
+    <p4>未经允许严禁以任何形式转载</p4>
+    <h3>
+      <image src="../../img/40x40/wechat.png" />
+      {{isQQ?'分享':'发送好友'}}
+      <view wx:if="{{!isQQ}}">
+        <image src="../../img/40x40/save-pic.png" />
+        <!-- 生成图片 -->
+        <btn-reg text="生成图片" bindmytap="createPoster" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+      </view>
+      <button plain="true" data-name="shareBtn" open-type="share" style="right:{{!isQQ?'200rpx':'0'}}">
+        转发
+      </button>
+    </h3>
+  </view>
+  <view>
+    <!-- 相关话题 -->
+    <view class="topic">
+      <block wx:for="{{topicList}}" wx:key="index">
+        <h5 class="tag">
+          <navigator url="../topic/info?id={{item.id}}" hover-class="none">
+            #{{item.topic_name}}
+          </navigator>
+        </h5>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="exchange">
+  <view>
+    <p4>关于艺考你是否还有很多问号</p4>
+    <p4>来交流区和大家聊聊</p4>
+  </view>
+  <btn-sm>
+    <navigator open-type="switchTab" hover-class="none" url="/pages/forum/index">去看看</navigator>
+  </btn-sm>
+</view>
+<!-- 附件列表 -->
+<view wx:if="{{filesList.length}}">
+  <view class="comment">
+    <h4 class="bold">附件</h4>
+  </view>
+  <view wx:for="{{filesList}}" wx:key="index" data-idx="{{index}}" bindtap="examineFile" class="file">
+    <p3>
+      <image src="{{item.file_ext!='mp4'?'../../img/48x48/file.png':'../../img/48x48/video.png'}}" />
+      {{item.file_title}}
+    </p3>
+  </view>
+</view>
+<!-- 推荐文章 -->
+<view class="comment" wx:if="{{recmds.length}}">
+  <h4 class="bold">更多相关经验</h4>
+</view>
+<block wx:for="{{recmds}}" wx:key="id">
+  <navigator class="article-list" url="../note/info?id={{item.id}}" hover-class="none">
+    <view class="title">
+      <view>
+        <p3 class="bold">{{item.title}}</p3>
+        <view>
+         		<h4 class="bold">{{item.is_anonymous==1?'匿名用户':item.nick_name}}</h4>
+          <h4>
+            {{item.read_sec>60?(filters.minute(item.read_sec)+'分钟'):'1分钟'}}阅读
+            <datetime value="{{item.add_time}}" friendly />
+          </h4>
+        </view>
+      </view>
+      <image mode="aspectFill" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" />
+    </view>
+    <view class="label">
+          <view wx:if="{{item.is_anonymous!=1}}">
+            <label-school class="h5" wx:if="{{item.uni_name}}">{{item.uni_name}}</label-school>
+          </view>
+          <view>
+            <h5 wx:if="{{item.gk_year>0&&item.is_anonymous!=1}}">{{item.gk_year}}艺考</h5>
+            <h5 wx:if="{{item.gk_prov_name&&item.is_anonymous!=1}}">{{item.gk_prov_name}}考生</h5>
+            <h5 style="color:var(--sec-02)" wx:if="{{item.is_anonymous==1}}">用户选择隐藏个人信息</h5>
+          </view>
+    </view>
+    <view class="base" style="{{index==recmds.length-1&&'border-bottom:none'}}">
+      <h4>{{item.count_view}}人读过</h4>
+      <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" data-val="0" catchtap="approve" data-idx="{{index}}" />
+      <image src="../../img/48x48/comment-heart.png" wx:else data-val="1" catchtap="approve" data-idx="{{index}}" /> -->
+      <btn-reg src="/img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" data-val="0" data-idx="{{index}}" bindmytap="approve" loginTime="{{pageLoginTime}}" />
+      <btn-reg src="/img/48x48/comment-heart.png" wx:else data-val="1" data-idx="{{index}}" bindmytap="approve" loginTime="{{pageLoginTime}}" />
+
+    </view>
+  </navigator>
+</block>
+<view class="comment" id="comment-title">
+  <h4 class="bold">评论{{'('+(countAll || 0) +')'}}</h4>
+</view>
+<view class="comment-list">
+  <view class='list' wx:for="{{dataList}}" wx:key="index">
+    <view class="each">
+      <comment id="comment" item="{{item}}" userId="{{info.user_id}}" infoId="{{infoId}}" idx="{{index}}" loginTime="{{pageLoginTime}}" bind:parentReceive="parentCallBack" />
+    </view>
+  </view>
+  <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+  <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</view>
+<!-- 输入框 -->
+<view class="com_frame" style="bottom:{{bottom}}px;{{bottom&&'border-top:1rpx solid var(--sec-03);'}};{{bottom&&'padding:24rpx 130rpx 24rpx 24rpx'}}">
+  <textarea fixed="true" class="comment_box" name="content" placeholder="留下你的评论" focus="{{focus}}" value="{{content}}" maxlength='480' adjust-position="{{false}}" bindfocus="foucus" style="max-height:{{!bottom?'80rpx':'160rpx'}};{{bottom&&'margin:0'}};" show-confirm-bar="{{false}}" bindblur="blur" disable-default-padding bindinput="watchIpt"></textarea>
+  <!-- <h3 class="bold" wx:if="{{bottom}}" bindtap="formSubmit">发送</h3> -->
+  <btn-reg text="发送" class="send" wx:if="{{bottom}}" bindmytap="formSubmit" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+  <view wx:if="{{!bottom}}" bindtap="readComment">
+    <image src="../../img/48x48/comment-comment.png" data-val="{{true}}" class="skip" />
+    <h5 class="bold" style="color:var(--sec-03)">{{info.count_discuss}}</h5>
+  </view>
+  <view wx:if="{{!bottom}}">
+    <btn-reg src="/img/48x48/comment-heart-active.png" wx:if="{{info.myApprove}}" bindmytap="approveCollect" data-type="approve" loginTime="{{pageLoginTime}}" />
+    <btn-reg src="/img/48x48/comment-heart.png" wx:else bindmytap="approveCollect" data-type="approve" loginTime="{{pageLoginTime}}" />
+    <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{info.myApprove}}" /> -->
+    <!-- <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+    <h5 class="bold" style="color:var(--{{info.myApprove?'color-general':'sec-03'}})">
+      {{info.count_approve}}
+    </h5>
+  </view>
+  <!-- <view bindtap="approveCollect" wx:if="{{!bottom}}" data-type='collect'>
+    <image src="../../img/64x64/favorite-active.png" wx:if="{{info.myCollect}}" />
+    <image src="../../img/64x64/favorite.png" wx:else />
+    <h5 class="bold" style="color:var(--{{info.myCollect?'color-general':'sec-02'}})">
+      {{info.count_collect}}
+    </h5>
+  </view> -->
+</view>
+<filetool id="filetool" identity="{{false}}" />
+<wxs src="../../utils/filter.wxs" module="filters"></wxs>
+<!-- 海报 -->
+<cover-view class="poster" wx:if="{{poster}}" style="top:{{statusBarHeight+45}}px" bindtap="createPoster">
+  <cover-view style="position: relative;" catchtap="savePic" data-type="null">
+    <cover-image src="../../img/bg.jpg" class="bg" />
+    <cover-image src="{{shareimg}}" wx:if="{{shareimg}}" class="shareimg" />
+  </cover-view>
+  <cover-view catchtap="savePic" class="btn-md">保存图片</cover-view>
+</cover-view>

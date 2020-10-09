@@ -1,0 +1,77 @@
+@import '../../utils/newdatalist.wxss';
+
+page {
+	background: var(--white);
+}
+
+page > scroll-view .list {
+	padding: 0;
+	padding-left: 40rpx;
+	box-sizing: border-box;
+}
+
+page > scroll-view {
+	box-shadow: none;
+}
+
+.user_card {
+	padding: 0;
+	position: relative;
+	align-items: start;
+	background: none;
+}
+
+.user_card > view {
+	padding: 40rpx 0;
+	margin: 0;
+	flex: 1;
+}
+
+.user_card btn-top {
+	position: absolute;
+	right: 32rpx;
+	top: 40rpx;
+}
+
+.user_card > image {
+	margin-top: 30rpx;
+}
+
+.user_card p4 {
+	color: var(--sec-01);
+	background: var(--sec-05);
+	margin-top: 32rpx;
+	border-radius: 8rpx;
+	position: relative;
+}
+
+.user_card p4 > view {
+	margin: 16rpx 24rpx;
+	overflow: hidden;
+}
+
+.user_card p4 image {
+	width: 32rpx;
+	height: 32rpx;
+	vertical-align: middle;
+	margin-left: 35rpx;
+}
+
+.user_card p4 > view > view {
+	background: var(--sec-05);
+	position: absolute;
+	right: 25rpx;
+	bottom: 25rpx;
+	z-index: 100;
+}
+
+.comment > view {
+	padding: 40rpx 40rpx 40rpx 0;
+	border-bottom: 1rpx solid var(--sec-04);
+}
+
+
+
+b {
+	color: var(--sec-01);
+}

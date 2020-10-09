@@ -1,0 +1,11 @@
+<!-- <text>所有大学的资讯内容列表，按时间排序，便于用户看最近所有资讯</text> -->
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <navigator class='list' wx:for="{{dataList}}" wx:key="index" url="./newsinfo?id={{item.id}}">
+        <view class="each">
+            <text class="title">{{item.title}}</text>
+            <text>{{item.uni_name}}_{{item.pub_date}}</text>
+        </view>
+    </navigator>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>

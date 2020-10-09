@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "经验附件",
+	"usingComponents": {
+		"addAccessory": "../../components/addAccessory"
+	}
+}

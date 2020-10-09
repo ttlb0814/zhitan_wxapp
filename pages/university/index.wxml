@@ -1,0 +1,81 @@
+<!-- <text>查看大学列表的主页面，保留</text> -->
+<search  tabIdx="{{2}}"/>
+<!-- <view class="input-area">
+    <image src="../../img/32x32/search.png" />
+    <input type="text" class="search_box" confirm-type="search" value="{{searchVal}}" bindconfirm="searchSch" placeholder="搜索学院名称" selection-start='3' maxlength="20" bindinput='watchInput' />
+    <image src="../../img/32x32/close.png" bindtap='clearkw' wx:if="{{searchVal}}" />
+</view> -->
+<!-- <下拉筛选 /> -->
+<view class="section">
+    <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="selRegion" value="{{multiIndex}}" range="{{multiArray}}" range-key="name" style="	margin-right: 88rpx;">
+        <view class="picker region">
+            <h4>
+                <view wx:if="{{multiIndex[0]!=0}}">
+                    {{multiArray[0][multiIndex[0]].name}}-{{multiArray[1][multiIndex[1]].name}}
+                </view>
+                <view wx:else>地区</view>
+                <image src="../../img/24x24/dropdown2_1.png" />
+            </h4>
+        </view>
+    </picker>
+    <picker bindchange="bindPickerChange" value="{{uniIdx}}" range="{{uniacad}}" range-key="acad_name" data-type="uniIdx">
+        <view class="picker">
+            <h4>
+                <view>{{uniacad[uniIdx].acad_name}}</view>
+                <image src="../../img/24x24/dropdown2_1.png" />
+            </h4>
+        </view>
+    </picker>
+</view>
+<view class="tab_second">
+    <scroll-view scroll-x="{{true}}" scroll-with-animation scroll-left="{{scrollLeft}}">
+        <view wx:for="{{tabSecond}}" wx:key="index" class="tabSecond_item" style="background:var(--{{index==tabSecondIdx?filters.gradientRamp(item.name):'sec-04'}})" bindtap="tabSel" data-idx="{{index}}">
+            <h4 class="bold" style="color:{{index==tabSecondIdx?'var(--white)':'var(--sec-02)'}}">
+                {{item.name}}
+            </h4>
+        </view>
+    </scroll-view>
+</view>
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <!-- QQ小程序中跳转到志愿填报助手 -->
+    <navigator wx:if="{{isQQ}}" class='sch_card shadow-01' target="miniProgram" app-id="1110683396">
+        <image src="{{baseUrl}}img/logo-gkzy.jpg" style="border-radius: 100%;" />
+        <view class="item">
+            <view class="uni_name">
+                <p3 class="bold">志愿填报助手</p3>
+            </view>
+            <h5 style="color:var(--sec-02); line-height: 1.6em;">
+                大数据智能云库筛选，数万真实学生样本参考，只需输入分数，智能匹配最优志愿方案。
+            </h5>
+        </view>
+    </navigator>
+    <navigator class='sch_card shadow-01' wx:for="{{dataList}}" wx:key="index" url="./info?id={{item.id}}">
+        <image src="{{item.logoUrl}}" />
+        <view class="item">
+            <view class="uni_name">
+                <p3 class="bold">
+                    {{item.uni_name}}
+                    <h5 style="font-weight: normal;">
+                        <view />
+                        {{item.prov_name}}
+                    </h5>
+                </p3>
+            </view>
+            <view class="label">
+                <btn-xs wx:if="{{item.dual_class>0}}">
+                    <h5>双一流</h5>
+                </btn-xs>
+                <btn-xs wx:if="{{item.is_985>0}}">
+                    <h5>985</h5>
+                </btn-xs>
+                <btn-xs wx:if="{{item.is_211>0}}">
+                    <h5>211</h5>
+                </btn-xs>
+            </view>
+        </view>
+    </navigator>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>
+<wxs src="../../utils/filter.wxs" module="filters"></wxs>
+<task-list loginTime="{{pageLoginTime}}" />

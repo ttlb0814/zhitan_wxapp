@@ -1,0 +1,60 @@
+<view class="comment" wx:if="{{item.deleted==0}}">
+    <btn-reg class="head" src="{{item.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.user_id}}" />
+    <view>
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{item.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.is_verified==1}}" />
+                <label-author class="author" wx:if="{{userId==item.user_id}}">
+                    <h6>作者</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">{{item.content}}</p4>
+        </view>
+        <view class="fun_button">
+            <h4 style="color:var(--sec-02)">
+                <datetime value="{{item.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view wx:if="{{myselfId == userId || myselfId == item.user_id}}" catchtap="delete" data-id="{{item.id}}">
+                <image src="../../img/48x48/trash-bin.png" />
+            </view>
+            <view catchtap="commont" data-id="{{item.id}}">
+                <image src="../../img/48x48/comment-comment.png" />
+            </view>
+            <view>
+                <btn-reg class="approve" src="/img/48x48/comment-heart-active.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:if="{{item.myApprove}}" data-id="{{item.id}}" />
+                <btn-reg class="approve" src="/img/48x48/comment-heart.png" bindmytap="discapprove" loginTime="{{pageLoginTime}}" wx:else data-id="{{item.id}}" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 二级评论 -->
+<view class="secondLevel" wx:if="{{item.deleted==0}}">
+    <view wx:if="{{item.last_reply}}">
+        <btn-reg src="{{item.last_reply.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.last_reply.user_id}}" />
+        <navigator url="../../pages/note/discussInfo?dataId={{item.id}}&&noteId={{infoId}}&&userId={{userId}}" hover-class="none">
+            <view class="user">
+                <h4 class="bold">{{item.last_reply.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.last_reply.is_verified==1}}" />
+                <label-author class="author" wx:if="{{userId==item.last_reply.user_id}}">
+                    <h6>作者</h6>
+                </label-author>
+            </view>
+            <p4>
+                <block wx:if="{{item.last_reply.atUser}}">
+                    回复
+                    <text class="bold">@{{item.last_reply.atUser.nick_name}}</text>
+                    :
+                </block>
+                {{item.last_reply.content}}
+            </p4>
+            <h4 style="color:var(--sec-02);height:55rpx">
+                <datetime value="{{item.last_reply.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+        </navigator>
+    </view>
+    <navigator wx:if="{{item.count_discuss>1}}" url="../../pages/note/discussInfo?dataId={{item.id}}&&noteId={{infoId}}&&userId={{userId}}" hover-class="none">
+        <h4 class="bold" style="color:var(--sec-02)">更多回复（{{item.count_discuss}}）</h4>
+    </navigator>
+</view>
+<wxs src="../../utils/filter.wxs" module="filters" />

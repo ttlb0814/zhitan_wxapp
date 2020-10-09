@@ -1,0 +1,11 @@
+@import '../../utils/newdatalist.wxss';
+
+.each {
+  padding:30rpx 0 70rpx 0;
+  border-bottom: 3rpx solid #cccccc;
+  display: flex;
+  flex-direction: column;
+}
+.each .title{
+    margin-bottom: 10rpx;
+}

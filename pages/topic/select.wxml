@@ -1,0 +1,22 @@
+<input type="text" placeholder="请输入新的话题名称" maxlength="20" bindconfirm="selTopic" value="{{topicVal}}" bindinput='watchPassWord' />
+<scroll-view scroll-y="true" class="search" wx:if="{{searchList.length}}">
+    <view wx:for="{{searchList}}" wx:key="id">
+        <text bindtap="selTopic" data-id="{{item.id}}" data-value="{{item.topic_name}}">
+            #{{item.topic_name}}
+        </text>
+    </view>
+</scroll-view>
+
+<view wx:for="{{topicList}}" wx:key="index">
+    <text bindtap="remove" data-index="{{index}}">#{{item.topic_name}}</text>
+</view>
+
+<button size="mini" bindtap="confirm" type="primary" wx:if="{{topicList.length}}">确定</button>
+<button bindtap='hotTopic' type="warn" style="margin-top:20rpx">查看热门话题</button>
+<scroll-view scroll-y="true" class="hotList">
+    <view wx:for="{{hotList}}" wx:key="id">
+        <text bindtap="selTopic" data-id="{{item.id}}" data-value="{{item.topic_name}}">
+            #{{item.topic_name}}
+        </text>
+    </view>
+</scroll-view>

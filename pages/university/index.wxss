@@ -1,0 +1,57 @@
+@import '/utils/newdatalist.wxss';
+
+.section {
+	background: var(--white);
+	display: flex;
+	padding: 24rpx 0rpx;
+	justify-content: center;
+}
+
+.section .picker h4 {
+	color: var(--sec-02);
+	display: flex;
+	align-items: center;
+}
+
+.section .picker image {
+	width: 14rpx;
+	height: 8rpx;
+	margin-left: 8rpx;
+}
+
+.tab_second {
+	overflow-x: scroll;
+	background-color: #f9f9f9;
+	padding: 24rpx 32rpx;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	color: transparent;
+}
+
+.tab_second > scroll-view {
+	white-space: nowrap;
+}
+
+.tab_second .tabSecond_item {
+	margin-right: 24rpx;
+}
+
+.reg-cover {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+}
+
+.region > h4 > view {
+	max-width: 430rpx;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

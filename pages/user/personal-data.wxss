@@ -1,0 +1,25 @@
+page{height: 100vh;display: flex;flex-direction: column;}
+.personal{padding:0 40rpx;box-sizing: border-box;flex: 1;}
+h3{color: var(--sec-02);flex-shrink: 0;margin-right: 32rpx;}
+.head_url,.nick_name,.gender {display: flex;justify-content: space-between;align-items: center;}
+.head_url{padding: 32rpx 0 24rpx 0;}
+.head_url image{width: 122rpx;height: 122rpx;border:1rpx solid var(--sec-03);}
+.nick_name,.gender{padding: 32rpx 0 ;}
+.nick_name input{text-align: right;}
+.gender>view{display: flex;}
+.gender .radio{width: 104rpx;height: 56rpx;border-radius: 28rpx;border: 1rpx solid var(--sec-02);display: flex;align-items: center;justify-content: center;color: var(--sec-02);}
+.gender .radio:first-child{margin-right: 24rpx;}
+.gender .radio>image{width: 24rpx;height: 24rpx;margin-right: 8rpx;}
+
+.gender .male{background: #7B8FFF;color: var(--white)!important;border: none!important;}
+.gender .female{background:#FB9BD0;color: var(--white)!important;border: none!important;}
+.self-introduction{padding: 40rpx 0;border-bottom: 1rpx solid var(--sec-04);}
+.picker{display: flex;align-items: center;}
+.picker>.please-choose{color: var(--sec-02);}
+.picker> image{width: 32rpx;height: 32rpx;margin-left: 16rpx;}
+.picker>p3{display: flex;align-items: center;}
+.region >p3{text-overflow: ellipsis; overflow-x: hidden;white-space: nowrap}
+.self-introduction>textarea{height: 96rpx;width: 100%;margin: 24rpx 0 40rpx 0;}
+
+.save{padding: 32rpx 91rpx 59rpx 107rpx;border-top: 2rpx solid var(--sec-04);}
+.save btn-lg{background: var(--color-general);color: var(--white);}

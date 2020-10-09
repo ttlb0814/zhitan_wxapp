@@ -1,0 +1,14 @@
+<!-- 认证页面 -->
+<h2 class="hint">请联系<b>之谈</b>的工作人员完成认证</h2>
+<view class="content">
+    <div class="item">
+        <image src="../../img/56x56/wechat.png" />
+        <span class="h4">xiaoyansuo018</span>
+        <btn-sm bindtap='copyText' data-text="xiaoyansuo018">复制</btn-sm>
+    </div>
+    <div class="item qq">
+        <image src="../../img/56x56/qq.png" />
+        <span class="h4">2487441295</span>
+        <btn-sm bindtap='copyText' data-text="2487441295">复制</btn-sm>
+    </div>
+</view>

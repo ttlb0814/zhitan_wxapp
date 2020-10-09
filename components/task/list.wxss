@@ -1,0 +1,9 @@
+
+.item {margin: 0;text-align: center;position: relative;display: flex;justify-content: center;}
+.item .img image{width: 94rpx;height: 134rpx;margin-bottom: 20rpx;}
+.item .sec  {position: absolute;top: 0; z-index: 99;top: 58rpx;}
+.item .sec  text{font-size: var(--h4-font-size);line-height: var(--h4-line-height);color: var(--white);font-weight: bold;}
+.task{position: fixed;bottom: 144rpx;right: 30rpx;}
+
+.item>image{width: 32rpx;height: 32rpx;position: absolute;right: -16rpx;top: -16rpx;}
+btn-reg button{background: none;}

@@ -1,0 +1,2 @@
+@import '../note/info.wxss';
+page{padding-bottom: 0;}

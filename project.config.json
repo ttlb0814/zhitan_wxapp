@@ -1,0 +1,131 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.2",
+  "appid": "wx86e171a31effa7f0",
+  "projectname": "zhitan",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "圈子",
+          "pathName": "pages/forum/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择标签",
+          "pathName": "pages/forum/tag",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "帖子详情",
+          "pathName": "pages/forum/info",
+          "query": "id=4&type=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": " 问答帖“大神如何看待画渣”",
+          "pathName": "pages/forum/info",
+          "query": "id=33&type=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/user/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "他人主页",
+          "pathName": "pages/user/author",
+          "query": "userId=1154",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "pages/task/sign-in",
+          "pathName": "pages/task/sign-in",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "专题页面",
+          "pathName": "pages/topic/special-subject",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

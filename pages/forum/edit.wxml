@@ -1,0 +1,65 @@
+<!-- pages/forum/edit.wxml -->
+<view class="title-box">
+  <input type="text" maxlength="30" placeholder="{{placeholder}}" focus="{{autoFocus}}" class="enter_title bold" bindinput="getVal" data-type="title" value="{{title}}" />
+  <view wx:if="{{postType == 1}}" bindtap="{{closeTip && 'autoFocus'}}" class="title-tip {{closeTip && 'close-tip'}}">
+    <p4>
+      <view class="dot"></view>
+      提个问题或与大家交流分享你的想法
+    </p4>
+    <p4>
+      <view class="dot"></view>
+      提问题时必填标题并以问号结尾
+    </p4>
+    <p4>
+      <view class="dot"></view>
+      添加合适的话题有助于被更多人看到
+    </p4>
+    <image class="close" bindtap="closeTip" src="/img/cancel.png"></image>
+  </view>
+</view>
+<editor id="editor" class="ql-container" placeholder="请输入正文" bindstatuschange="onStatusChange" bindready="onEditorReady" bindinput="getVal" bindfocus="onEditorFocus" bindblur="onEditorBlur"></editor>
+<!--  -->
+<view class="toolbar" catchtouchend="format" style="top: {{isIOS?toolbarTop:0}}px" wx:if="{{editorFocus&&keyboardHeight>0}}">
+  <i class="iconfont icon-charutupian" catchtouchend="insertImage"></i>
+  <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
+  <i class="iconfont icon-fontbgcolor {{formats.backgroundColor === '#dfdbf2' ? 'ql-active' : ''}}" data-name="backgroundColor" data-value="#dfdbf2"></i>
+</view>
+<view class="tally" bindtap='selTopic' data-type="tag">
+  <h3 class="bold">标签</h3>
+  <h3 class="tag-list">
+    <p class="tags-name">
+      <text wx:for="{{tags}}" wx:key="index">{{item.tag_name}}</text>
+    </p>
+    <!-- <block wx:if="{{tags.length>1}}">等</block> -->
+    <image src="../../img/32x32/arrow-right.png" />
+  </h3>
+</view>
+<view class="tally" bindtap='selTopic' data-type="university">
+  <h3 class="bold">相关学校</h3>
+  <h3 class="uni-list">
+    <text>{{university[0].uni_name}}</text>
+    <block wx:if="{{university.length>1}}">等</block>
+    <image src="../../img/32x32/arrow-right.png" />
+  </h3>
+</view>
+<view class="edit" style="{{!isQQ && 'justify-content: center;' }}">
+  <view>
+    <view wx:if="{{isQQ}}" bindtap="anonymityChange">
+      <image src="{{is_anonymous && '../../img/48x48/is-anonymity.svg' || '../../img/48x48/anonymity.svg'}}" />
+      <h6 class="{{is_anonymous?'general':'sec-02'}}">匿名</h6>
+    </view>
+    <view bindtap="delDraftNote" wx:if="{{noteId}}">
+      <image src="../../img/48x48/trash-bin.png" />
+      <h6>删除</h6>
+    </view>
+    <view bindtap="hideNote" wx:if="{{noteId}}">
+      <image src="{{hideNt?'../../img/48x48/hide.png':'../../img/48x48/hide-active.png'}}" />
+      <h6 class="{{!hideNt&&'general'}}">{{hideNt?'隐藏':'已隐藏'}}</h6>
+    </view>
+  </view>
+  <btn-md bindtap="issueSave" wx:if="{{noteId}}">修改</btn-md>
+  <!-- <btn-lg bindtap="issueSave" wx:else>发布</btn-lg> -->
+  <view wx:else class="issue_btn">
+    <btn-reg text="发布" bindmytap="{{!flag ? 'issueSave' : ''}}" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+  </view>
+</view>

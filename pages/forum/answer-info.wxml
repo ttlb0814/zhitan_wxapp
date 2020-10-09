@@ -1,0 +1,99 @@
+<!-- pages/forum/answer-info.wxml -->
+<navigation-forum author="{{author}}" isReg="{{isReg}}" postId="{{info.id}}" infoId="{{info.tid}}" postType="{{info.mainInfo.thr_type}}" loginTime="{{pageLoginTime}}" />
+<!-- <navigation wx:else author="{{author}}"  infoId="{{info.id}}"/> -->
+<p2 class="title bold">
+    <image class="quotation" src="/img/30x24/quotation.svg" alt="" />
+    <text bindtap="postInfo">{{info.mainInfo.title}}</text>
+</p2>
+<view class="vessel">
+    <view class="answerer-info">
+
+        <btn-reg src="{{ info.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : info.head_url}}"  bindmytap="goHomepage" class="head-img"
+        requireTelnum="{{true}}"  loginTime="{{pageLoginTime}}"  data-id="{{info.user_id}}"/>
+
+        <view class="name-info">
+            <h3 class="name bold">
+                {{info.is_anonymous == 1 ? '匿名用户' : info.nick_name}}
+                <image wx:if="{{ info.is_anonymous == 0 && info.is_verified == 1 }}" class="vip-fill" src="/img/32x32/vip-fill.png"></image>
+            </h3>
+            <h5 class="add-time">
+                <datetime value="{{info.add_time}}" format="MM/dd HH:mm" />
+            </h5>
+        </view>
+    </view>
+    <!-- 答案正文 -->
+    <view class="rich-text-box">
+        <rich-text nodes="{{info.content}}" />
+    </view>
+    <view class="copyright">
+        <h3>
+            <image src="../../img/40x40/wechat.png" />
+            {{isQQ?'分享':'发送好友'}}
+            <view bindtap="createPoster" wx:if="{{!isQQ}}">
+                <image src="../../img/40x40/save-pic.png" />
+                <btn-reg text="生成图片" bindmytap="createPoster" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+                <!-- 生成图片 -->
+            </view>
+            <button plain="true" data-name="shareBtn" open-type="share" style="right:{{!isQQ?'200rpx':'0'}}">
+                转发
+            </button>
+        </h3>
+    </view>
+    <!-- 互动信息 -->
+    <view class="answer-interact">
+        <h4 class="approve-num">
+            {{info.count_approve > 0 ? info.count_approve + '人赞过' : '还没有人赞过哦'}}
+        </h4>
+        <view class="handle-box">
+            <!-- <image wx:if="{{userId == info.user_id}}" class="del" src="/img/48x48/delete.png"></image> -->
+            <!-- <image class="approve" bindtap="approve" data-type="{{info.approve_sta}}" data-tid="{{info.tid}}" data-postid="{{info.id}}" src="{{info.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }}"></image> -->
+            <btn-reg src="{{info.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }}" bindmytap="approve" data-type="{{info.approve_sta}}" data-tid="{{info.tid}}" data-postid="{{info.id}}" loginTime="{{pageLoginTime}}" />
+        </view>
+    </view>
+</view>
+<view class="foreword" wx:if="{{countAll > 0}}">
+    <h4>评论 ({{countAll}})</h4>
+    <!-- <view class="sort">
+        <image class="" src="/img/32x32/hot1.svg"></image>
+        <h4>按热度排序</h4>
+    </view> -->
+</view>
+<!-- <scroll-view class="datalist" scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    </scroll-view> -->
+<view class="comment-list">
+    <view class='list' wx:for="{{dataList}}" wx:key="index">
+        <view class="each forum{{index}}">
+            <forum-comment id="forum-comment" authorId="{{info.mainInfo.user_id}}" postType="{{info.mainInfo.thr_type}}" item="{{item}}" userId="{{info.user_id}}" infoId="{{id}}" postId="{{pid}}" idx="{{index}}" isReg="{{isReg}}" loginTime="{{pageLoginTime}}" bind:parentReceive="parentCallBack" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">{{countAll > 0 ? '已经到底了哦' : '还没有人评论哦' }}</view>
+</view>
+<!-- 输入框 -->
+<view class="com_frame" style="bottom:{{bottom}}px;{{bottom&&'border-top:1rpx solid var(--sec-03);'}};{{bottom&&'padding:24rpx 130rpx 24rpx 24rpx'}}">
+    <textarea fixed="true" class="comment_box" name="content" placeholder="留下你的评论" focus="{{focus}}" value="{{content}}" maxlength='480' adjust-position="{{false}}" bindfocus="foucus" style="max-height:{{!bottom?'80rpx':'160rpx'}};{{bottom&&'margin:0'}};" show-confirm-bar="{{false}}" bindblur="blur" disable-default-padding bindinput="watchIpt"></textarea>
+    <!-- <h3 class="bold" wx:if="{{bottom}}" bindtap="formSubmit">发送</h3> -->
+    <btn-reg text="发送" class="send" wx:if="{{bottom}}" bindmytap="formSubmit" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+    <!-- <view wx:if="{{!bottom}}" bindtap="readComment">
+        <image src="../../img/48x48/comment-comment.png" data-val="{{true}}" class="skip" />
+        <h5 class="bold" style="color:var(--sec-03)">
+            {{info.count_reply == null ? '0': info.count_reply}}
+        </h5>
+    </view> -->
+    <!-- <view bindtap="approveCollect" wx:if="{{!bottom}}" data-type="approve">
+        <image src="../../img/48x48/comment-heart-active.png" wx:if="{{info.myApprove}}" />
+        <image src="../../img/48x48/comment-heart.png" wx:else />
+        <h5 class="bold" style="color:var(--{{info.myApprove?'color-general':'sec-03'}})">
+            {{info.count_approve == null ? '0' : info.count_approve}}
+        </h5>
+    </view> -->
+</view>
+<filetool id="filetool" identity="{{false}}" />
+<!-- 海报 -->
+<cover-view class="poster" wx:if="{{poster}}" style="top:{{statusBarHeight+45}}px" bindtap="createPoster">
+    <cover-view style="position: relative;" catchtap="savePic" data-type="null">
+        <cover-image src="../../img/bg.jpg" class="bg" />
+        <cover-image src="{{shareimg}}" wx:if="{{shareimg}}" class="shareimg" />
+    </cover-view>
+    <cover-view catchtap="savePic" class="btn-md">保存图片</cover-view>
+</cover-view>

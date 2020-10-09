@@ -1,0 +1,53 @@
+/* pages/lottery/index.wxss */
+@import "common.wxss";
+view.bg:after{opacity: 0;}
+page>view{opacity: 0; transition: opacity 0.2s ease-out;}
+page>view.show{opacity: 1;}
+
+.logo{position: relative; z-index: 9; width: 75vw;}
+.logo image{width:75vw;}
+view.box{position: relative; z-index: 10; width: 84vw; height: 84vw; background-size: 100% 100%;}
+.list{position: relative; z-index: 9; width: 84vw; height: 84vw;}
+.list>view{position: absolute; width: 16vw; height: 16vw; background-size: 16vw 16vw; background-repeat: no-repeat;
+transition: transform 0.1s linear; font-size: 2vw; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e0000;}
+.list>view image{width: 9vw;}
+.list>view:nth-child(1){top: 7.25vw; left: 25.08vw;}
+.list>view:nth-child(2){top: 7.25vw; left: 42.92vw;}
+.list>view:nth-child(3){top: 7.25vw; left: 60.74vw;}
+.list>view:nth-child(4){top: 25.08vw; left: 60.74vw;}
+.list>view:nth-child(5){top: 42.92vw; left: 60.74vw;}
+.list>view:nth-child(6){top: 60.74vw; left: 60.74vw;}
+.list>view:nth-child(7){top: 60.74vw; left: 42.92vw;}
+.list>view:nth-child(8){top: 60.74vw; left: 25.08vw;}
+.list>view:nth-child(9){top: 60.74vw; left: 7.25vw;}
+.list>view:nth-child(10){top: 42.92vw; left: 7.25vw;}
+.list>view:nth-child(11){top: 25.08vw; left: 7.25vw;}
+.list>view:nth-child(12){top: 7.25vw; left: 7.25vw;}
+.list>view.empty:after{content:"谢谢参与"; color: #f59599; font-size: 1.4em;}
+.list>view.sel{ transform: scale(1.1); color: gold;}
+
+.box .button{position: absolute; z-index: 10; top: 25.08vw; left: 25.08vw; width: 33.84vw; height: 33.84vw; background-size: 100% 100%; border-radius: 2vw; background-color:#00f;}
+.box .button.hover{box-shadow: inset 0 0 5vw 1vw gold;}
+
+.remark{margin-top:5vw; background:rgba(0, 99, 18, 0.8); width: 74vw; color: white; padding: 3vw 5vw; border-radius: 3vw; font-size: 3vw; z-index: 10; }
+.remark p{margin: 0; display: block; line-height: 1.6em;}
+.remark .title{font-size: 1.5em; text-align: left; margin-bottom: 0.2em;}
+
+
+.popup-bg{position: fixed; z-index: 99; top: 0; left: 0; right: 0; bottom: 0; background: rgba(90,90,90,0.7); opacity: 1;}
+.popup{position: fixed; left: 0; right: 0; bottom: -55vh; height: 55vh; z-index: 100; background:#fff; transition:bottom 0.2s ease-out; display: flex; flex-direction:column; align-items: center; justify-content: center;}
+.popup.show{bottom: 0;}
+
+.popup button{background: none; border: 2rpx solid var(--color-general); border-radius: 0.5em; color: var(--color-general); font-weight: normal; font-size: var(--h3-font-size);}
+
+/**qq小程序绑定手机号**/
+.form_bind{display: flex; flex-direction: column;}
+.form_bind>view.fld{display: flex; align-items:center; width: 70vw; margin-bottom: 5vw; border-radius: 2em; overflow: hidden;}
+.form_bind>view.fld input{background:#f6f6f6; padding: 0.5em 1.5em; font-size: var(--h2-font-size); border: none; flex-grow: 1;}
+.form_bind>view.code view{background: var(--color-general-light); color:#fff; padding: 0.55em 1.5em 0.55em 1em; font-size: var(--h2-font-size); flex-shrink: 0;}
+.form_bind>view.code view.hover{background: var(--color-general);}
+.form_bind>view.code view.disable{background:#ccc;}
+
+.form_bind .bind-btn{text-align: center; font-size: var(--h2-font-size); color:#fff; background: var(--color-general-light); padding: 0.5em 0; border-radius: 2em;}
+.form_bind .bind-btn.hover{background: var(--color-general);}
+.form_bind .bind-btn.disable{background:#ccc;}

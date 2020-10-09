@@ -1,0 +1,19 @@
+<view class="container">
+  <button wx:if="{{requireType=='reg'}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始注册</button>
+  <block wx:elif="{{requireType=='tel_num'}}">
+    <p4 class='tips'>绑定手机号后可发布、评论、收藏、点赞经验等</p4>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" wx:if="{{!isQQ}}">绑定手机号</button>
+    <view wx:else class="form_bind">
+      <view class='fld tel_num'>
+        <input type="number" placeholder="手机号" maxlength="11" data-fld="telNum" bindinput="onRegInput" />
+      </view>
+      <view class='fld code'>
+        <input type="number" placeholder="短信验证码" maxlength="6" data-fld="code" bindinput="onRegInput" />
+        <view hover-class="hover" class="{{formReg.telNum.length==11?'':'disable'}}" bindtap="onCodeTap">获取</view>
+      </view>
+      <view>
+        <view class="btn{{formReg.telNum.length==11&&formReg.code?'':' disable'}}" hover-class="hover" bindtap="onRegTap">绑 定</view>
+      </view>
+    </view>
+  </block>
+</view>

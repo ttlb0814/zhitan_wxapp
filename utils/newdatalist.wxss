@@ -1,0 +1,9 @@
+page{height: 100vh; display:flex; flex-direction: column; background:#f8f8f8;}
+
+
+page>scroll-view{box-shadow: 0 0 0 200vh #f8f8f8 inset; flex-grow: 1; flex-shrink: 1;  height: 1vh;}
+
+page>scroll-view .list{}
+
+page>scroll-view .loading {  text-align: center;  height: 80px;  line-height: 80px;  color: gray;}
+page>scroll-view .end {  text-align: center;  height: 80px;  line-height: 80px;  color: lightgray;}

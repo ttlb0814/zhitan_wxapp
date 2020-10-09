@@ -1,0 +1,8 @@
+<view class="tab_stair" style="{{margin==0&&'justify-content: space-evenly;'}}">
+  <view wx:for="{{tab}}" wx:key="index" bindtap="alterTab" data-idx="{{index}}" class="tab_list" style="margin-right:{{margin}}rpx;}}">
+    <view class="tab_item">
+      <h4 class="{{tabIdx == index &&'sel'}}">{{item}}</h4>
+      <view wx:if="{{tabIdx == index}}" class="sel_line" />
+    </view>
+  </view>
+</view>

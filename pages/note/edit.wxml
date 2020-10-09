@@ -1,0 +1,79 @@
+<!-- <view class="issue">
+  <text wx:if="{{draftId}}" bindtap="delDraftNote">删除草稿</text>
+</view> -->
+<view class="block">
+  <input type="text" placeholder="请输入标题" class="enter_title bold" bindinput="getVal" data-type="title" value="{{title}}" />
+  <editor id="editor" class="ql-container" placeholder="请输入正文" bindstatuschange="onStatusChange" bindready="onEditorReady" bindinput="getVal" bindfocus="onEditorFocus" bindblur="onEditorBlur"></editor>
+  <!--  -->
+  <view class="toolbar" catchtouchend="format" style="top: {{isIOS?toolbarTop:0}}px" wx:if="{{editorFocus&&keyboardHeight>0}}">
+    <i class="iconfont icon-charutupian" catchtouchend="insertImage"></i>
+    <!-- <i class="iconfont icon-format-header-2 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></i>
+  <i class="iconfont icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></i> -->
+    <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
+    <!-- <i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></i> -->
+    <!-- <i class="iconfont icon-zitixiahuaxian {{formats.underline ? 'ql-active' : ''}}" data-name="underline"></i> -->
+    <i class="iconfont icon-fontbgcolor {{formats.backgroundColor === '#dfdbf2' ? 'ql-active' : ''}}" data-name="backgroundColor" data-value="#dfdbf2"></i>
+    <!-- <i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered"></i>
+  <i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet"></i> -->
+  </view>
+  <!-- <picker bindchange="bindPickerChange" value="{{picker.contIdx}}" range="{{contType}}" range-key="name" data-type="picker.contIdx">
+  <view class="picker">内容类别：{{contType[picker.contIdx].name}}</view>
+</picker> -->
+  <!-- <picker bindchange="bindPickerChange" value="{{picker.gradeIdx}}" range="{{gradeType}}" range-key="name" data-type="picker.gradeIdx">
+  <view class="picker">学段类型：{{gradeType[picker.gradeIdx].name}}</view>
+</picker> -->
+  <!-- <navigator url="./location">所在位置> {{point.title}}</navigator> -->
+  <view class="tally">
+    <h3 class="bold">科目</h3>
+    <picker bindchange="bindPickerChange" value="{{picker.subIdx}}" range="{{subject}}" range-key="name" data-type="picker.subIdx">
+      <view class="picker">
+        <h3 class="{{subject[picker.subIdx].name=='请选择' && 'bold sec-02'}}">
+          {{subject[picker.subIdx].name}}
+        </h3>
+        <image src="../../img/32x32/down.png" />
+      </view>
+    </picker>
+  </view>
+  <view class="tally" bindtap="accessory">
+    <h3 class="bold">附件</h3>
+    <image src="../../img/32x32/arrow-right.png" />
+  </view>
+  <view class="tally" bindtap='selTopic' data-type="university">
+    <h3 class="bold">相关学校</h3>
+    <h3 class="uni-list">
+      <text>{{university[0].uni_name}}</text>
+      <block wx:if="{{university.length>1}}">等</block>
+      <image src="../../img/32x32/arrow-right.png" />
+    </h3>
+  </view>
+</view>
+<view class="edit">
+  <view>
+    <view>
+      <!-- <image src="../../img/48x48/draft-box.png" /> -->
+      <btn-reg src="/img/48x48/draft-box.png" bindmytap="saveDrafts" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" data-type="hand" />
+      <h6 class="general">保存</h6>
+    </view>
+    <view bindtap="preview">
+      <image src="../../img/48x48/preview.png" />
+      <h6>预览</h6>
+    </view>
+    <view bindtap="delDraftNote" wx:if="{{noteId}}">
+      <image src="../../img/48x48/trash-bin.png" />
+      <h6>删除</h6>
+    </view>
+    <view bindtap="hideNote" wx:if="{{noteId}}">
+      <image src="{{hideNt?'../../img/48x48/hide.png':'../../img/48x48/hide-active.png'}}" />
+      <h6 class="{{!hideNt&&'general'}}">{{hideNt?'隐藏':'已隐藏'}}</h6>
+    </view>
+  </view>
+  <btn-md bindtap="issueSave" wx:if="{{noteId}}">修改</btn-md>
+  <view wx:else class="issue_btn">
+    <btn-reg text="发布" bindmytap="issueSave" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+  </view>
+  <!-- <btn-lg bindtap="issueSave" wx:else>发布</btn-lg> -->
+</view>
+<!-- <view bindtap='selTopic' data-type="topic">添加话题></view>
+<view wx:for="{{topicList}}" wx:key="index">
+  <navigator url="../topic/info?id={{item.id}}">#{{item.topic_name}}</navigator>
+</view> -->

@@ -1,0 +1,145 @@
+<popup />
+<search />
+
+<tab tab="{{tab}}" tabIdx="{{tabIdx}}" bind:parentReceive="parentTab" margin="80" />
+
+
+<swiper indicator-dots="{{true}}" class="banner {{scrollTop>150&&countAll>5?'hide':''}}" interval="3000" autoplay="{{true}}" circular indicator-color="var(--white)" indicator-active-color="var(--sec-02)"  wx:if="{{imgUrls.length>0}}">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+			<navigator url="../topic/special-subject?id={{item.id}}" hover-class="none">          
+				<image src="{{item.img_swiper}}" />
+			</navigator>
+        </swiper-item>
+      </block>
+</swiper>
+
+
+<view class="tab_second" wx:if="{{tabIdx==1}}">
+	<scroll-view scroll-x="{{true}}" scroll-with-animation scroll-left="{{scrollLeft}}" >
+		<view wx:for="{{tabSecond}}" wx:key="index" class="tabSecond_item" style="background:var(--{{index==tabSecondIdx?filters.gradientRamp(item.name):'sec-04'}})" bindtap="tabSel" data-idx="{{index}}" id="{{index==tabSecondIdx?'tab_sel':''}}">
+			<h4 class="bold" style="color:{{index==tabSecondIdx?'var(--white)':'var(--sec-02)'}}">
+				{{item.name}}
+			</h4>
+		</view>
+	</scroll-view>
+</view>
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore" style="padding-top:{{tabIdx==0&&'24rpx'}}" bindscroll="scroll">
+	<!-- 推荐列表 -->
+	<view class="list" wx:for="{{dataList}}" wx:if="{{tabIdx==1}}" wx:key="index">
+		<navigator url="./info?id={{item.id}}" hover-class="none">
+			<view class="label-main" wx:if="{{tabSecondIdx==0}}">
+				<view>
+					<view class="equal_top" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+					<view class="equal_down" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+				</view>
+				<h5 style="color:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})">
+					{{item.subject_name}}
+				</h5>
+			</view>
+			<view class="article-card shadow-01" style="{{tabSecondIdx!=0&&'padding-top:24rpx'}}">
+				<view class="title" style="min-height:{{item.imgs[0]&&'144rpx'}}">
+					<view>
+						<p3 class="bold">{{item.title}}</p3>
+						<view>
+							<h4 class="bold">{{item.is_anonymous==1?'匿名用户':item.nick_name}}</h4>
+							<h4>
+								{{item.read_sec>60?(filters.minute(item.read_sec)+'分钟'):'1分钟'}}阅读
+								<datetime value="{{item.add_time}}" friendly />
+							</h4>
+						</view>
+					</view>
+					<image mode="aspectFill" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" catchtap='previewImage' data-src="{{item.imgs[0]}}" data-item="{{item.imgs}}" />
+				</view>
+				 <view class="label">
+    			  <view wx:if="{{item.is_anonymous!=1}}">
+    			    <label-school class="h5" wx:if="{{item.uni_name}}">{{item.uni_name}}</label-school>
+    			  </view>
+    			  <view>
+    			    <h5 wx:if="{{item.gk_year>0&&item.is_anonymous!=1}}">{{item.gk_year}}艺考</h5>
+    			    <h5 wx:if="{{item.gk_prov_name&&item.is_anonymous!=1}}">{{item.gk_prov_name}}考生</h5>
+    			    <h5 style="color:var(--sec-02)" wx:if="{{item.is_anonymous==1}}">用户选择隐藏个人信息</h5>
+    			  </view>
+    			</view>
+				<view class="base">
+					<h4>{{item.count_view}}人读过</h4>
+					<btn-reg  src="/img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}"  bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="0" data-idx="{{index}}"/>
+					<btn-reg  src="/img/48x48/comment-heart.png"  wx:else  bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="1"
+					data-idx="{{index}}"/>
+
+					<!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" data-val="0" catchtap="approve" data-idx="{{index}}" />
+					<image src="../../img/48x48/comment-heart.png" wx:else data-val="1" catchtap="approve" data-idx="{{index}}" /> -->
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<!-- 关注列表 -->
+	<view class="attention_list shadow-01" wx:if="{{tabIdx==0}}" wx:for="{{dataList}}" wx:key="index">
+		<navigator url="./info?id={{item.id}}" hover-class="none">
+			<view class="head" catchtap="checkAuthor" data-userid="{{item.user_id}}" wx:if="{{ dataList[index-1].user_id!=item.user_id}}">
+				<image src="{{item.head_url}}" />
+				<view>
+					<view>
+						<text class="bold">{{item.nick_name}}</text>
+						<image src="../../img/32x32/vip-fill.png" wx:if="{{item.is_verified>0}}" />
+					</view>
+					<view>
+						<h5 wx:if="{{item.gk_year>0}}">{{item.gk_year}}艺考</h5>
+						<h5 wx:if="{{item.gk_prov_name}}">{{item.gk_prov_name}}考生</h5>
+					</view>
+				</view>
+			</view>
+			<view class="label-main" style="top:{{dataList[index-1].user_id!=item.user_id&&'152rpx'}}">
+				<view>
+					<view class="equal_top" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+					<view class="equal_down" style="background:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})" />
+				</view>
+				<h5 style="color:var(--{{filters.labelShade(item.subject_name,item.subject_type)}})">
+					{{item.subject_name}}
+				</h5>
+			</view>
+			<view class="attention_vessel" style="{{ item.user_id!=dataList[index+1].user_id&&'border-bottom-left-radius:8rpx;margin-bottom:24rpx'}}">
+				<view class="article-card">
+					<view class="title" style="min-height:{{item.imgs[0]&&'144rpx'}}">
+						<view>
+							<p3 class="bold">{{item.title}}</p3>
+							<view>
+								<h4>
+									{{item.read_sec>60?(filters.minute(item.read_sec)+'分钟'):'1分钟'}}阅读
+									<datetime value="{{item.add_time}}" friendly />
+								</h4>
+							</view>
+						</view>
+						<image mode="aspectFill" wx:if="{{item.imgs[0]}}" src="{{item.imgs[0]}}" catchtap='previewImage' data-src="{{item.imgs[0]}}" data-item="{{item.imgs}}" />
+					</view>
+					<view class="label">
+        			  <view wx:if="{{item.is_anonymous!=1}}">
+        			    <label-school class="h5" wx:if="{{item.uni_name}}">{{item.uni_name}}</label-school>
+        			  </view>
+        			  <view>
+        			    <h5 wx:if="{{item.gk_year>0&&item.is_anonymous!=1}}">{{item.gk_year}}艺考</h5>
+        			    <h5 wx:if="{{item.gk_prov_name&&item.is_anonymous!=1}}">{{item.gk_prov_name}}考生</h5>
+        			    <h5 style="color:var(--sec-02)" wx:if="{{item.is_anonymous==1}}">用户选择隐藏个人信息</h5>
+        			  </view>
+        			</view>
+					<view class="base {{item.user_id==dataList[index+1].user_id&&'border-04'}}" style="padding-bottom:{{item.user_id==dataList[index+1].user_id?'16rpx':'24rpx'}}">
+						<h4>{{item.count_view}}人读过</h4>
+						<btn-reg  src="/img/48x48/comment-heart-active.png" wx:if="{{item.myApprove==1}}" bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="0" data-idx="{{index}}"/>
+						<btn-reg  src="/img/48x48/comment-heart.png"  wx:else  bindmytap="approve" loginTime="{{pageLoginTime}}" data-val="1"
+						data-idx="{{index}}"/>
+					</view>
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+	<view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>
+
+<view class="add_img">
+	<btn-reg src="/img/96x96/add.png"  bindmytap="editNote" loginTime="{{pageLoginTime}}" />
+</view>
+
+<wxs module="filters" src="../../utils/filter.wxs"/>
+
+<task-list loginTime="{{pageLoginTime}}" />

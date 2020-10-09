@@ -1,0 +1,52 @@
+/* pages/topic/special-subject.wxss */
+@import '/utils/newdatalist.wxss';
+@import '/utils/circle-card.wxss';
+
+.topic-header {
+    width: 750rpx;
+    min-height: 144rpx;
+    padding-bottom: 32rpx;
+    margin-bottom: 24rpx;
+    color: white;
+    background: linear-gradient(180deg, #3A29A4 0%, #5D4EBE 100%);
+    display: flex;
+    align-items: flex-start;
+}
+
+.topic-image {
+    width: 128rpx;
+    height: 128rpx;
+    margin-top: 24rpx;
+    margin-left: 24rpx;
+    margin-right: 40rpx;
+    flex-shrink: 0;
+}
+
+.topic-info {
+    margin-top: 40rpx;
+    margin-right: 26rpx;
+}
+
+.topic-info h1 {
+    width: 532rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-info p4 {
+    margin-top: 16rpx;
+}
+
+.list {
+	padding-left: 32rpx;
+	background: #f8f8f8;
+	padding-bottom: 24rpx;
+	position: relative;
+}
+
+.label-main {
+	position: absolute;
+	top: 24rpx;
+	left: 24rpx;
+}

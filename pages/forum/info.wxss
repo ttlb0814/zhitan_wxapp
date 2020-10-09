@@ -1,0 +1,334 @@
+.copyright btn-reg text {
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+	color: var(--function);
+}
+.liked  image{width: 48rpx;height: 48rpx;}
+
+page {
+	padding-bottom: 170rpx;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	background-color: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.vessel {
+	position: relative;
+	padding: 0 30rpx 44rpx 40rpx;
+}
+
+.vessel .quotation {
+    width: 30rpx;
+    height: 24rpx;
+	position: absolute;
+    left: 16rpx;
+	top: 24rpx;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16rpx;
+}
+
+.vessel .title {
+	color: var(--sec-01);
+	padding: 65rpx 0 16rpx 0;
+}
+
+.creator_time {
+	color: var(--sec-02);
+}
+
+.label-school {
+    margin-right: 48rpx;
+}
+
+.rich-text-box {
+    padding-right: 10rpx;
+}
+
+rich-text {
+	font-size: var(--p3-56-font-size);
+	line-height: var(--p3-56-line-height);
+}
+
+.tags {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-top: 48rpx;
+}
+
+.tag {
+    margin-right: 16rpx;
+    color: var(--sec-02);
+}
+
+.copyright {
+	width: 100%;
+    margin-top: 64rpx;
+}
+
+.copyright image {
+	width: 40rpx;
+	height: 40rpx;
+	vertical-align: middle;
+	margin: 0 8rpx 0 40rpx;
+}
+
+.copyright>h3 {
+	color: var(--function);
+	margin-top: 44rpx;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: relative;
+}
+
+.copyright>h3>button {
+	width: 180rpx;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	opacity: 0;
+}
+
+.copyright>h3>view {
+	display: flex;
+	align-items: center;
+}
+
+.foreword {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 64rpx 40rpx 0rpx;
+    background: #F9F9F9;
+    color: var(--sec-02);
+}
+
+.pd-bottom16 {
+	padding-bottom: 16rpx;
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+
+}
+
+.sort image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 12rpx;
+}
+
+
+.comment {
+    margin-top: 16rpx;
+    padding: 24rpx 40rpx;
+    background: #ffffff;
+}
+
+.answerer-info {
+    display: flex;
+    align-items: center;
+}
+
+.answerer-name {
+    color: var(--sec-01);
+    margin-right: 16rpx;
+}
+
+.answerer-img {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    border: 1rpx solid var(--sec-03);
+    margin-right: 16rpx;
+}
+
+.approve {
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.answer-content {
+    margin-top: 20rpx;
+    margin-bottom: 16rpx;
+    color: var(--sec-01);
+}
+
+.answer-content p4 {
+    display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+}
+
+.interact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dot {
+    width: 8rpx;
+    height: 8rpx;
+    margin: 0 16rpx;
+    border-radius: 50%;
+    background-color: #ABABAB;
+}
+
+.answer-about {
+    display: flex;
+    align-items: center;
+    color: var(--sec-02);
+}
+
+.liked {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+/* 评论框 */
+.com_frame {
+	box-sizing: border-box;
+	width: 100%;
+	border: 1rpx solid var(--sec-03);
+	background: var(--white);
+	padding: 31rpx 48rpx 59rpx 24rpx;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	left: 0;
+	bottom: 0;
+}
+
+.com_frame textarea {
+	width: 100%;
+	padding: 20rpx 32rpx;
+	box-sizing: border-box;
+}
+
+.com_frame > h3,
+.com_frame .send {
+	color: var(--function);
+	position: absolute;
+	right: 32rpx;
+	bottom: 40rpx;
+	padding-top: 50rpx;
+}
+
+.com_frame .send text{
+	font-weight: bold;
+	color: var(--function);
+	font-size: var(--h3-font-size);
+	line-height: var(--h3-line-height);
+}
+
+.com_frame>view {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.com_frame .skip {
+	margin: 0 48rpx 4rpx 48rpx;
+}
+
+.com_frame>view image {
+	width: 48rpx;
+	height: 48rpx;
+	margin-bottom: 4rpx;
+}
+
+.comment_box {
+    flex: 1;
+}
+
+.datalist {
+	flex: 1;
+	box-shadow: 0 0 0 200vh #f9f9f9 inset;
+	height: 100%;
+}
+
+/* .comment {} */
+
+.datalist .loading {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: gray;
+}
+
+.datalist .end {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: lightgray;
+}
+
+
+/* 交流帖样式 */
+page>.comment-list {
+	flex: 1;
+	box-shadow: 0 0 0 200vh #f9f9f9 inset;
+	height: 100%;
+}
+
+page>.comment-list .list {
+	margin-bottom: 20rpx;
+}
+
+page>.comment-list .loading {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: gray;
+}
+
+page>.comment-list .end {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+	color: lightgray;
+}
+
+.poster {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999999999999;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.bg {
+	width: 622rpx;
+	height: 912rpx;
+}
+
+.shareimg {
+	position: absolute;
+	top: 96rpx;
+	left: 40rpx;
+	width: 543rpx;
+	height: 776rpx;
+	border-radius: 16rpx;
+}
+
+.btn-md {
+	z-index: 9999;
+	margin-top: 56rpx;
+	background: var(--color-general);
+	color: var(--white);
+}

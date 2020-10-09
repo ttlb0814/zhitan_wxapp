@@ -1,0 +1,20 @@
+<!-- <text>选择大学，并将选择结果返回给上一页面，和topic/select页面功能相似</text> -->
+<view class="input-area">
+    <image src="../../img/32x32/search.png" />
+    <input type="text" class="search_box" bindconfirm="seaSch" placeholder="搜索学校" selection-start='3' confirm-type="search" />
+</view>
+<view class="sel-list">
+    <view wx:for="{{sel_sch}}" class="border-04" wx:key="id" bindtap="delItem" data-idx="{{index}}" hover-class="hover">
+        <image src="{{item.is_sel?'/img/48x48/selected.png':'/img/48x48/not-select.png'}}" class="selected" />
+        <image src="{{item.logoUrl}}" class="sch-logo" />
+        <p3 class="bold">{{item.uni_name}}</p3>
+    </view>
+    <view wx:for="{{selectList}}" class="border-04" wx:key="id" bindtap="selItem" data-item="{{item}}" data-idx="{{index}}" hover-class="hover">
+        <image src="{{item.is_sel?'/img/48x48/selected.png':'/img/48x48/not-select.png'}}" class="selected" />
+        <image src="{{item.logoUrl}}" class="sch-logo" />
+        <p3 class="bold">{{item.uni_name}}</p3>
+    </view>
+</view>
+<view class="edit">
+    <btn-md bindtap="confirm">保存</btn-md>
+</view>

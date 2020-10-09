@@ -1,0 +1,128 @@
+.comment {
+	padding: 0rpx 40rpx 16rpx 40rpx;
+	display: flex;
+	background: var(--white);
+}
+
+.approve .comment > navigator > image,
+.head image {
+	border: 1rpx solid var(--sec-03);
+	flex-shrink: 0;
+	width: 64rpx;
+	height: 64rpx;
+	border-radius: 50%;
+	margin: 40rpx 32rpx 0 0;
+}
+
+.comment > view {
+	padding-top: 40rpx;
+	width: 100%;
+}
+
+.comment .user,
+.secondLevel .user {
+	display: flex;
+	align-items: center;
+}
+
+.comment .user .author,
+.secondLevel .user .author {
+	margin-left: 16rpx;
+	flex-shrink: 0;
+}
+
+.comment .user image,
+.secondLevel .user image {
+	width: 32rpx;
+	height: 32rpx;
+	margin:0  0 0 16rpx;
+	flex-shrink: 0;
+	border: none;
+}
+.author {
+	color: #7b8fff;
+	border: 1rpx solid #7b8fff;
+	margin-left: 16rpx;
+}
+
+.answerer {
+	color: var(--approve);
+	border: 1rpx solid var(--approve);
+	margin-left: 16rpx;
+}
+
+.comment .content {
+	margin-top: 16rpx;
+}
+
+.comment .fun_button {
+	margin-top: 16rpx;
+	position: relative;
+	display: flex;
+	justify-content: flex-end !important;
+	align-items: center;
+}
+
+.comment .fun_button > h4 {
+	position: absolute;
+	left: 0;
+}
+
+
+.comment .fun_button image {
+	width: 48rpx;
+	height: 48rpx;
+}
+
+.comment .fun_button > view:nth-child(3) {
+	margin: 0 56rpx;
+}
+
+.comment .fun_button > view:last-child {
+	margin-right: 0;
+}
+
+.comment .fun_button > view {
+	display: flex;
+	align-items: center;
+}
+
+.secondLevel > view {
+	background: var(--white);
+	display: flex;
+	padding: 0 40rpx 16rpx 80rpx;
+}
+
+.secondLevel > view navigator {
+	padding-top: 32rpx;
+	width: 100%;
+	border-top: 1rpx solid var(--sec-04);
+}
+
+.secondLevel > view navigator > p4 {
+	margin: 16rpx 0;
+}
+
+.secondLevel > view navigator > p4 text {
+	color: var(--color-general);
+}
+
+.secondLevel image {
+	border: 1rpx solid var(--sec-03);
+	flex-shrink: 0;
+	border-radius: 50%;
+	margin-top: 24rpx;
+	width: 48rpx;
+	height: 48rpx;
+	margin-right: 32rpx;
+}
+
+.secondLevel > navigator {
+	text-align: right;
+	background: var(--white);
+	padding: 0 40rpx 16rpx 0;
+}
+
+.bold {
+	font-weight: bold;
+}

@@ -1,0 +1,110 @@
+
+<popup />
+<search />
+<tab tab="{{tab}}" tabIdx="{{tabIdx}}" bind:parentReceive="parentTab" margin="80" />
+<!-- <div style="z-index: 99;" hover-class="none" url="{{isReg?'/pages/forum/edit':'/pages/user/reg'}}">
+</div> -->
+<image class="add_img" bindtap="showPostType" src="/img/96x96/talk1.svg" />
+<!-- <view class="redpacket" bindtap="signIn"><image src="/img/red-packet-pop.png"></image><h4 wx:if="{{!timeOut}}" class="bold"></h4></view> -->
+
+<view class="mask" wx:if="{{showPostType}}" bindtap="hidePostType">
+	<view class="btn-box">
+		<view  animation="{{ animationData }}" class="btn issue-question {{!showPostType && 'hidden'}}" > 
+			<image src="/img/32x32/question1.svg" />
+				<!-- <h4 class="bold">y提个问题</h4> -->
+			<btn-reg text="提个问题" bindmytap="postType" loginTime="{{pageLoginTime}}"  data-type="1" />
+		</view>
+		<view  animation="{{ animationData }}" class="btn issue-casual" >
+			<image src="/img/32x32/question2.svg" />
+			<!-- <h4 class="bold">随便聊聊</h4> -->
+			<btn-reg text="随便聊聊" bindmytap="postType" loginTime="{{pageLoginTime}}"  data-type="2"/>
+		</view>
+	</view>
+</view>
+
+<scroll-view class="dataList" scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore" >
+	<!-- 帖子列表 -->
+	<view class="circle-list shadow-01" wx:for="{{dataList}}" wx:key="index">
+
+		<!-- 问答帖正式样式 -->
+
+		<view class="post-module-question" wx:if="{{item.thr_type == 1 }}" bindtap="postInfo" data-id="{{item.id}}" data-type="{{item.thr_type}}" >
+			<image class="quotation" src="/img/30x24/quotation.svg" alt="" />
+			<view class="post-out">
+				<view class="q_or_a">
+					<p3 id="title_{{item.id}}" class="{{item.answer_content ? 'title': 'title-noanswer'}} bold">{{item.title}}</p3>
+					<p4 class="answer" wx:if="{{ item.answer_content }}">
+						<p4 style="-webkit-line-clamp: {{item.contentShowNum}};">{{item.answer_content}}</p4>
+						<image class="answerer" src="{{ item.answer_is_anonymous == 1 ? '/img/96x96/is_anonymous.png' :  item.answer_head_url}}"></image>
+						<image class="triangle" src="/img/16x16/triangle.svg"></image>
+					</p4>
+				</view>
+				<!-- 作者信息 -->
+				<view class="author-info">
+					<image class="author-headerImg" src="{{item.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.head_url}}"></image>
+					<h4 class="bold author-name">{{item.is_anonymous == 1 ? '匿名用户' : item.nick_name}}</h4>
+					<h4 class="add-time"><datetime value="{{item.add_time}}" friendly /></h4>
+				</view>
+				<!-- 帖子标签相关（学校，话题） -->
+				<view class="post-about">
+					<view class="post-tags">
+						<label-01 wx:if="{{ item.goodContSta == 1}}" class="post-type good-question h5">好问题</label-01>
+						<label-school wx:if="{{item.unis_name}}" class="label-school h5">{{item.unis_name}}</label-school>
+						<h5 class="post-tag bold" ><h5 wx:for="{{item.tags}}" wx:key="index" class="tag">#{{item.tag_name}}#</h5></h5>
+					</view>
+				</view>
+			</view>
+			<view class="post-footer">
+				<h4 wx:if="{{item.count_reply > 0}}" class="anawers">{{item.count_reply}}个回答</h4>
+				<h4 wx:else class="anawers">还没有人回答过哦</h4>
+				<!-- <image class="like" catchtap="approve" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" data-type="{{item.approve_sta}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} "></image> -->
+
+				<btn-reg  data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" data-type="{{item.approve_sta}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} " bindmytap="approve" loginTime="{{pageLoginTime}}"  />
+
+			</view>
+		</view>
+
+		<!-- 结束 -->
+
+		<!--交流帖正式样式 -->
+		<view class="post-module-issues" wx:if="{{ item.thr_type == 2 }}" bindtap="postInfo" data-id="{{item.id}}" data-type="{{item.thr_type}}">
+			<image class="quotation" src="/img/30x24/quotation.svg" alt="" />
+			<view class="post-out">
+				<view class="t_or_c">
+					<p3 hidden="{{ item.title == '' }}" id="title_{{item.id}}" class="issues-title bold">{{item.title}}</p3>
+					<p4 hidden="{{ item.word == '' }}" class="issues-content">{{item.word}}</p4>
+				</view>
+				<vew wx:if="{{item.imgs.length}}" class="img-list">
+					<image wx:for="{{item.imgs}}" wx:key="index" mode="aspectFill" wx:for-item="img" wx:for-index="imgidx" catchtap='previewImage' data-currentImg="{{img}}" data-urls="{{item.imgs}}" class="image" src="{{img}}"></image>
+				</vew>
+				<view class="author-info">
+					<image class="author-headerImg" src="{{item.is_anonymous == 1 ? '/img/96x96/is_anonymous.png' : item.head_url}}"></image>
+					<h4 class="bold author-name">{{item.is_anonymous == 1 ? '匿名用户' : item.nick_name}}</h4>
+					<h4 class="add-time"><datetime value="{{item.add_time}}" friendly /></h4>
+				</view>
+				<!-- 帖子标签相关（学校，话题） -->
+				<view class="post-about">
+					<view class="post-tags">
+						<label-01 wx:if="{{ item.goodContSta == 2}}" class="post-type good-content h5">好内容</label-01>
+						<label-school wx:if="{{item.unis_name}}" class="label-school h5">{{item.unis_name}}</label-school>
+						<h5 class="post-tag bold" ><h5 wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index" class="tag">#{{tag.tag_name}}#</h5></h5>
+					</view>
+				</view>
+			</view>
+			<view class="post-footer">
+				<h4 wx:if="{{item.count_reply > 0}}" class="anawers">{{item.count_reply}}条评论</h4>
+				<h4 wx:else class="anawers">还没有人评论过哦</h4>
+				<!-- <image class="like" catchtap="approve" data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-type="{{item.approve_sta}}" data-idx="{{index}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }}"></image> -->	
+				<btn-reg  data-tid="{{item.forum_post.tid}}" data-postid="{{item.forum_post.id}}" data-idx="{{index}}" data-type="{{item.approve_sta}}" src="{{item.approve_sta == 1 ? '/img/48x48/comment-heart-active.png' : '/img/48x48/comment-heart.png' }} " bindmytap="approve" loginTime="{{pageLoginTime}}"  />
+			</view>
+		</view>
+
+		<!-- 结束 -->
+
+
+	</view>
+
+</scroll-view>
+<wxs module="filter" src="../../utils/filter.wxs"></wxs>
+
+<task-list loginTime="{{pageLoginTime}}" />

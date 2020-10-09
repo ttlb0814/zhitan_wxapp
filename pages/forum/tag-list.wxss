@@ -1,0 +1,2 @@
+@import '/utils/circle-card.wxss';
+@import '../../utils/newdatalist.wxss';

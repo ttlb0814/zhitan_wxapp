@@ -1,0 +1,10 @@
+<image src="/img/logo.svg" class="logo" mode="widthFix" />
+<view class="pannel">
+  <h3 wx:if="{{!userLoaded}}">加载中</h3>
+  <button wx:elif="{{requireType=='reg'}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+    开始使用
+  </button>
+</view>
+<!-- <navigator url="../note/index" open-type="switchTab">所有用户发布的经验</navigator>
+
+<navigator url="../university/newslist">资讯列表</navigator> -->

@@ -1,0 +1,6 @@
+/**index.wxss**/
+page{display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 75vh;}
+.logo{width: 25vw;}
+
+.pannel{height:120rpx; margin-top: 0.5em; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.pannel h3, .pannel button{color: var(--color-general); }

@@ -1,0 +1,7 @@
+<cover-view class="file-tool-dlg-bg" wx:if="{{showDownload}}" bindtap="_hideDownload" />
+<cover-view class="file-tool-dlg" wx:if="{{showDownload}}">
+  <cover-view class='title'>复制链接，粘贴到浏览器下载</cover-view>
+  <cover-view class='help' bindtap="_helpTap">操作教程</cover-view>
+  <cover-view class='url'>{{urlShow}}</cover-view>
+  <cover-view><button class="btn-md" hover-class="hover" bindtap="_hideDownload" data-copy='1'>复制链接</button></cover-view>
+</cover-view>

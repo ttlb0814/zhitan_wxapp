@@ -1,0 +1,78 @@
+<!-- pages/sign-in/index.wxml -->
+<image class="sign-bg" src="{{signInImage}}"></image>
+<view class="statistics">
+    <view class="sgin-in-days">
+        <label>
+            <h4>已连续签到</h4>
+        </label>
+        <view class="days">
+            <h1>{{!signInfo.tu && '0' || signInfo.tu.count_sign}}</h1>
+            <h3>天</h3>
+        </view>
+    </view>
+    <view class="sgin-in-money">
+        <label>
+            <h4>已累计金额</h4>
+        </label>
+        <view class="money">
+            <h1>{{money}}</h1>
+            <h3>元</h3>
+        </view>
+    </view>
+</view>
+<view class="redpackets">
+    <view class="redpacket-box" wx:for="{{signData}}" wx:key="index">
+        <view class="redpacket {{((!signInfo.tu && index == 0) || (signInfo.tu.count_sign == (index + 1) && signInfo.is_today_finish && signInfo.tu.count_sign < 7) || (signInfo.tu.count_sign == index && signInfo.is_today_finish == 0) && signInfo.tu.count_sign < 7 ) && 'sign-active' }}">
+            <h3 class="bold">{{item.money}}元</h3>
+            <image wx:if="{{item.is_sign}}" src="/img/56x64/red-packet2.png"></image>
+            <!-- <image wx:elif="{{(!signInfo.tu && index == 0) || (signInfo.tu.count_sign == index && signInfo.is_today_finish == 0)}}" src="/img/56x64/red-packet1.png"></image> -->
+            <image wx:else src="/img/56x64/red-packet3.png" ></image>
+        </view>
+        <h4 wx:if="{{ (!signInfo.tu && index == 0) || (signInfo.tu.count_sign == (index + 1) && signInfo.is_today_finish && signInfo.tu.count_sign < 7) || (signInfo.tu.count_sign == index && signInfo.is_today_finish == 0)}}" >今天</h4>
+        <!-- <h4 wx:if="{{ !signInfo.tu || signInfo.is_today_finish == 0}}" >今天</h4> -->
+        <h4 wx:else>第{{index + 1}}天</h4>
+    </view>
+</view>
+<view class="no_time_out" wx:if="{{ signInfo.is_today_finish == 0 && ( !signInfo.tu || signInfo.tu.is_getprize == 0 ) && (task[taskIdx].sign_wait-sec > 0 && task[taskIdx].is_today_finish == 0)}}">
+    <btn-reg text="{{task[taskIdx].sign_wait-sec}}s" class="sec" loginTime="{{pageLoginTime}}" data-idx="{{index}}" />
+</view>
+<view class="sign-in" wx:elif="{{ !signInfo.tu || signInfo.tu.is_getprize == 0 && signInfo.tu.count_sign < 7 }}">
+    <!-- <h3>task.sign_wait-sec: {{task[taskIdx].sign_wait-sec}} -- task.sign_wait+1: {{task[taskIdx].sign_wait+1}} -- sec +1: {[{{sec +1}}]} -- signInfo.tu.is_getprize == 0: {{signInfo.tu.is_getprize == 0}} -- task.sign_wait-sec > 0: {{task[taskIdx].sign_wait-sec > 0}} -- task.is_today_finish == 0: {{task[taskIdx].is_today_finish == 0}} </h3> -->
+    <btn-reg text="{{signInfo.is_today_finish == 1 ? '已签到' : '签到'}}" bindmytap="signIn"  loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+</view>
+<view class="adopt-redpacket" wx:if="{{ signInfo.tu.is_getprize == 0 && signInfo.tu.count_sign == 7 }}"  >
+    <btn-reg text="领红包" bindmytap="adoptRedpacket" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+</view>
+
+<view class="attention">
+    <label class="title">
+        <h4>活动规则</h4>
+    </label>
+    <view class="rules">
+        <view class="rule-title">
+            <h3 class="bold">签到领红包</h3>
+            <p3>连续签到7天即可领取现金红包</p3>
+        </view>
+        <p4 class="sigin-title">签到规则</p4>
+        <p4 class="rule">1.注册用户每天可在签到页面签到（等待倒计时结束），连续签满7天即可获取5元现金红包。</p4>
+        <p4 class="rule">2.用户每签到一天，红包金额增加0.5元，第七天增加2元，若连续签到中断，则重新计算天数。</p4>
+        <p4 class="rule">3.通过不正当手段参与活动的用户，之谈将有资格取消你的获奖资格。</p4>
+        <p4 class="rule">4.活动解释权在法律允许的范围内归之谈所有。</p4>
+    </view>
+</view>
+<!-- 点击领红包弹出 -->
+<view class="radpacket-modal" wx:if="{{adoptRedpacket}}" bindtap="closeModal">
+    <view class="content" catchtap="catch">
+        <h4 class="hint">请联系之谈运营人员领取红包</h4>
+        <div class="item">
+            <image src="../../img/56x56/wechat.png" />
+            <span class="h4">xiaoyansuo018</span>
+            <btn-sm catchtap='copyText' data-text="xiaoyansuo018">复制</btn-sm>
+        </div>
+        <div class="item qq">
+            <image src="../../img/56x56/qq.png" />
+            <span class="h4">2487441295</span>
+            <btn-sm catchtap='copyText' data-text="2487441295">复制</btn-sm>
+        </div>
+    </view>
+</view>

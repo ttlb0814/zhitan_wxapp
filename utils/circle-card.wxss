@@ -1,0 +1,275 @@
+.circle-list {
+	/* padding-top: 40rpx;
+	padding-bottom: 24rpx; */
+	padding-left: 32rpx;
+	background: #f8f8f8;
+	/* background-color: #ffffff; */
+	/* padding: 24rpx 16rpx 24rpx 32rpx; */
+	padding-right: 0;
+	padding-top: 0;
+	/* position: relative; */
+}
+
+.quotation {
+	width: 30rpx;
+	height: 24rpx;
+	position: absolute;
+	left: -16rpx;
+	top: 24rpx;
+}
+
+.post-module-question {
+	position: relative;
+	background-color: var(--white);
+	border-radius: 8rpx 0px 0px 8rpx;
+	margin-top: 24rpx;
+}
+
+.post-out {
+	padding: 40rpx 32rpx 32rpx;
+}
+
+.q_or_a {
+	display: flex;
+	align-items: flex-start;
+	padding-right: 16rpx;
+	justify-content: space-between;
+}
+
+.q_or_a .title {
+	width: 296rpx;
+	color: var(--grey-01);
+	flex-shrink: 0;
+}
+
+.q_or_a .title-noanswer {
+	color: var(--grey-01);
+}
+
+.q_or_a .answer {
+	width: 318rpx;
+	margin-left: 40rpx;
+	position: relative;
+	background: rgba(93, 78, 190, 0.2);
+	border-radius: 16rpx;
+	padding: 16rpx;
+}
+
+.answer p4 {
+	font-size: var(--sec-01);
+	/* padding-right: 32rpx; */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	/*默认最少显示2行*/
+
+}
+
+.answerer {
+	width: 32rpx;
+	height: 32rpx;
+	border-radius: 50%;
+	box-shadow: var(--color-general) 0 0 2rpx;
+	position: absolute;
+	top: -16rpx;
+	right: -16rpx;
+}
+
+.triangle {
+	width: 16rpx;
+	height: 16rpx;
+	position: absolute;
+	top: 24rpx;
+	right: -16rpx;
+}
+
+/* 作者信息 */
+.author-info {
+	display: flex;
+	align-items: center;
+	margin-top: 24rpx;
+	margin-bottom: 24rpx;
+}
+
+.author-headerImg {
+	border: 1rpx solid var(--sec-03);
+	width: 32rpx;
+	height: 32rpx;
+	border-radius: 50%;
+	box-shadow: #e5e5ea 0 0 1rpx;
+}
+
+.author-name {
+	color: var(--sec-02);
+	margin-left: 8rpx;
+	margin-right: 16rpx;
+}
+
+.add-time {
+	color: var(--sec-02);
+}
+
+/* 帖子标签相关（学校，话题） */
+.post-about {
+	overflow: hidden;
+
+
+}
+
+.post-tags {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.post-type {
+	padding: 4rpx 16rpx;
+	border-radius: 32rpx;
+	font-size: var(--h5-font-size);
+	line-height: var(--h5-line-height);
+	/* color: var(--approve); */
+	/* background: rgba(82, 196, 26, 0.2); */
+	margin-right: 16rpx;
+}
+
+.good-question {
+	color: #C3B00E;
+	background: #FFFB8F;
+}
+
+.label-school {
+	margin-right: 16rpx;
+	font-size: var(--h5-font-size);
+}
+
+.post-tag {
+	flex: 1;
+	margin-right: 16rpx;
+	color: var(--color-general);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.tag {
+	margin-right: 16rpx;
+	color: var(--color-general);
+	display: inline;
+}
+
+hr {
+	width: 100%;
+	height: 2rpx;
+}
+
+
+.post-footer {
+	border-top: 1rpx solid var(--sec-04);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 95rpx;
+	padding: 0 32rpx
+}
+
+.anawers {
+	color: var(--sec-02);
+}
+
+.like {
+	width: 48rpx;
+	height: 48rpx;
+}
+
+/* 交流帖样式 */
+
+.post-module-issues {
+	border-radius: 8rpx 0px 0px 8rpx;
+	position: relative;
+	background-color: #ffffff;
+	margin-top: 24rpx;
+}
+
+.quotation {
+	width: 30rpx;
+	height: 24rpx;
+	position: absolute;
+	left: -16rpx;
+	top: 24rpx;
+}
+
+.t_or_c {
+	font-size: var(--sec-01);
+}
+
+.issues-title {
+	margin-bottom: 8rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	/*默认最少显示2行*/
+}
+
+.issues-content {
+	margin-bottom: 16rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	-webkit-line-clamp: 2;
+	/*默认显示2行*/
+}
+
+.img-list {
+	display: flex;
+	align-items: center;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.img-list image {
+	width: 120rpx;
+	height: 120rpx;
+	margin-right: 16rpx;
+}
+
+/* 交流帖底部同问答帖 */
+/* 帖子标签相关（学校，话题） */
+.post-about {
+	display: flex;
+	align-items: center;
+
+}
+
+.post-type {
+	padding: 6rpx 16rpx;
+	border-radius: 32rpx;
+	font-size: var(--h5-font-size);
+	margin-right: 16rpx;
+}
+
+.good-content {
+	color: #E5673D;
+	background: rgba(255, 156, 110, 0.4);
+}
+
+.label-school {
+	margin-right: 16rpx;
+	font-size: var(--h5-font-size);
+}
+
+.post-tag {
+	margin-right: 16rpx;
+	color: var(--color-general);
+}
+
+hr {
+	width: 100%;
+	height: 2rpx;
+}
+
+.like {
+	width: 48rpx;
+	height: 48rpx;
+}

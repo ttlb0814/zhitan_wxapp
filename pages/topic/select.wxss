@@ -1,0 +1,21 @@
+page {
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx;
+	box-sizing: border-box;
+	height: 100vh;
+}
+
+input {
+	border: 3rpx solid pink;
+}
+.search {
+	height: 300rpx;
+	border: 3rpx solid yellowgreen;
+	margin-bottom: 20rpx ;
+}
+
+.hotList {
+	flex: 1;
+	height: 1vh;
+}

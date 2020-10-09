@@ -1,0 +1,5 @@
+<!-- 预览页面 -->
+<view class="vessel">
+  <p2 class="title bold">{{title}}</p2>
+  <rich-text nodes="{{content}}" />
+</view>

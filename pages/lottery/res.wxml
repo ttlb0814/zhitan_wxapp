@@ -1,0 +1,20 @@
+<view class="bg{{loadFinish?' show':''}}" style="background-image:url({{imgDir}}bg.png)">
+  <image class='top' src="{{imgDir}}bg-top.png" mode="widthFix" />
+  <image class='bot' src="{{imgDir}}bg-bot.png" mode="widthFix" />
+</view>
+<block wx:if="{{info.win>0}}">
+  <view class="title">恭喜你，中奖了</view>
+  <view class="sub-title">转发给朋友，一起去嗨~</view>
+
+  <view class='img'>
+    <image src="{{imgDir}}prize.png" mode="widthFix"/>
+    <view>{{prize}}</view>
+  </view>
+  <navigator class='btn' url="info" wx:if="{{info.is_set==0}}">点击领奖</navigator>
+  <button wx:else open-type="share" class="btn">分享给好友</button>
+</block>
+<block wx:elif="{{info}}">
+  <view class="title">很遗憾，未能中奖</view>
+  <view class="sub-title">转发给朋友，试试运气~</view>
+  <view class="img"><image src="{{imgDir}}no-prize.png" mode="widthFix"/></view>
+</block>

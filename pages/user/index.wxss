@@ -1,0 +1,287 @@
+@import '../../utils/newdatalist.wxss';
+@import '../../utils/my-forum-card.wxss';
+.author_head ._column btn-reg text {
+	font-size: var(--h4-font-size);
+	line-height: var(--h4-line-height);
+	color: var(--white);
+	font-weight: bold;
+}
+.author_head ._column btn-reg button.btn-reg-button-cls {
+	background: none;
+}
+page > scroll-view {
+	box-shadow: none;
+}
+
+page {
+	background: none;
+}
+
+.author_head {
+	padding: 32rpx 40rpx 48rpx 40rpx;
+	background: var(--gradient-author-bg);
+	color: var(--white);
+}
+
+.author_head btn-xs {
+	color: var(--color-general);
+	background: var(--tint-general);
+}
+
+.author_head btn-sm {
+	background: #9b8bd9;
+	margin-left: 24rpx;
+	/* opacity: 0.3; */
+}
+
+.author_head .sel {
+	background: var(--gradient-play);
+}
+
+.author_head > view {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.author_head .btn_list {
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 16rpx;
+}
+
+.author_head > view > image {
+	border: 3rpx solid var(--tint-general);
+	flex-shrink: 0;
+	margin-right: 48rpx;
+	width: 144rpx;
+	height: 144rpx;
+	border-radius: 50%;
+}
+
+.author_head ._column {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 10rpx 0;
+	justify-content: space-between;
+}
+
+.author_head ._column > view {
+	display: flex;
+	width: 450rpx;
+}
+
+.author_head ._column > p5 {
+	color: var(--tint-general);
+	display: flex;
+	flex-wrap: nowrap;
+	overflow: hidden;
+
+}
+.author_head ._column > p5 > text{flex-shrink: 0;}
+.author_head ._column > p5 > text:nth-child(2) {
+	margin:0 16rpx 0 24rpx
+}
+
+
+
+.author_head ._column > view:nth-child(3) > h4:first-child {
+	padding-right: 32rpx;
+	margin-right: 32rpx;
+	border-right: 1rpx solid var(--tint-general);
+}
+
+.author_head .signature {
+	margin-top: 16rpx;
+	color: var(--white);
+}
+
+.author_head ._column image {
+	flex-shrink: 0;
+	width: 40rpx;
+	height: 40rpx;
+	margin-left: 16rpx;
+}
+
+.tab > view {
+	padding: 32rpx 40rpx;
+	border-radius: 16rpx 16rpx 0px 0px;
+	margin-top: -10rpx;
+}
+
+.red-hot {
+	right: 0;
+}
+
+.user_card {
+	padding: 0;
+	margin: 0 32rpx;
+	position: relative;
+}
+
+.user_card > view {
+	margin: 32rpx 0;
+}
+
+.user_card > image {
+	margin-right: 24rpx;
+}
+
+.user_card > view > h3 {
+	width: 530rpx;
+}
+
+.user_card > view > h3 > image {
+	margin-left: 16rpx;
+}
+
+.user_card > view > h3 > h6 {
+	position: absolute;
+	right: 0rpx;
+	top: 24rpx;
+	color: var(--sec-03);
+}
+
+.user_card > view > view > text:last-child {
+	padding-left: 0;
+}
+
+.user_card .no-border {
+	border: none;
+	border-radius: 0;
+}
+
+.user_card > view > view > text:last-child {
+	border-left: none;
+}
+
+.card {
+	padding: 32rpx 0;
+	margin: 0 40rpx;
+	box-shadow: none;
+	border-radius: 0;
+	border-bottom: 2rpx solid var(--sec-04);
+}
+
+.card > view > p2,
+.card > view > p3 {
+	margin-top: 0;
+}
+
+.card > image {
+	width: 132rpx;
+	height: 132rpx;
+}
+
+.reg {
+	height: 85vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.reg btn-reg button.btn-reg-button-cls {
+	padding: 0.3em 1em;
+	border: 2rpx solid var(--color-general);
+	background: var(--white);
+	color: var(--color-general);
+	border-radius: 0.3em;
+	text-align: center;
+}
+
+.reg btn-reg.btn-reg-button-cls text {
+	font-size: 0.8em;
+	/* margin-top: 0.5em;
+	padding-top: 0.4em; */
+	/* border-top: 4rpx solid var(--color-general); */
+	color: var(--color-general-light);
+}
+
+.require_tel_num {
+	text-align: center;
+	padding-top: 10vw;
+}
+
+.require_tel_num p4 {
+	color: var(--sec-03);
+}
+
+.require_tel_num btn-reg button {
+	margin-top: 5vw;
+	padding: 0.3em 1em;
+	border: 2rpx solid var(--color-general);
+	color: var(--color-general);
+	background: var(--white);
+	border-radius: 0.3em;
+	text-align: center;
+	display: inline-block;
+}
+
+.private-letter {
+	display: flex;
+	transition: 0.1s;
+	justify-content: space-between;
+}
+
+.private-letter > navigator {
+	flex-shrink: 0;
+	/* width: 100%; */
+	width: 690rpx;
+	border-bottom: 1rpx solid var(--sec-04);
+}
+
+.private-letter .del {
+	width: 137rpx;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	background: var(--warning);
+	border-radius: 0%;
+	color: var(--white);
+	flex-shrink: 0;
+}
+
+.info-alert {
+	position: absolute;
+	min-width: 32rpx;
+	text-align: center;
+	left: 66rpx;
+	top: 15rpx;
+	height: 32rpx;
+	line-height: 32rpx;
+	margin: 0;
+	background: var(--warning);
+	border-radius: 16rpx;
+	/* padding: 0 8rpx; */
+	color: var(--white);
+}
+.draft {
+	padding: 32rpx 0 24rpx 43rpx;
+	background: var(--sec-05);
+	color: var(--sec-02);
+	display: flex;
+	align-items: center;
+}
+.draft > image {
+	width: 48rpx;
+	height: 48rpx;
+	margin-right: 8rpx;
+}
+
+.base btn-reg button,
+.post-footer btn-reg button {
+	background: var(--white);
+	width: 48rpx !important;
+	height: 48rpx !important;
+}
+.base btn-reg image,
+.post-footer btn-reg image {
+	width: 48rpx;
+	height: 48rpx;
+}
+
+.forum-list {
+	margin: 0 32rpx;
+	margin-right: 40rpx;
+}

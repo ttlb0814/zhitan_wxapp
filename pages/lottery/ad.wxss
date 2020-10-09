@@ -1,0 +1,13 @@
+/* pages/lottery/ad.wxss */
+@import "common.wxss";
+view.bg:after{opacity: 0;}
+
+page>view, page>image{opacity: 0; transition: opacity 0.2s ease-out;}
+page>view.show, page>image.show{opacity: 1;}
+
+page>image{z-index: 1;}
+page>image.logo{width: 100vw;}
+page>image.button{width: 84vw; margin: 5vw 0;}
+page>image.remark{width: 84vw;}
+
+button:not([size='mini']).cover, navigator.cover{position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; width: 100vw; opacity: 0;}

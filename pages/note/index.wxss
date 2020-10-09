@@ -1,0 +1,128 @@
+@import '/utils/newdatalist.wxss';
+
+.banner{height: 192rpx; transition: all 0.15s linear;}
+.banner image{width: 100%;height: 192rpx;}
+.banner.hide{height: 0;overflow: hidden;}
+.list {
+	padding-left: 32rpx;
+	background: #f8f8f8;
+	padding-bottom: 24rpx;
+	position: relative;
+}
+
+.tab_second {
+	background-color: #f9f9f9;
+	padding: 24rpx 32rpx;
+}
+
+.tab_second > scroll-view {
+	white-space: nowrap;
+}
+
+.tab_second .tabSecond_item {
+	margin-right: 24rpx;
+}
+
+.label-main {
+	position: absolute;
+	top: 24rpx;
+	left: 24rpx;
+}
+
+/* 关注列表 */
+
+.attention_list {
+	margin-left: 32rpx;
+	background: #f8f8f8;
+	position: relative;
+}
+
+.attention_list .label-main {
+	left: -8rpx;
+}
+
+.attention_list .head {
+	background-color: var(--white);
+	display: flex;
+	align-items: center;
+	border-top-left-radius: 8rpx;
+	padding: 32rpx;
+	padding-bottom: 8rpx;
+}
+
+.attention_list .head > view {
+	overflow: hidden;
+}
+
+.attention_list .head > view > view > .bold {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: var(--h3-font-size);
+}
+
+.attention_list .head > view > view > h5 {
+	color: var(--sec-02);
+	margin-right: 24rpx;
+	margin-top: 16rpx;
+}
+
+.attention_list .head > view > view {
+	display: flex;
+	align-items: center;
+}
+
+.attention_list .head > image:first-child {
+	border: 1rpx solid var(--sec-03);
+	width: 88rpx;
+	height: 88rpx;
+	flex-shrink: 0;
+	border-radius: 50%;
+	margin-right: 24rpx;
+}
+
+.attention_list .head image:last-child {
+	width: 32rpx;
+	height: 32rpx;
+	margin-left: 16rpx;
+	flex-shrink: 0;
+}
+
+.attention_vessel {
+	z-index: 1;
+	background: var(--white);
+}
+
+.attention_vessel > .article-card > .base {
+	border-top: none;
+	height: 48rpx;
+	padding: 0;
+	margin: 0 32rpx;
+}
+
+.add_img button,
+.add_img image {
+	width: 96rpx !important;
+	border-radius: 50%;
+	background: #5D4EBE;
+	height: 96rpx;
+	position: fixed;
+	right: 24rpx;
+	bottom: 24rpx;
+}
+
+.reg-cover {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+	color: transparent;
+}

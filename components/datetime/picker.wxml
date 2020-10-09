@@ -1,0 +1,4 @@
+<view class="-datetime-picker">
+  <picker mode="date" name="date" value="{{date}}" bindchange="onChange" data-fld="date"><view>{{date?date:'选择日期'}}</view></picker>
+  <picker mode="time" name="time" value="{{time}}" bindchange="onChange" data-fld="time"><view>{{time?time:'选择时间'}}</view></picker>
+</view>

@@ -1,0 +1,20 @@
+/* pages/lottery/info.wxss */
+@import "common.wxss";
+view.bg:after{content:""; position: absolute; top: 0; left: 0; right: 0; bottom:0; z-index: 1; background:rgba(0,0,0, 0.6);}
+
+.img{display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fafd02;}
+.img image{width: 33vw;}
+
+.h3{ color:#fff;margin-top: 2vw;letter-spacing: 0.08em;  padding: 8rpx; border-radius: 8rpx; font-size: var(--h4-font-size);}
+.form{ display: flex; flex-direction: column; align-items: center; justify-content: center;}
+.form picker{ background:#fff; margin-top: 4vw; border-radius: 8vw; border: 5rpx solid #000;}
+.form picker view{padding: 0.5em; width: 66vw; padding: 3vw 6vw 3vw 14vw; font-size: 5vw; background-position: 6vw center; background-size: 5vw auto; background-repeat: no-repeat;}
+.form picker view.empty{color:#aaa;}
+.form input{width: 66vw; padding: 3vw 6vw 3vw 14vw; margin-top: 4vw; border-radius: 8vw; border: 5rpx solid #000; background-position: 6vw center; background-size: 5vw auto; background-repeat: no-repeat; color: #515151; font-size: 5vw; background-color: #fff;} 
+.form .btn{margin-top:10vw;}
+.form .btn.hover{background:#fe0;}
+
+.form.read{position: relative;}
+.form.read:after{content:""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 99; }
+.form.read picker{background:#ccc;}
+.form.read input{background-color:#ccc;}

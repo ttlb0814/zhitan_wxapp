@@ -1,0 +1,91 @@
+/* pages/forum/index.wxss */
+@import '/utils/newdatalist.wxss';
+@import '/utils/circle-card.wxss';
+
+.btn-box  btn-reg button {display: flex;align-items: center;}
+.btn-box >view:first-child btn-reg button{	background: #6b8bff ;}
+.btn-box >view:last-child btn-reg button{background: #9283F9;}
+.btn-box btn-reg text {font-size: var(--h4-font-size);line-height: var(--h4-line-height);color: var(--white);font-weight: bold;}
+.add_img {
+	width: 96rpx;
+	height: 96rpx;
+	position: fixed;
+	right: 24rpx;
+	bottom: 24rpx;
+	z-index: 99;
+}
+
+.redpacket {
+	width: 96rpx;
+	height: 134rpx;
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+	position: absolute;
+	right: 24rpx;
+	bottom: 148rpx;
+	z-index: 99;
+}
+
+.redpacket image {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.redpacket h4 {
+	color: #ffffff;
+	margin-top: 60rpx;
+	z-index: 100;
+}
+
+.mask {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 90;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.btn-box {
+	position: absolute;
+	right: 148rpx;
+	bottom: 24rpx;
+}
+
+.btn-box .btn {
+	padding: 16rpx 24rpx;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 32rpx;
+	color: #ffffff;
+	opacity: 0;
+}
+
+.hidden {
+	opacity: 0;
+}
+
+.btn image {
+	width: 32rpx;
+	height: 32rpx;
+	margin-right: 8rpx;
+}
+
+.issue-question {
+	background-color: var(--function);
+	margin-bottom: 16rpx;
+}
+
+.issue-casual {
+	background-color: var(--color-general-light);
+}
+
+/* .dataList {
+	border-top: 24rpx solid white;
+} */

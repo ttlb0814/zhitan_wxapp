@@ -1,0 +1,28 @@
+<view class="custom flex_center" style="padding-top:{{statusBarHeight}}px">
+    <view class="_back" bindtap="goBack">
+        <image src="../../img/back.png" />
+    </view>
+    <view class="_infoHead" wx:if="{{myselfId!=author.id||!infoId}}">
+        <btn-reg src="{{author.is_anonymous!=1?author.head_url:'/img/96x96/is_anonymous.png'}}" bindmytap="goHomepage" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+    </view>
+    <view class="_info" wx:if="{{myselfId!=author.id||!infoId}}">
+        <btn-reg text="{{author.is_anonymous!=1? author.nick_name :'匿名用户'}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" />
+    </view>
+    <h3 class="bold" wx:if="{{myselfId==author.id&&infoId}}">我的经验</h3>
+    <!-- <view class="attention btn-top {{author.isMyFanning==1&&'btn-top_active'}}" catchtap="attention" data-id="{{author.id}}" wx:if="{{(myselfId!=author.id||!infoId)&&author.is_anonymous!=1}}">
+        <h5>{{author.isMyFanning>0?'已关注':'关注'}}</h5>
+    </view> -->
+    <!-- <navigator class="attention btn-edit" url="/pages/note/edit?id={{infoId}}" wx:if="{{myselfId==author.id&&infoId}}">
+        <h5>编辑</h5>
+    </navigator> -->
+    <view class="_notConcern" wx:if="{{(myselfId!=author.id||!infoId)&&author.is_anonymous!=1}}">
+        <btn-reg data-id="{{author.id}}" wx:if="{{author.isMyFanning>0}}" text="已关注" bindmytap="attention" loginTime="{{pageLoginTime}}" />
+    </view>
+    <view class="_followed" wx:if="{{(myselfId!=author.id||!infoId)&&author.is_anonymous!=1}}">
+        <btn-reg wx:if="{{author.isMyFanning<=0}}" data-id="{{author.id}}" text="关注" bindmytap="attention" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" />
+    </view>
+    <view wx:if="{{myselfId==author.id&&infoId}}" class="_editNote">
+        <btn-reg data-id="{{author.id}}" text="编辑" bindmytap="editNote" loginTime="{{pageLoginTime}}" />
+    </view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight}}px" />

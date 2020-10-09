@@ -1,0 +1,7 @@
+<view class="task">
+  <view class='item' wx:for="{{task}}" wx:key="id" wx:if="{{!item.is_del||!isDel}}">
+    <btn-reg class="img" src="{{item.is_today_finish ?(item.icon_finish||item.icon_enable): (item.sign_wait-sec<=0?item.icon_enable:(item.icon_disable||item.enable))}}" bindmytap="signIn" loginTime="{{pageLoginTime}}" data-id="{{item.id}}" />
+    <btn-reg text="{{item.sign_wait-sec+'s'}}" class="sec" wx:if="{{item.sign_wait-sec>0&&item.is_today_finish==0&&item.is_finish==0 }}" loginTime="{{pageLoginTime}}" bindmytap="signIn" data-id="{{item.id}}" />
+    <image src="/img/32x32/close-whitebg.png" bindtap="delTask" data-idx="{{index}}" wx:if="{{isDel}}" />
+  </view>
+</view>

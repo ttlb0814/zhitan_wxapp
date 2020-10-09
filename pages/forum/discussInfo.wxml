@@ -1,0 +1,113 @@
+<!-- 评论详情 -->
+<view class="comment">
+    <!-- <navigator url="{{!isReg?'/pages/user/reg':'/pages/user/author?userId='+discussInfo.user_id}}" hover-class="none">
+        <image src="{{discussInfo.head_url}}" />
+    </navigator> -->
+    <btn-reg class="head_top" src="{{discussInfo.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" />
+    <view wx:if="{{discussInfo.thr_type == 2}}">
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{discussInfo.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{discussInfo.is_verified==1}}" />
+                <label-author class="author" wx:if="{{discussInfo.is_thread_role }}">
+                    <h6>楼主</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">
+                {{discussInfo.is_del == 1 ?'内容已删除': discussInfo.content}}
+            </p4>
+        </view>
+        <view class="fun_button">
+            <h4 style="color:var(--sec-02)">
+                <datetime value="{{discussInfo.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view catchtap="comment">
+                <image src="../../img/48x48/comment-comment.png" />
+            </view>
+            <view>
+                <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{discussInfo.approve_sta}}" />
+                <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+                <btn-reg src="../../img/48x48/comment-heart-active.png" wx:if="{{discussInfo.approve_sta}}" loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-tid="{{discussInfo.tid}}" data-postid="{{discussInfo.id}}" data-type="{{discussInfo.approve_sta}}" />
+                <btn-reg src="../../img/48x48/comment-heart.png" wx:else loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-tid="{{discussInfo.tid}}" data-postid="{{discussInfo.id}}" data-type="{{discussInfo.approve_sta}}" />
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{discussInfo.thr_type == 1}}">
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{discussInfo.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{discussInfo.is_verified==1}}" />
+                <label-author class="{{discussInfo.is_thread_role ? 'author' : 'answerer'}} {{userId}} {{authorId}}" wx:if="{{discussInfo.is_answer_role || discussInfo.is_thread_role}}">
+                    <h6>{{( discussInfo.is_thread_role == 1 ) ? '题主' : '答主' }}</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">{{discussInfo.content}}</p4>
+        </view>
+        <view class="fun_button">
+            <h4 style="color:var(--sec-02)" class="{{myselfId}} {{discussInfo.user_id}} ">
+                <datetime value="{{discussInfo.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view wx:if="{{ myselfId == discussInfo.user_id }}" catchtap="delete" data-tid="{{discussInfo.tid}}" data-postid="{{discussInfo.id}}">
+                <image src="../../img/48x48/trash-bin.png" />
+            </view>
+            <view catchtap="comment" data-id="{{item.id}}">
+                <image src="../../img/48x48/comment-comment.png" />
+            </view>
+            <view>
+                <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{discussInfo.approve_sta}}" />
+                <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+                <btn-reg src="../../img/48x48/comment-heart-active.png" wx:if="{{discussInfo.approve_sta}}" loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-tid="{{discussInfo.tid}}" data-postid="{{discussInfo.id}}" data-type="{{discussInfo.approve_sta}}" />
+                <btn-reg src="../../img/48x48/comment-heart.png" wx:else loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-tid="{{discussInfo.tid}}" data-postid="{{discussInfo.id}}" data-type="{{discussInfo.approve_sta}}" />
+            </view>
+        </view>
+    </view>
+</view>
+<!-- 二级评论 -->
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <view wx:for="{{dataList}}" wx:key="index" class="second_level">
+        <!-- <image src="{{item.head_url}}" class="head" catchtap="lookUser" data-id="{{item.user_id}}" /> -->
+        <btn-reg class="head" src="{{item.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.user_id}}" />
+        <view class="col">
+            <view class="user">
+                <h4 class="bold">{{item.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.is_verified==1}}" />
+                <label-author class="{{item.is_thread_role == 1 ? 'author' : 'answerer'}}" wx:if="{{ (discussInfo.thr_type == 2 && item.is_thread_role ) || (discussInfo.thr_type == 1 &&  (item.is_answer_role || item.is_thread_role))}}">
+                    <h6 wx:if="{{discussInfo.thr_type == 2 && item.is_thread_role }}">楼主</h6>
+                    <h6 wx:if="{{discussInfo.thr_type == 1}}">
+                        {{item.is_thread_role ? '题主' : '答主'}}
+                    </h6>
+                </label-author>
+            </view>
+            <p4>
+                <block wx:if="{{item.atUser}}">
+                    回复
+                    <text class="bold">@{{item.atUser.nick_name}}</text>
+                    :
+                </block>
+                {{item.content}}
+            </p4>
+            <view class="fun_button">
+                <h4 style="color:var(--sec-02)">
+                    <datetime value="{{item.add_time}}" format="MM-dd HH:mm" />
+                </h4>
+                <view>
+                    <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.approve_sta}}" />
+                    <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+                    <btn-reg src="../../img/48x48/comment-heart-active.png" wx:if="{{item.approve_sta}}" loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-idx="{{index}}" data-tid="{{item.tid}}" data-postid="{{item.id}}" data-type="{{item.approve_sta}}" />
+                    <btn-reg src="../../img/48x48/comment-heart.png" wx:else loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-idx="{{index}}" data-tid="{{item.tid}}" data-postid="{{item.id}}" data-type="{{item.approve_sta}}" />
+                </view>
+            </view>
+        </view>
+        <view class="mask">
+            <btn-reg loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="openActionsheet" data-name="{{item.nick_name}}" data-atUid='{{item.user_id}}' data-idx="{{index}}" data-id="{{item.tid}}" data-postid="{{item.id}}" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">已经到底了哦</view>
+</scroll-view>
+<!-- 输入框 -->
+<view class="ipt {{bottom?'ipt-focus':''}}" style="margin-bottom:{{bottom}}px;">
+    <textarea class="comment_box {{bottom?'text-focus':''}}" bindblur="blur" bindfocus="foucus" disable-default-padding bindinput="watchIpt" placeholder="{{placeholder}}" value="{{content}}" focus="{{focus}}" maxlength="255" adjust-position="{{false}}" show-confirm-bar="{{false}}" />
+    <!-- <h3 class="bold" wx:if="{{bottom}}" bindtap="formSubmit">发送</h3> -->
+    <btn-reg text="发送" class="send" wx:if="{{bottom}}" bindmytap="formSubmit" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+</view>

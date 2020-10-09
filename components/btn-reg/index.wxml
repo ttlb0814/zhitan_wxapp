@@ -1,0 +1,52 @@
+<block wx:if="{{user||userTP&&!requireTelnum}}">
+  <!-- 用户已存在或者是存在第三方用户且不需要手机号时，直接调用点击方法 -->
+  <button class='btn-reg-button-cls {{cls}}' style="width:unset" catchtap="_onBtnTap" hover-class="none">
+    <image wx:if="{{src}}" src="{{src}}" />
+    <text class='' wx:if="{{text}}">{{text}}</text>
+  </button>
+</block>
+<block wx:elif="{{userTP&&requireTelnum}}">
+  <!-- 存在第三方用户但需要手机号时，授权获取手机号 -->
+  <button wx:if="{{isQQ}}" class='btn-reg-button-cls {{cls}}' hover-class="none" style="width:unset" bindtap="_onShowTelPanel">
+    <image wx:if="{{src}}" src="{{src}}" />
+    <text class='' wx:if="{{text}}">{{text}}</text>
+  </button>
+  <button wx:else class='btn-reg-button-cls {{cls}}' hover-class="none" style="width:unset" open-type="getPhoneNumber" catchtap="_invalid" bindgetphonenumber="_onGetPhoneNumber">
+    <image wx:if="{{src}}" src="{{src}}" />
+    <text class='' wx:if="{{text}}">{{text}}</text>
+  </button>
+</block>
+<block wx:else>
+  <!-- 完全不存在用户信息时，获取用户信息 -->
+  <button class='btn-reg-button-cls {{cls}}' hover-class="none" style="width:unset" open-type="getUserInfo" catchtap="_invalid" bindgetuserinfo="_onGetUserInfo">
+    <image wx:if="{{src}}" src="{{src}}" />
+    <text class='' wx:if="{{text}}">{{text}}</text>
+  </button>
+</block>
+<!-- 绑定手机号码弹窗 -->
+<view wx:if="{{showTelPanel}}" class="btn-reg-form-bind-bg" bindtap="_onHideTelPanel" />
+<view wx:if="{{showTelPanel}}" class="btn-reg-form-bind">
+  <!-- QQ -->
+  <block wx:if="{{isQQ}}">
+    <view class='fld tel_num'>
+      <input type="number" placeholder="手机号" maxlength="11" data-fld="telNum" bindinput="_onRegInput" />
+    </view>
+    <view class='fld code'>
+      <input type="number" placeholder="短信验证码" maxlength="6" data-fld="code" bindinput="_onRegInput" />
+      <view hover-class="hover" class="{{formReg.telNum.length==11?'':'disable'}}" bindtap="_onCodeTap">
+        获取
+      </view>
+    </view>
+    <view>
+      <view class="btn{{formReg.telNum.length==11&&formReg.code?'':' disable'}}" hover-class="hover" bindtap="_onRegTap">
+        绑 定
+      </view>
+    </view>
+  </block>
+  <!-- 微信 -->
+  <block wx:else>
+    <button class='telnum' open-type="getPhoneNumber" style="width:unset" bindgetphonenumber="_onGetPhoneNumber">
+      绑定手机号
+    </button>
+  </block>
+</view>

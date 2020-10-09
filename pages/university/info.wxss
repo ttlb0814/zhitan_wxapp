@@ -1,0 +1,138 @@
+@import '/utils/newdatalist.wxss';
+
+page {
+	background: var(--white);
+}
+
+page > scroll-view {
+	box-shadow: none;
+}
+
+.tab > view {
+	padding: 32rpx 0;
+	border-top-left-radius: 16rpx;
+	border-top-right-radius: 16rpx;
+	margin-top: -10rpx;
+}
+
+.each {
+	padding: 40rpx 0;
+	margin: 0 40rpx;
+}
+
+.uni_name {
+	flex-shrink: 0;
+	display: flex;
+	padding-bottom: 58rpx;
+	opacity: 0.8;
+	background: var(--gradient-school-overlay);
+}
+
+.uni_name .block {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	padding-top: 40rpx;
+}
+
+.uni_name .block > h2 {
+	color: var(--white);
+}
+
+.uni_name .block btn-xs {
+	color: var(--color-general);
+	background-color: var(--tint-general);
+	margin: 24rpx 16rpx 0 0;
+}
+
+.uni_name > image {
+	flex-shrink: 0;
+	width: 176rpx;
+	height: 176rpx;
+	margin: 32rpx 40rpx 0 40rpx;
+	border-radius: 50%;
+	border: 2rpx solid var(--tint-general);
+}
+
+.basic_info image {
+	width: 32rpx;
+	height: 32rpx;
+	flex-shrink: 0;
+	margin: 8rpx 16rpx 0 0;
+}
+
+.basic_info > p4 {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 8rpx;
+	padding-right: 40rpx;
+	color: var(--tint-general);
+}
+
+.basic_info > h4 > image {
+	flex-shrink: 0;
+}
+
+.synopsis .abstract {
+	padding: 40rpx 48rpx 0 48rpx;
+	max-height: 700rpx;
+	overflow: hidden;
+}
+
+.synopsis .abstract p3-56 {
+	display: block;
+	color: var(--sec-01);
+}
+
+.synopsis .img {
+	width: 100%;
+	text-align: center;
+}
+
+.synopsis .img image {
+	width: 32rpx;
+	height: 32rpx;
+	margin: 40rpx 0;
+}
+
+.synopsis btn-lg {
+	background: var(--sec-05);
+	color: var(--sec-02);
+	margin: 0 auto;
+	margin-bottom: 60rpx;
+}
+
+.list {
+	position: relative;
+}
+
+.card {
+	padding: 65rpx 0 40rpx 0rpx;
+	margin: 0 40rpx;
+}
+
+.card > view > p3 {
+	margin-top: 0rpx;
+}
+
+.card > image {
+	width: 135rpx;
+	height: 135rpx;
+	margin-left: 31rpx;
+}
+
+.card > view > view {
+	padding-bottom: 0;
+}
+
+.card > view > view > view > h5:nth-child(2) {
+	margin: 0 16rpx;
+}
+
+.label-main {
+	position: absolute;
+	left: 16rpx;
+	top: 23rpx;
+}
+
+

@@ -1,0 +1,24 @@
+<!-- 选择附件 -->
+<view class="operation border-04">
+    <btn-sm bindtap="edit" wx:if="{{!editSta}}">编辑</btn-sm>
+    <btn-sm bindtap="edit" wx:else bindtap="updateSta">完成</btn-sm>
+    <addAccessory bind:parentReceive="parentReceive" identity="{{noteId?'edit':'add'}}" bind:update="update" id="addAccessory" />
+</view>
+<view class="files_list" style="padding:{{!editSta&&'0 40rpx'}}">
+    <view class="item" wx:for="{{files}}" wx:key="index" data-idx="{{index}}" bindtap="examineFile">
+        <image src="{{item.is_sel?'../../img/48x48/selected.png':'../../img/48x48/not-select.png'}}" wx:if="{{editSta}}" data-index="{{index}}" />
+        <p3 class="border-04">
+            <image src="{{item.file_ext!='mp4'?'../../img/48x48/file.png':'../../img/48x48/video.png'}}" />
+            <block wx:if="{{!editSta}}">
+                {{noteId?item.file_title:(item.name||item.tempFilePath)}}
+            </block>
+            <input wx:if="{{editSta}}" catchtap="stop" bindblur="filesettitle" placeholder="请输入文件标题" value="{{noteId?filters.fileTitle(item.file_title):(filters.fileTitle(item.name||item.tempFilePath))}}" data-idx="{{index}}" />
+        </p3>
+    </view>
+</view>
+<view class="edit">
+    <btn-md wx:if="{{!editSta}}" bindtap="save">保存</btn-md>
+    <btn-md wx:else class="sel" bindtap="delFiles">删除所选 （{{sel_amount||0}}）</btn-md>
+</view>
+<filetool id="filetool" identity="{{false}}" />
+<wxs src="../../utils/filter.wxs" module="filters"></wxs>

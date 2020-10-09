@@ -1,0 +1,16 @@
+<text class="title">#{{topicInfo.topic_name}}</text>
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <text style="padding-left:30rpx">相关内容列表</text>
+    <block wx:for="{{dataList}}" wx:key="index">
+        <navigator class='list' url="../note/info?id={{item.data_id}}" wx:if="{{!item.is_del}}">
+            <view class="each">
+                <image src="{{item.head_url}}" />
+                <text>{{item.nick_name}}</text>
+                <text>{{item.title}}</text>
+            </view>
+        </navigator>
+        <view class="each" wx:else>该经验已删除</view>
+    </block>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>

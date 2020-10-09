@@ -1,0 +1,96 @@
+page {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.record {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.record > view {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 32rpx;
+}
+
+.record > h5 {
+	width: 100%;
+	padding: 40rpx 0 8rpx 0;
+	text-align: center;
+}
+
+.record image {
+	width: 48rpx;
+	height: 48rpx;
+	border-radius: 50%;
+	flex-shrink: 0;
+	margin: 0 24rpx 0 48rpx;
+}
+.record > view > p3 {
+	border: 2rpx solid var(--sec-04);
+	padding: 24rpx 32rpx;
+	background: var(--white);
+	border-radius: 32rpx;
+	color: var(--sec-01);
+	border: 2rpx solid var(--sec-04);
+}
+.record > view > .other {
+	margin-right: 40rpx;
+	background: var(--sec-04);
+}
+
+.record > view > h6 {
+	color: var(--sec-03);
+	display: flex;
+	align-items: flex-end;
+	flex-shrink: 0;
+}
+
+.record > view > h6:first-child {
+	margin-right: 16rpx;
+}
+.record > view > h6:last-child {
+	margin-left: 16rpx;
+}
+.ipt {
+	width: 100%;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	padding: 20rpx 48rpx 65rpx 40rpx;
+	border: 1rpx solid var(--sec-03);
+	position: relative;
+}
+
+.ipt textarea {
+	width: 100%;
+	box-sizing: border-box;
+	max-height: 80rpx;
+	padding: 23rpx 40rpx;
+}
+
+.ipt-focus {
+	border-top: 1rpx solid var(--sec-03);
+	padding: 24rpx 130rpx 24rpx 24rpx;
+}
+
+.ipt .text-focus {
+	max-height: 160rpx;
+	margin: 0;
+	padding: 16rpx 32rpx;
+}
+
+.ipt > h3 {
+	color: var(--function);
+	position: absolute;
+	right: 32rpx;
+	bottom: 40rpx;
+	padding-top: 50rpx;
+}
+.private-letter {
+	flex: 1;
+	height: 1vh;
+	padding-bottom: 36rpx;
+}

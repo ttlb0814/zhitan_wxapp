@@ -1,0 +1,30 @@
+<view wx:if="{{!is_active}}" class="search-inactive">
+  <view bindtap="_searchStart" class="search_box">
+    <image src="../../img/32x32/search.png" />
+    <h4>{{placeholder}}</h4>
+    <view class="icon-small-wrp">
+      <!-- <icon class="icon-small" type="cancel" size="23" wx:if="{{val}}" catchtap="_cancel"></icon> -->
+    </view>
+  </view>
+</view>
+<view wx:else class="search-active">
+  <view class="input-area">
+    <image src="../../img/32x32/search.png" />
+    <input type="text" class="search_box" focus="{{true}}" bindconfirm="_search" confirm-type="search" placeholder="{{placeholder}}" value="{{val}}" selection-start='3' maxlength="20" />
+    <h4 bindtap="history_cancel">取消</h4>
+  </view>
+  <view class="history">
+    <view class="search">
+      <h3 class="bold">搜索记录</h3>
+      <h4 bindtap="clear_history">清除历史</h4>
+    </view>
+    <view class="block">
+      <btn-sm class="info" wx:for="{{arrHistory}}" bindtap="_historySearch" data-value="{{item}}" wx:key="index">
+        {{item}}
+      </btn-sm>
+    </view>
+    <!-- <view class="search">
+      <h3 class="bold">热门搜索</h3>
+    </view> -->
+  </view>
+</view>

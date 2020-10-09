@@ -1,0 +1,110 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/note/index",
+    "pages/note/info",
+    "pages/note/edit",
+    "pages/note/location",
+    "pages/topic/select",
+    "pages/topic/info",
+    "pages/user/index",
+    "pages/user/fans",
+    "pages/university/index",
+    "pages/university/info",
+    "pages/university/newslist",
+    "pages/university/newsinfo",
+    "pages/university/select",
+    "pages/note/discussInfo",
+    "pages/user/author",
+    "pages/note/search",
+    "pages/university/accessory",
+    "pages/user/private-letter",
+    "pages/user/reg",
+    "pages/lottery/index",
+    "pages/lottery/res",
+    "pages/lottery/info",
+    "pages/lottery/share",
+    "pages/lottery/ad",
+    "pages/msg/msglist",
+    "pages/user/attestation",
+    "pages/organization/info",
+    "pages/task/sign-in",
+    "pages/forum/index",
+    "pages/forum/info",
+    "pages/forum/edit",
+    "pages/forum/tag",
+    "pages/note/draft",
+    "pages/forum/answer-edit",
+    "pages/forum/answer-info",
+    "pages/forum/discussInfo",
+    "pages/forum/tag-list",
+    "pages/user/personal-data",
+    "pages/note/preview",
+    "pages/topic/special-subject"
+  ],
+  "usingComponents": {
+    "datetime": "./components/datetime/index",
+    "datecard": "./components/datetime/card",
+    "datepicker": "./components/datetime/picker",
+    "time": "./components/datetime/time",
+    "comment": "./components/comment/index",
+    "forum-comment": "./components/forum-comment/forum-comment",
+    "filetool": "./components/filetool/index",
+    "filesize": "./components/filetool/size",
+    "search": "./components/search/index",
+    "tab": "./components/tab/tab",
+    "navigation": "./components/navigation/index",
+    "navigation-forum": "./components/navigation-forum/index",
+    "popup": "./components/popup/index",
+    "btn-reg": "./components/btn-reg/index",
+    "task-list": "./components/task/list"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "之谈",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取周边服务"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#9fa8da",
+    "selectedColor": "#3949ab",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/note/index",
+        "iconPath": "img/64x64/notes.png",
+        "selectedIconPath": "img/64x64/notes-active.png",
+        "text": "经验"
+      },
+      {
+        "pagePath": "pages/forum/index",
+        "iconPath": "img/64x64/community.png",
+        "selectedIconPath": "img/64x64/community-active.png",
+        "text": "交流"
+      },
+      {
+        "pagePath": "pages/university/index",
+        "iconPath": "img/64x64/school.png",
+        "selectedIconPath": "img/64x64/school-active.png",
+        "text": "学校"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "img/64x64/me.png",
+        "selectedIconPath": "img/64x64/me-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx88a700232e01e118",
+    "1110683396"
+  ]
+}

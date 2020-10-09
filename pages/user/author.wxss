@@ -1,0 +1,125 @@
+@import '/utils/newdatalist.wxss';
+@import '/utils/my-forum-card.wxss';
+
+page {
+	background: var(--white);
+}
+
+page>scroll-view {
+	box-shadow: none;
+}
+
+.author_head {
+	padding: 32rpx 40rpx 48rpx 40rpx;
+	background: var(--gradient-author-bg);
+	color: var(--white);
+}
+
+.author_head btn-xs {
+	color: var(--color-general);
+	background: var(--tint-general);
+	max-width: 328rpx;
+}
+
+.author_head btn-xs>navigator {
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.author_head btn-sm {
+	background: #9b8bd9;
+	margin-left: 24rpx;
+}
+
+.author_head .sel {
+	background: var(--gradient-play);
+}
+
+.author_head>view {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.author_head .btn_list {
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.author_head>view>image {
+	border: 3rpx solid var(--tint-general);
+	flex-shrink: 0;
+	margin-right: 48rpx;
+	width: 144rpx;
+	height: 144rpx;
+	border-radius: 50%;
+}
+
+.author_head ._column {
+	display: flex;
+	flex-direction: column;
+	padding-top: 12rpx;
+	margin-bottom: 16rpx;
+}
+
+.author_head ._column>view {
+	display: flex;
+	width: 450rpx;
+}
+
+.author_head ._column>view:nth-child(2) {
+	margin: 24rpx 0 16rpx 0;
+}
+
+.author_head ._column>view:nth-child(2)>h4:first-child {
+	padding-right: 32rpx;
+	margin-right: 32rpx;
+	border-right: 1rpx solid var(--tint-general);
+}
+
+.author_head ._column p4 {
+	color: var(--tint-general);
+}
+
+.author_head ._column image {
+	flex-shrink: 0;
+	width: 40rpx;
+	height: 40rpx;
+	margin-left: 16rpx;
+}
+
+.tab_bg {
+	background: var(--gradient-general);
+}
+
+.tab>view {
+	border-radius: 16rpx 16rpx 0px 0px;
+	padding: 32rpx 0;
+	box-shadow: none;
+	margin-bottom: 0rpx;
+	border-bottom: 1rpx solid var(--sec-04);
+}
+
+.card {
+	padding: 32rpx 0;
+	margin: 0 40rpx;
+	box-shadow: none;
+	border-radius: 0;
+	border-bottom: 2rpx solid var(--sec-04);
+}
+
+.card>view>p2,
+.card>view>p3 {
+	margin-top: 0;
+}
+
+.card>image {
+	width: 132rpx;
+	height: 132rpx;
+}
+
+page>scroll-view .loading {
+	height: 100px;
+}

@@ -1,0 +1,9 @@
+<block wx:if="{{show}}">
+  <view class='popup'>
+    <image src="{{guideUrl}}" class="guide"  mode="widthFix"/>
+    <view class='close' bindtap="_close">
+      <image src="/img/56x56/btn-close.png" class="icon" />
+      <image src="{{imgUrl}}" bindtap="_nav" class="poster"  />
+    </view>
+  </view>
+</block>

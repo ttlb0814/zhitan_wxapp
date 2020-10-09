@@ -1,0 +1,78 @@
+<!-- 评论详情 -->
+<view class="comment">
+    <btn-reg class="head_top" src="{{discussInfo.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" />
+    <view>
+        <view>
+            <view class="user">
+                <h4 class="bold" style="color:var(--sec-01)">{{discussInfo.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{discussInfo.is_verified==1}}"/>
+                <label-author class="author" wx:if="{{userId==discussInfo.user_id}}">
+                    <h6>作者</h6>
+                </label-author>
+            </view>
+            <p4 style="color:var(--sec-01)" class="content">
+                {{discussInfo.deleted==1?'内容已删除': discussInfo.content}}
+            </p4>
+        </view>
+        <view class="fun_button stick_comment" style="{{discussInfo.deleted==1&&'padding-top: 24rpx;margin-bottom: 24rpx;'}}">
+            <h4 style="color:var(--sec-02)">
+                <datetime value="{{discussInfo.add_time}}" format="MM-dd HH:mm" />
+            </h4>
+            <view>
+                <view catchtap="deleteComment" data-id="{{discussInfo.id}}" wx:if="{{discussInfo.deleted!=1&&discussInfo.user_id==my_userId}}">
+                    <image src="../../img/48x48/trash-bin.png" />
+                </view>
+                <view catchtap="comment" wx:if="{{discussInfo.deleted!=1}}">
+                    <image src="../../img/48x48/comment-comment.png" />
+                </view>
+                <view wx:if="{{discussInfo.deleted!=1}}">
+                    <btn-reg src="../../img/48x48/comment-heart-active.png" wx:if="{{discussInfo.myApprove}}" loginTime="{{pageLoginTime}}" bindmytap="giveLike" />
+                    <btn-reg src="../../img/48x48/comment-heart.png" wx:else loginTime="{{pageLoginTime}}" bindmytap="giveLike" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadMore">
+    <view wx:for="{{dataList}}" wx:key="id" class="second_level" bindtap="openActionsheet" data-name="{{item.nick_name}}" data-atUid='{{item.user_id}}' data-idx="{{index}}">
+        <btn-reg class="head" src="{{item.head_url}}" loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="goHomepage" data-id="{{item.user_id}}" />
+        <view class="col">
+            <view class="user">
+                <h4 class="bold">{{item.nick_name}}</h4>
+                <image src="/img/32x32/vip-fill.png" wx:if="{{item.is_verified==1}}" />
+                <label-author class="author" wx:if="{{userId==item.user_id}}">
+                    <h6>作者</h6>
+                </label-author>
+            </view>
+            <p4>
+                <block wx:if="{{item.atUser}}">
+                    回复
+                    <text class="bold">@{{item.atUser.nick_name}}</text>
+                    :
+                </block>
+                {{item.content}}
+            </p4>
+            <view class="fun_button">
+                <h4 style="color:var(--sec-02)">
+                    <datetime value="{{item.add_time}}" format="MM-dd HH:mm" />
+                </h4>
+                <view>
+                    <!-- <image src="../../img/48x48/comment-heart-active.png" wx:if="{{item.myApprove}}" />
+                    <image src="../../img/48x48/comment-heart.png" wx:else /> -->
+                    <btn-reg src="../../img/48x48/comment-heart-active.png" wx:if="{{item.myApprove}}" loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-idx="{{index}}" />
+                    <btn-reg src="../../img/48x48/comment-heart.png" wx:else loginTime="{{pageLoginTime}}" bindmytap="giveLike" data-idx="{{index}}" />
+                </view>
+            </view>
+        </view>
+        <view class="mask">
+            <btn-reg loginTime="{{pageLoginTime}}" requireTelnum="{{true}}" bindmytap="openActionsheet" data-name="{{item.nick_name}}" data-atUid='{{item.user_id}}' data-idx="{{index}}" data-id="{{item.tid}}" data-postid="{{item.id}}" />
+        </view>
+    </view>
+    <view class='loading' wx:if="{{!isEnd}}">加载中...</view>
+    <view class='end' wx:if="{{isEnd}}">加载结束</view>
+</scroll-view>
+<!-- 输入框 -->
+<view class="ipt {{bottom?'ipt-focus':''}}" style="margin-bottom:{{bottom}}px;">
+    <textarea class="comment_box {{bottom?'text-focus':''}}" bindblur="blur" bindfocus="foucus" disable-default-padding bindinput="watchIpt" placeholder="{{placeholder}}" value="{{content}}" focus="{{focus}}" maxlength="255" adjust-position="{{false}}" show-confirm-bar="{{false}}" />
+    <btn-reg text="发送" class="send" wx:if="{{bottom}}" bindmytap="formSubmit" requireTelnum="{{true}}" loginTime="{{pageLoginTime}}" />
+</view>

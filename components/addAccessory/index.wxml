@@ -1,0 +1,11 @@
+<view class="file">
+  <view>
+    <btn-sm bindtap="addAccessory" size="mini">上传附件</btn-sm>
+    <!-- <button bindtap="addAccessory" size="mini">添加附件</button> -->
+  </view>
+  <!-- <p wx:for="{{tempFiles}}" wx:key="id">{{item.name||item.tempFilePath}}</p>
+  <view wx:if="{{tempFiles.length}}">
+    <button bindtap="upload" size="mini" type="primary">上传</button>
+    <button size="mini" bindtap="cancel">取消</button>
+  </view> -->
+</view>

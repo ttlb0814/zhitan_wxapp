@@ -1,0 +1,24 @@
+/* components/btn-reg/index.wxss */
+button{
+  border:none;
+  font-size: 36rpx;
+  background-color: none;
+  padding:0;
+  font-weight: normal;
+  background: var(--white);display: flex;
+}
+
+/**qq小程序绑定手机号**/
+.btn-reg-form-bind-bg{position:fixed; bottom:0; left: 0; right: 0; top: 0; z-index: 999; background: rgba(0,0,0,0.4);}
+.btn-reg-form-bind{display: flex; flex-direction: column; position:fixed; justify-content: center; align-items: center;bottom:0; left: 0; right: 0; z-index: 1000; background: #fff; min-height: 40vh;}
+.btn-reg-form-bind>view.fld{display: flex; align-items:center; width: 70vw; margin-bottom: 5vw; border-radius: 2em; overflow: hidden;}
+.btn-reg-form-bind>view.fld input{background:#f6f6f6; padding: 0.5em 1.5em; font-size: var(--h2-font-size); border: none; flex-grow: 1;}
+.btn-reg-form-bind>view.code view{background: var(--color-general-light); color:#fff; padding: 0.55em 1.5em 0.55em 1em; font-size: var(--h2-font-size); flex-shrink: 0;}
+.btn-reg-form-bind>view.code view.hover{background: var(--color-general);}
+.btn-reg-form_bind>view.code view.disable{background:#ccc;}
+
+.btn-reg-form-bind .btn{width: 530rpx;text-align: center; font-size: var(--h2-font-size); color:#fff; background: var(--color-general-light); padding: 0.5em 0; border-radius: 2em;}
+.btn-reg-form-bind .btn.hover{background: var(--color-general);}
+.btn-reg-form-bind .btn.disable{background:#ccc;}
+
+.btn-reg-form-bind button.telnum{background: none; border: 2rpx solid var(--color-general); border-radius: 0.5em; color: var(--color-general); font-weight: normal; font-size: var(--h3-font-size);height: 50rpx;}

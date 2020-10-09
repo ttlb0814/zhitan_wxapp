@@ -1,0 +1,11 @@
+<!-- <text>单个大学资讯详情</text> -->
+<view class="title">
+    <p2 class="bold">{{newsInfo.title}}</p2>
+</view>
+<view class="label">
+    <view class="label-school">
+        <h5>{{newsInfo.uni_name}}</h5>
+    </view>
+    <h4>{{newsInfo.pub_date}}</h4>
+</view>
+<rich-text nodes="{{newsInfo.content}}" />
